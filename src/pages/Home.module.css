@@ -1,0 +1,66 @@
+.pillars { padding: 70px 0 95px; background: var(--neutral-50); overflow: hidden; }
+.pillarsIntro { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 40px; }
+.pillarsIntro p { max-width: 560px; margin: 0; color: var(--neutral-700); }
+
+.lines { background: var(--neutral-white); }
+.linesHeading { display: grid; grid-template-columns: 1.18fr .82fr; align-items: end; gap: 8vw; margin-bottom: 68px; }
+.linesHeading h2 { font-size: clamp(3rem, 5.5vw, 6rem); margin: .18em 0 0; }
+.linesHeading p { max-width: 520px; color: var(--neutral-700); }
+.lineList { display: grid; }
+.lineRow { min-height: 510px; display: grid; grid-template-columns: .78fr 1.22fr; overflow: hidden; background: #fff4f8; }
+.lineRow + .lineRow { margin-top: 24px; }
+.lineRowReverse { grid-template-columns: 1.22fr .78fr; }
+.lineRowReverse .lineCopy { order: 2; }
+.lineRowReverse .lineVisual { order: 1; }
+.lineCopy { padding: clamp(42px, 6vw, 88px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; position: relative; z-index: 2; }
+.lineIndex { position: absolute; top: 32px; right: 36px; color: rgba(23,33,31,.25); font-size: .72rem; letter-spacing: .12em; }
+.lineCopy h3 { font-size: clamp(3.5rem, 7vw, 7.2rem); margin: .15em 0; }
+.lineCopy p { max-width: 510px; color: var(--neutral-700); }
+.lineVisual { min-width: 0; overflow: hidden; position: relative; }
+.lineVisual::after { content: ''; position: absolute; inset: auto 0 0; height: 25%; background: linear-gradient(transparent, rgba(255,255,255,.22)); pointer-events: none; }
+.lineVisual img { width: 185%; max-width: none; height: 100%; object-fit: cover; object-position: right center; transition: transform .8s var(--ease-premium); }
+.lineRow:hover .lineVisual img { transform: scale(1.025); }
+.luxe { background: #f7f0e8; }
+.vanity { background: #fff8df; }
+.zoom { background: #fff0e8; }
+.zoom .lineVisual img { width: 100%; object-fit: contain; padding: 6%; }
+.zoom .lineCopy h3 { font-family: var(--sans); font-weight: 800; letter-spacing: -.075em; }
+
+.launches { background: var(--brand-orange-light); }
+.launches header { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 40px; }
+.launches h2 { font-size: clamp(3rem, 5vw, 5.5rem); margin: .2em 0 0; }
+.launchLayout { display: grid; grid-template-columns: 1.4fr repeat(2, .8fr); gap: 24px; }
+.launchLayout a { position: relative; min-height: 420px; background: var(--neutral-white); padding: 28px; display: flex; flex-direction: column; }
+.launchLayout a > span { width: max-content; background: var(--brand-orange); color: var(--neutral-900); padding: 7px 10px; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.launchLayout img { width: 100%; flex: 1; min-height: 0; object-fit: contain; }
+.launchLayout h3 { margin: 12px 0 0; }
+
+.commercial { display: grid; grid-template-columns: 1fr 1fr; padding-block: clamp(80px, 9vw, 130px); }
+.find, .partner { padding: clamp(40px, 5.5vw, 76px); }
+.find { background: var(--brand-cyan-light); }
+.find > svg { color: var(--brand-cyan-dark); margin-bottom: 55px; transition: transform .45s var(--ease-premium); }
+.find:hover > svg { transform: translateY(-5px); }
+.partner { background: var(--brand-orange-light); }
+.find h2, .partner h2 { font-size: clamp(2.5rem, 4vw, 4.6rem); }
+
+@media (max-width: 900px) {
+  .lineRow, .lineRowReverse { grid-template-columns: 1fr; min-height: 0; }
+  .lineRowReverse .lineCopy, .lineRowReverse .lineVisual { order: initial; }
+  .lineVisual { height: 360px; }
+  .lineVisual img { width: 155%; }
+  .commercial { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 620px) {
+  .pillarsIntro, .launches header { align-items: flex-start; flex-direction: column; }
+  .linesHeading { grid-template-columns: 1fr; gap: 14px; }
+  .linesHeading h2 { font-size: 3.35rem; }
+  .lineCopy { padding: 46px 24px; }
+  .lineCopy h3 { font-size: 3.7rem; }
+  .lineVisual { height: 270px; }
+  .lineVisual img { width: 185%; }
+  .zoom .lineVisual img { width: 100%; }
+  .launchLayout { grid-template-columns: 1fr; }
+  .commercial { width: 100%; }
+  .find, .partner { padding: 58px 24px; }
+}

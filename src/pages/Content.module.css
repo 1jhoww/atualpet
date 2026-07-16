@@ -1,0 +1,65 @@
+.aboutHero { padding: 118px 0 44px; background: linear-gradient(125deg, var(--brand-cyan-light), var(--neutral-white) 64%); overflow: hidden; }
+.aboutHeroInner { display: grid; grid-template-columns: .78fr 1.22fr; min-height: 610px; align-items: stretch; }
+.aboutHeroCopy { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 50px 5vw 50px 0; position: relative; z-index: 2; }
+.aboutHeroCopy > * { animation: aboutHeroReveal .82s var(--ease-premium) both; }
+.aboutHeroCopy h1 { font-size: clamp(4rem, 7.2vw, 7.6rem); line-height: .9; margin: .24em 0; }
+.aboutHeroCopy p { max-width: 560px; color: var(--neutral-700); font-size: 1.06rem; animation-delay: 100ms; }
+.aboutHeroMedia { margin: 0; min-width: 0; overflow: hidden; animation: aboutMediaReveal 1s var(--ease-premium) 150ms both; }
+.aboutHeroMedia img { width: 100%; height: 100%; object-fit: cover; object-position: 60% center; }
+.aboutStory { display: grid; grid-template-columns: 1.12fr .88fr; min-height: 620px; align-items: stretch; }
+.aboutStory > figure { margin: 0; min-width: 0; overflow: hidden; }
+.aboutStory > figure img { width: 100%; height: 100%; min-height: 620px; object-fit: cover; }
+.aboutStoryCopy { padding: clamp(48px, 7vw, 100px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; background: var(--brand-orange-light); }
+.aboutStoryCopy h2 { font-size: clamp(2.8rem, 4.8vw, 5rem); margin: .25em 0; }
+.aboutStoryCopy p { color: var(--neutral-700); max-width: 520px; }
+.aboutStoryReverse { grid-template-columns: .88fr 1.12fr; }
+.aboutStoryReverse > figure { order: 2; }
+.aboutStoryReverse .aboutStoryCopy { order: 1; background: var(--brand-cyan-light); }
+
+.editorial { display: grid; grid-template-columns: 1fr 1fr; gap: 9vw; }
+.editorial h2 { font-size: clamp(3rem, 5vw, 5.5rem); }
+.editorial p { font-size: 1.05rem; color: var(--neutral-700); }
+.dark { background: var(--brand-cyan-light); color: var(--neutral-900); }
+.dark h2 { font-size: clamp(3rem, 6vw, 6rem); max-width: 900px; }
+.iconGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 60px; }
+.iconGrid > div { border-top: 1px solid rgba(70,159,155,.48); padding-top: 22px; }
+.iconGrid svg { color: var(--brand-orange); }
+.iconGrid h3 { font-size: 1.25rem; }
+.iconGrid p { color: var(--neutral-700); font-size: .87rem; }
+.pillars { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; }
+.pillars article { border-top: 1px solid var(--line); padding-top: 20px; }
+.pillars article > span { font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; color: var(--brand-orange-dark); }
+.pillars h2 { font-size: 1.75rem; }
+.pillars li { padding: 6px 0; }
+.dualCta { display: grid; grid-template-columns: 1fr 1fr; border-block: 1px solid var(--line); }
+.dualCta > div { padding: 50px 50px 50px 0; }
+.dualCta > div + div { padding-left: 50px; border-left: 1px solid var(--line); }
+.dualCta h2 { font-size: 2.4rem; }
+.contact { display: grid; grid-template-columns: .75fr 1.25fr; gap: 8vw; }
+.contact aside { display: flex; flex-direction: column; gap: 25px; }
+.contact aside h2 { font-size: 3rem; }
+.contact aside > a, .contact aside > span { display: grid; grid-template-columns: 28px 1fr; color: var(--neutral-700); }
+.contact aside svg { color: var(--brand-orange); }
+.contact small { color: var(--neutral-700); }
+.distributorHero { min-height: 680px; background: linear-gradient(130deg, var(--brand-orange-light), var(--neutral-white) 52%, var(--brand-cyan-light)); color: var(--neutral-900); display: flex; align-items: center; padding: 130px 0 70px; position: relative; overflow: hidden; }
+.distributorHero::after { content: ''; position: absolute; width: min(42vw, 560px); height: 1px; background: linear-gradient(90deg, transparent, var(--brand-cyan), transparent); right: 3vw; top: 36%; opacity: .55; }
+.distributorHero > div { position: relative; z-index: 1; }
+.distributorHero h1 { font-size: clamp(3.5rem, 7vw, 7.5rem); line-height: .9; max-width: 1100px; }
+.distributorHero p { max-width: 640px; color: var(--neutral-700); font-size: 1.08rem; }
+.distributorHero a { display: flex; gap: 8px; align-items: center; margin-top: 35px; }
+.partnerProfile { display: grid; grid-template-columns: 1fr 1fr; gap: 8vw; }
+.partnerProfile h2 { font-size: clamp(2.7rem, 4.5vw, 5rem); }
+.partnerProfile ul { list-style: none; }
+.partnerProfile li { display: flex; gap: 13px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.partnerProfile svg { color: var(--brand-orange); flex: 0 0 auto; }
+.formSection { background: var(--neutral-50); }
+.formSection > .shell { display: grid; grid-template-columns: .75fr 1.25fr; gap: 8vw; }
+.formSection header h2 { font-size: clamp(2.7rem, 4.5vw, 5rem); }
+.formSection header p { color: var(--neutral-700); }
+@keyframes aboutHeroReveal { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes aboutMediaReveal { from { opacity: 0; transform: translateY(28px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+@media (max-width: 800px) { .aboutHero { padding: 96px 0 24px; } .aboutHeroInner { grid-template-columns: 1fr; min-height: 0; } .aboutHeroCopy { padding: 35px 0 48px; } .aboutHeroCopy h1 { font-size: clamp(3.6rem, 13vw, 5.5rem); } .aboutHeroMedia { height: 480px; } .aboutStory, .aboutStoryReverse { grid-template-columns: 1fr; min-height: 0; } .aboutStory > figure, .aboutStoryReverse > figure { order: 1; height: 460px; } .aboutStory > figure img { min-height: 0; height: 100%; } .aboutStoryCopy, .aboutStoryReverse .aboutStoryCopy { order: 2; padding: 58px 32px; } .editorial, .contact, .partnerProfile, .formSection > .shell { grid-template-columns: 1fr; gap: 40px; } .iconGrid { grid-template-columns: 1fr 1fr; } .pillars, .dualCta { grid-template-columns: 1fr; } .dualCta > div, .dualCta > div + div { padding: 38px 0; border-left: 0; } .dualCta > div + div { border-top: 1px solid var(--line); } .distributorHero { min-height: 630px; } }
+@media (max-width: 560px) { .aboutHeroMedia { height: 380px; } .aboutStory > figure, .aboutStoryReverse > figure { height: 360px; } .aboutStoryCopy, .aboutStoryReverse .aboutStoryCopy { padding: 48px 22px; } }
+@media (max-width: 500px) { .iconGrid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .aboutHeroCopy > *, .aboutHeroMedia { animation: none; } }

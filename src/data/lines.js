@@ -1,0 +1,80 @@
+import dogSalon from '../assets/editorial/dog-salon.jpg'
+import groomerBath from '../assets/editorial/groomer-bath.jpg'
+import groomerFur from '../assets/editorial/groomer-fur.jpg'
+import dreamImage from '../assets/lines/dream-color.jpg'
+import luxeImage from '../assets/lines/the-luxe.jpg'
+import vanityImage from '../assets/lines/vanity-pet.jpg'
+import zoomImage from '../assets/lines/zoom-pet.png'
+
+export const lines = [
+  {
+    slug: 'dream-color',
+    name: 'Dream Color',
+    eyebrow: 'Sensorial e expressiva',
+    headline: 'Cor, fragrância e performance em uma linha versátil.',
+    description: 'Shampoos, condicionadores, máscaras, colônias e aromatizadores com diferentes fragrâncias e soluções para a rotina profissional.',
+    image: dreamImage,
+    storyImage: groomerBath,
+    storyImageAlt: 'Profissional realizando o banho de um cão',
+    tone: 'dream',
+    benefits: ['Variedade de fragrâncias', 'Opções para diferentes etapas', 'Apresentações profissionais'],
+    story: [
+      ['Intenção', 'Escolher fragrância e proposta para o momento do cuidado.'],
+      ['Ritual', 'Combinar produtos para diferentes etapas da rotina profissional.'],
+      ['Acabamento', 'Concluir o serviço com uma experiência sensorial marcante.'],
+    ],
+  },
+  {
+    slug: 'the-luxe',
+    name: 'The Luxe',
+    eyebrow: 'Cuidado premium',
+    headline: 'Acabamento refinado para protocolos de alta performance.',
+    description: 'Uma linha ampla de higiene, hidratação, finalização, perfumaria e cuidados especiais para compor serviços completos.',
+    image: luxeImage,
+    storyImage: groomerFur,
+    storyImageAlt: 'Groomer trabalhando cuidadosamente a pelagem de um cão',
+    tone: 'luxe',
+    benefits: ['Rotina completa', 'Fragrâncias sofisticadas', 'Cuidados de acabamento'],
+    story: [
+      ['Preparação', 'Organizar um protocolo completo para a necessidade do serviço.'],
+      ['Cuidado', 'Integrar higiene, hidratação e finalização durante o atendimento.'],
+      ['Resultado', 'Valorizar a pelagem e os detalhes de um acabamento refinado.'],
+    ],
+  },
+  {
+    slug: 'vanity-pet',
+    name: 'Vanity Pet',
+    eyebrow: 'Perfumaria pet',
+    headline: 'Fragrâncias que completam o ritual de cuidado.',
+    description: 'Linha dedicada à perfumaria e à experiência sensorial, com apresentações voltadas ao uso profissional e ao acabamento.',
+    image: vanityImage,
+    storyImage: dogSalon,
+    storyImageAlt: 'Cão em ambiente profissional de banho e tosa',
+    tone: 'vanity',
+    benefits: ['Portfólio de fragrâncias', 'Identidade de perfumaria', 'Finalização sensorial'],
+    story: [
+      ['Escolha', 'Encontrar a fragrância que melhor traduz a intenção do serviço.'],
+      ['Finalização', 'Aplicar a perfumaria como etapa de conclusão do cuidado.'],
+      ['Presença', 'Criar uma assinatura sensorial que acompanha o resultado.'],
+    ],
+  },
+  {
+    slug: 'zoom-pet',
+    name: 'Zoom Pet',
+    eyebrow: 'Praticidade diária',
+    headline: 'Soluções diretas para uma rotina profissional eficiente.',
+    description: 'Produtos de higiene e condicionamento com opções funcionais para diferentes pelagens e necessidades do dia a dia.',
+    image: zoomImage,
+    storyImage: groomerBath,
+    storyImageAlt: 'Profissional cuidando de um cão durante o banho',
+    tone: 'zoom',
+    benefits: ['Uso prático', 'Variedade funcional', 'Apresentações para rotina'],
+    story: [
+      ['Rotina', 'Identificar a necessidade de higiene e condicionamento do atendimento.'],
+      ['Agilidade', 'Escolher soluções funcionais para o fluxo profissional diário.'],
+      ['Entrega', 'Concluir o cuidado com limpeza, maciez e praticidade.'],
+    ],
+  },
+]
+
+export const getLine = (slug) => lines.find((line) => line.slug === slug)

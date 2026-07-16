@@ -1,0 +1,71 @@
+.page { --line-accent: var(--brand-cyan-dark); --line-bg: #fff3f8; }
+.hero { min-height: 650px; padding: 130px 0 64px; background: var(--line-bg); overflow: hidden; }
+.heroInner { min-height: 456px; display: grid; grid-template-columns: .82fr 1.18fr; align-items: stretch; }
+.heroCopy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; position: relative; z-index: 2; padding-right: 5vw; }
+.heroCopy > * { animation: lineCopyReveal .82s var(--ease-premium) both; }
+.heroCopy > :nth-child(2) { animation-delay: 70ms; }
+.heroCopy > :nth-child(3) { animation-delay: 140ms; }
+.heroCopy > :nth-child(4) { animation-delay: 210ms; }
+.heroCopy h1 { font-size: clamp(4.7rem, 9vw, 9.5rem); line-height: .82; margin: .2em 0; }
+.heroCopy p { font-family: var(--display); font-size: clamp(1.45rem, 2.5vw, 2.6rem); max-width: 620px; }
+.heroMedia { overflow: hidden; position: relative; min-width: 0; animation: lineMediaReveal 1s var(--ease-premium) 120ms both; }
+.heroMedia::after { content: ''; position: absolute; inset: 0 auto 0 0; width: 18%; background: linear-gradient(90deg, var(--line-bg), transparent); pointer-events: none; }
+.heroMedia img { width: 182%; max-width: none; height: 100%; object-fit: cover; object-position: right center; transition: transform 1s var(--ease-premium); }
+.heroMedia:hover img { transform: scale(1.018); }
+.manifesto { display: grid; grid-template-columns: 1.2fr .8fr; gap: 9vw; }
+.manifesto h2 { font-size: clamp(3rem, 5vw, 5.8rem); }
+.manifesto p { font-size: 1.1rem; color: var(--neutral-700); }
+.manifesto ul { list-style: none; padding: 20px 0 0; }
+.manifesto li { display: flex; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.manifesto li svg { color: var(--line-accent); }
+.campaign { background: var(--line-bg); }
+.campaignInner { display: grid; grid-template-columns: 1.12fr .88fr; min-height: 660px; align-items: stretch; }
+.campaignMedia { margin: 0; min-width: 0; overflow: hidden; }
+.campaignMedia img { width: 100%; height: 100%; min-height: 660px; object-fit: cover; transition: transform .9s var(--ease-premium); }
+.campaignMedia:hover img { transform: scale(1.02); }
+.campaignCopy { padding: clamp(50px, 6vw, 92px); display: flex; flex-direction: column; justify-content: center; }
+.campaignCopy h2 { font-size: clamp(2.8rem, 4.7vw, 5.3rem); margin: .25em 0 .55em; }
+.campaignCopy ol { list-style: none; padding: 0; margin: 0; border-top: 1px solid rgba(23,33,31,.18); }
+.campaignCopy li { display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid rgba(23,33,31,.18); }
+.campaignCopy li > span { padding-top: 4px; font-size: .63rem; letter-spacing: .12em; color: var(--line-accent); }
+.campaignCopy h3 { font-size: 1.2rem; margin: 0 0 4px; }
+.campaignCopy p { margin: 0; color: var(--neutral-700); font-size: .9rem; }
+.products { background: var(--neutral-50); }
+.productsTop { display: flex; justify-content: space-between; align-items: end; margin-bottom: 45px; }
+.productsTop h2 { font-size: clamp(2.8rem, 5vw, 5rem); margin: .15em 0; }
+.final { display: flex; align-items: end; justify-content: space-between; gap: 30px; }
+.final h2 { font-size: clamp(2.5rem, 5vw, 5rem); max-width: 850px; }
+.dream { --line-accent: #d73b86; --line-bg: #fff3f8; }
+.luxe { --line-accent: #9b6b27; --line-bg: #f7f0e8; }
+.vanity { --line-accent: #9a7412; --line-bg: #fff8df; }
+.zoom { --line-accent: var(--brand-orange-dark); --line-bg: #fff0e8; }
+.zoom .heroCopy h1 { font-family: var(--sans); font-weight: 850; letter-spacing: -.075em; }
+.zoom .heroMedia img { width: 100%; object-fit: contain; padding: 6%; }
+
+@keyframes lineCopyReveal { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes lineMediaReveal { from { opacity: 0; transform: translateY(26px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+@media (max-width: 850px) {
+  .hero { padding-top: 110px; }
+  .heroInner { grid-template-columns: 1fr; }
+  .heroCopy { padding: 30px 0 44px; }
+  .heroMedia { height: 360px; }
+  .heroMedia img { width: 165%; }
+  .heroMedia::after { inset: 0 0 auto; width: 100%; height: 20%; background: linear-gradient(var(--line-bg), transparent); }
+  .manifesto { grid-template-columns: 1fr; gap: 25px; }
+  .campaignInner { grid-template-columns: 1fr; min-height: 0; }
+  .campaignMedia { height: 500px; }
+  .campaignMedia img { min-height: 0; height: 100%; }
+  .campaignCopy { padding: 58px 32px; }
+  .productsTop, .final { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 520px) {
+  .heroCopy h1 { font-size: 4.7rem; }
+  .heroMedia { height: 270px; }
+  .heroMedia img { width: 190%; }
+  .zoom .heroMedia img { width: 100%; }
+  .campaignMedia { height: 380px; }
+  .campaignCopy { padding: 48px 22px; }
+  .campaignCopy h2 { font-size: 3rem; }
+}
+@media (prefers-reduced-motion: reduce) { .heroCopy > *, .heroMedia { animation: none; } }

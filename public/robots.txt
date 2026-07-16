@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://atualpet.com.br/sitemap.xml
