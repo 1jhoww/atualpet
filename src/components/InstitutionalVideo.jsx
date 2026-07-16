@@ -16,7 +16,7 @@ export default function InstitutionalVideo({ video }) {
     <div className="shell">
       <Reveal as="header" className={styles.heading}>
         <div><span className="eyebrow">Por dentro da Atual Pet</span><h2 id="institutional-video-title">{video.title}</h2></div>
-        <p>Conheça a atuação da fabricante e o cuidado por trás das linhas de cosméticos profissionais Atual Pet.</p>
+        <p>Conheça a atuação da marca e o cuidado por trás das linhas de cosméticos profissionais Atual Pet.</p>
       </Reveal>
       <Reveal className={styles.videoFrame} data-reveal="image">
         <div className={styles.playLabel} aria-hidden="true"><Play fill="currentColor" size={18} /> Vídeo institucional</div>

@@ -14,7 +14,7 @@ import styles from './Home.module.css'
 export default function Home() {
   const launches = products.filter((product) => product.active && product.isLaunch)
   return <>
-    <Seo title="Atual Pet | Cosméticos profissionais para pets" description="Fabricante brasileira de cosméticos profissionais para higiene, estética, perfumaria e cuidado animal." path="/" jsonLd={{'@context':'https://schema.org','@type':'Organization',name:'Atual Pet',url:'https://atualpet.com.br',email:company.email,telephone:company.phone}}/>
+    <Seo title="Atual Pet | Cosméticos profissionais para pets" description={`${company.legalPositioning}.`} path="/" jsonLd={{'@context':'https://schema.org','@type':'Organization',name:'Atual Pet',description:company.legalPositioning,url:'https://atualpet.com.br',email:company.email,telephone:company.phone}}/>
 
     <BathTransformation content={company.homeTransformation}/>
 
@@ -46,8 +46,8 @@ export default function Home() {
     </section>}
 
     <section className={`${styles.commercial} shell section`}>
-      <Reveal className={styles.find}><MapPin/><span className="eyebrow">Distribuidores parceiros</span><h2>Encontre produtos Atual Pet na sua região.</h2><p>Consulte os pontos de contato regionais que comercializam os produtos fabricados pela Atual Pet.</p><Link className="text-link" to="/onde-encontrar">Onde encontrar <ArrowRight size={16}/></Link></Reveal>
-      <Reveal className={styles.partner} delay={100}><span className="eyebrow">Parceria comercial</span><h2>Quer distribuir Atual Pet?</h2><p>A fabricante recebe candidaturas de empresas interessadas em atender suas regiões. Toda solicitação passa por análise comercial.</p><Link className="button" to="/seja-um-distribuidor">Seja um distribuidor</Link></Reveal>
+      <Reveal className={styles.find}><MapPin/><span className="eyebrow">Distribuidores parceiros</span><h2>Encontre produtos Atual Pet na sua região.</h2><p>Consulte os distribuidores parceiros que comercializam os produtos Atual Pet em diferentes regiões.</p><Link className="text-link" to="/onde-encontrar">Onde encontrar <ArrowRight size={16}/></Link></Reveal>
+      <Reveal className={styles.partner} delay={100}><span className="eyebrow">Parceria comercial</span><h2>Quer distribuir Atual Pet?</h2><p>A equipe recebe candidaturas de empresas interessadas em atender suas regiões. Toda solicitação passa por análise comercial.</p><Link className="button" to="/seja-um-distribuidor">Seja um distribuidor</Link></Reveal>
     </section>
   </>
 }

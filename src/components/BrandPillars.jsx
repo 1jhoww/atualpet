@@ -12,7 +12,7 @@ const pillars = [
   },
   {
     title: 'Presença',
-    description: 'Distribuidores parceiros aproximam os produtos da fabricante de diferentes regiões do Brasil.',
+    description: 'Distribuidores parceiros aproximam os produtos Atual Pet de diferentes regiões do Brasil.',
   },
   {
     title: 'Resultado',

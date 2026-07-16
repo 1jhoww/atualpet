@@ -106,7 +106,7 @@ export default function BathTransformation({ content }) {
         <div className={`${styles.heroInner} shell`}>
           <div className={styles.copyStage}>
             <div className={`${styles.copy} ${styles.initialCopy}`} data-copy-initial>
-              <span className="eyebrow">Fabricante de cosméticos profissionais para pets</span>
+              <span className="eyebrow">Marca de cosméticos profissionais para pets</span>
               <h1 id="home-hero-title">{content.initialTitle}</h1>
               <p>{content.initialDescription}</p>
               <div className={`button-row ${styles.heroActions}`}>

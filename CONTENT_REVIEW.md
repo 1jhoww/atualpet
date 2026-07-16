@@ -2,8 +2,9 @@
 
 ## Informações institucionais
 
-- **Informação confirmada:** a Atual Pet é fabricante brasileira de cosméticos profissionais para pets.
-- **Modelo comercial confirmado:** a Atual Pet fabrica seus produtos e os comercializa por meio de distribuidores parceiros.
+- **Posicionamento confirmado:** a Atual Pet é uma marca de cosméticos profissionais para pets.
+- **Fabricação confirmada:** os produtos Atual Pet são fabricados pela Orion.
+- **Modelo comercial confirmado:** a comercialização ocorre por meio de distribuidores parceiros.
 - Confirmar história oficial, missão, visão e valores. O site antigo contém redações conflitantes e não informa data de fundação.
 - Confirmar endereço oficial. O cabeçalho antigo informa Rua Hawai, 77, Vargem Grande Paulista; a página de contato informa Avenida Sapopemba, 5964, São Paulo.
 - Confirmar perfis oficiais de Instagram e Facebook.

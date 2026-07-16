@@ -16,7 +16,7 @@ export default function Footer() {
     <div className={`${styles.grid} shell`}>
       <div className={styles.brand}>
         <img src={logo} alt="Atual Pet" width="170" height="112"/>
-        <p>Fabricante brasileira de cosméticos profissionais para higiene, estética e cuidado animal.</p>
+        <p>{company.legalPositioning}.</p>
       </div>
       <div><h3>Institucional</h3><Link to="/sobre">A Atual Pet</Link><Link to="/materiais">Materiais</Link><Link to="/politica-de-privacidade">Privacidade</Link></div>
       <div><h3>Produtos</h3><Link to="/produtos">Catálogo</Link><Link to="/onde-encontrar">Onde encontrar</Link></div>

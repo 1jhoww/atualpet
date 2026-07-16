@@ -1,79 +1,96 @@
 import { ArrowRight, FlaskConical, HeartHandshake, Layers3, ShieldCheck } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import dogSalon from '../assets/editorial/dog-salon.jpg'
-import groomerBath from '../assets/editorial/groomer-bath.jpg'
-import groomerFur from '../assets/editorial/groomer-fur.jpg'
+import AboutPrinciples from '../components/AboutPrinciples'
 import Reveal from '../components/Reveal'
 import Seo from '../components/Seo'
-import { company } from '../data/company'
-import styles from './Content.module.css'
+import { aboutContent } from '../data/about'
+import styles from './About.module.css'
+
+const commitmentIcons = {
+  portfolio: FlaskConical,
+  clarity: ShieldCheck,
+  partners: HeartHandshake,
+  lines: Layers3,
+}
 
 export default function About() {
+  const { hero, whoWeAre, careJourney, commitment, principles, finalCta } = aboutContent
+
   return <>
-    <Seo title="A Atual Pet" description="Conheça a fabricante brasileira de cosméticos profissionais para pets." path="/sobre"/>
-    <main>
-      <section className={styles.aboutHero}>
-        <div className={`${styles.aboutHeroInner} shell`}>
-          <div className={styles.aboutHeroCopy}>
-            <span className="eyebrow">A Atual Pet</span>
-            <h1>Cosméticos profissionais feitos para quem cuida.</h1>
-            <p>{company.legalPositioning}.</p>
+    <Seo title="A Atual Pet" description="Conheça a marca brasileira de cosméticos profissionais para pets e sua atuação no mercado pet." path="/sobre"/>
+    <main className={styles.page}>
+      <section className={styles.hero} aria-labelledby="about-hero-title">
+        <div className={`${styles.heroInner} shell`}>
+          <div className={styles.heroCopy}>
+            <span className="eyebrow">{hero.eyebrow}</span>
+            <h1 id="about-hero-title">{hero.title}</h1>
+            <p>{hero.description}</p>
           </div>
-          <figure className={styles.aboutHeroMedia}>
-            <img src={groomerBath} width="1600" height="1067" alt="Profissional realizando o banho cuidadoso de um cão"/>
+          <figure className={styles.heroMedia}>
+            <img src={hero.image} width={hero.imageWidth} height={hero.imageHeight} fetchPriority="high" decoding="async" alt={hero.imageAlt}/>
           </figure>
         </div>
       </section>
 
-      <Reveal as="section" className={`${styles.editorial} shell section`}>
-        <div><span className="eyebrow">Quem somos</span><h2>Uma fabricante dedicada ao cuidado estético animal.</h2></div>
-        <div><p>{company.about}</p><p>{company.distributionModel}</p></div>
-      </Reveal>
-
-      <section className={`${styles.aboutStory} shell`}>
-        <Reveal as="figure" data-reveal="image">
-          <img src={dogSalon} width="1600" height="1067" loading="lazy" alt="Cão aguardando o cuidado em um ambiente profissional de banho e tosa"/>
-        </Reveal>
-        <Reveal className={styles.aboutStoryCopy} delay={100}>
-          <span className="eyebrow">Antes do banho</span>
-          <h2>Cada cuidado começa entendendo o que a rotina pede.</h2>
-          <p>Pelagem, etapa do serviço e intenção de acabamento orientam a escolha entre diferentes linhas e apresentações.</p>
-        </Reveal>
-      </section>
-
-      <section className={`${styles.aboutStory} ${styles.aboutStoryReverse} shell section`}>
-        <Reveal as="figure" data-reveal="image">
-          <img src={groomerFur} width="1600" height="1067" loading="lazy" alt="Groomer trabalhando cuidadosamente a pelagem de um cão"/>
-        </Reveal>
-        <Reveal className={styles.aboutStoryCopy} delay={100}>
-          <span className="eyebrow">Durante e depois</span>
-          <h2>Técnica, cosmético e atenção formam a experiência.</h2>
-          <p>Da higiene à finalização, a Atual Pet desenvolve um portfólio que acompanha o trabalho profissional e valoriza o resultado percebido nos detalhes.</p>
-          <Link className="text-link" to="/produtos">Conheça o portfólio <ArrowRight size={16}/></Link>
-        </Reveal>
-      </section>
-
-      <section className={`${styles.dark} section`}><div className="shell">
-        <Reveal>
-          <span className="eyebrow">Nosso compromisso</span><h2>Qualidade percebida em todas as etapas.</h2>
-        </Reveal>
-        <div className={styles.iconGrid}>
-          <Reveal delay={0}><FlaskConical/><h3>Portfólio profissional</h3><p>Soluções organizadas para limpeza, tratamento, perfumaria e acabamento.</p></Reveal>
-          <Reveal delay={80}><ShieldCheck/><h3>Clareza e segurança</h3><p>Informações de uso devem seguir os rótulos e materiais técnicos oficiais.</p></Reveal>
-          <Reveal delay={160}><HeartHandshake/><h3>Rede parceira</h3><p>Produtos comercializados por distribuidores parceiros em diferentes regiões.</p></Reveal>
-          <Reveal delay={240}><Layers3/><h3>Linhas complementares</h3><p>Quatro identidades para diferentes rotinas, públicos e propostas.</p></Reveal>
+      <Reveal as="section" className={`${styles.who} shell section`} aria-labelledby="who-we-are-title">
+        <header className={styles.whoHeading}>
+          <span className="eyebrow">{whoWeAre.eyebrow}</span>
+          <h2 id="who-we-are-title">{whoWeAre.title}</h2>
+        </header>
+        <div className={styles.whoBody}>
+          <div className={styles.whoText}>{whoWeAre.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+          <ul className={styles.highlights}>{whoWeAre.highlights.map((highlight, index) => <li key={highlight}><span>0{index + 1}</span>{highlight}</li>)}</ul>
         </div>
-      </div></section>
-
-      <Reveal as="section" className={`${styles.pillars} shell section`}>
-        <article><span>Missão</span><h2>{company.mission}</h2></article>
-        <article><span>Visão</span><h2>{company.vision}</h2></article>
-        <article><span>Valores</span><ul>{company.values.map(value=><li key={value}>{value}</li>)}</ul></article>
       </Reveal>
 
-      <Reveal as="section" className={`${styles.dualCta} shell section`}>
-        <div><h2>Conheça as linhas</h2><p>Explore produtos para diferentes momentos do cuidado.</p><Link className="text-link" to="/produtos">Ver produtos <ArrowRight size={16}/></Link></div>
-        <div><h2>Fale com a equipe</h2><p>Envie dúvidas comerciais ou de produto.</p><Link className="text-link" to="/contato">Entrar em contato <ArrowRight size={16}/></Link></div>
+      <div className={styles.careJourney} aria-label={careJourney.label}>
+        {careJourney.items.map((item, index) => <section key={item.id} className={`${styles.story} ${index % 2 ? styles.storyReverse : ''} shell`}>
+          <Reveal as="figure" className={styles.storyMedia} data-reveal="image">
+            <img src={item.image} width={item.imageWidth} height={item.imageHeight} loading="lazy" alt={item.imageAlt}/>
+          </Reveal>
+          <Reveal className={styles.storyCopy} delay={100}>
+            <span className="eyebrow">{item.eyebrow}</span>
+            <h2>{item.title}</h2>
+            <p>{item.description}</p>
+            {item.cta && <Link className="text-link" to={item.cta.url}>{item.cta.label} <ArrowRight size={16}/></Link>}
+          </Reveal>
+        </section>)}
+      </div>
+
+      <section className={`${styles.commitment} section`} aria-labelledby="about-commitment-title">
+        <div className="shell">
+          <Reveal as="header" className={styles.commitmentHeading}>
+            <span className="eyebrow">{commitment.eyebrow}</span>
+            <h2 id="about-commitment-title">{commitment.title}</h2>
+          </Reveal>
+          <div className={styles.commitmentGrid}>
+            {commitment.items.map((item, index) => {
+              const Icon = commitmentIcons[item.icon]
+              return <Reveal key={item.id} delay={index * 80}>
+                <Icon aria-hidden="true"/>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </Reveal>
+            })}
+          </div>
+        </div>
+      </section>
+
+      <AboutPrinciples content={principles}/>
+
+      <Reveal as="section" className={`${styles.finalCta} shell`} aria-labelledby="about-final-cta-title">
+        <div className={styles.finalCtaCopy}>
+          <span className="eyebrow">{finalCta.eyebrow}</span>
+          <h2 id="about-final-cta-title">{finalCta.title}</h2>
+          <p>{finalCta.description}</p>
+          <div className={`button-row ${styles.ctaActions}`}>
+            <Link className="button" to={finalCta.primaryUrl}>{finalCta.primaryLabel} <ArrowRight size={17}/></Link>
+            <Link className={`button ${styles.secondaryCta}`} to={finalCta.secondaryUrl}>{finalCta.secondaryLabel}</Link>
+          </div>
+        </div>
+        <figure className={styles.finalCtaMedia}>
+          <img src={finalCta.image} width={finalCta.imageWidth} height={finalCta.imageHeight} loading="lazy" alt={finalCta.imageAlt}/>
+        </figure>
       </Reveal>
     </main>
   </>
