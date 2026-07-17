@@ -1,5 +1,5 @@
 import aboutDogBath from '../assets/about/about-dog-bath.webp'
-import aboutHeroBath from '../assets/about/about-hero-bath.webp'
+import aboutGroomerTrimming from '../assets/about/about-groomer-trimming.webp'
 import aboutMissionCare from '../assets/about/about-mission-care.webp'
 import aboutSalonCare from '../assets/about/about-salon-care.webp'
 import aboutTowelCare from '../assets/about/about-towel-care.webp'
@@ -12,10 +12,6 @@ export const aboutContent = {
     eyebrow: 'A Atual Pet',
     title: 'Cuidado profissional em cada detalhe.',
     description: 'Uma marca brasileira de cosméticos profissionais para pets, presente em diferentes etapas da rotina de banho e tosa.',
-    image: aboutHeroBath,
-    imageWidth: 2000,
-    imageHeight: 1335,
-    imageAlt: 'Profissional realizando o banho de um cachorro em um centro de estética animal',
   },
   whoWeAre: {
     eyebrow: 'Quem somos',
@@ -29,6 +25,18 @@ export const aboutContent = {
       'Linhas para diferentes etapas do cuidado',
       'Comercialização por distribuidores parceiros',
     ],
+  },
+  history: {
+    eyebrow: 'Nossa história',
+    title: 'Uma marca apoiada por uma estrutura responsável.',
+    paragraphs: [
+      'A Atual Pet é uma marca brasileira de cosméticos profissionais para pets, com um portfólio voltado à higiene, estética, perfumaria e cuidado animal.',
+      'A Orion Ind e Com de Cosméticos Ltda. é a empresa responsável pela Atual Pet e fabrica os produtos apresentados pela marca. A comercialização acontece por meio de distribuidores parceiros.',
+    ],
+    image: aboutGroomerTrimming,
+    imageWidth: 1800,
+    imageHeight: 1200,
+    imageAlt: 'Profissional realizando o acabamento da pelagem de um cachorro',
   },
   careJourney: {
     label: 'Antes, durante e depois do banho',

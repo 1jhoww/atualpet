@@ -56,7 +56,7 @@ const ProductLineOverview = forwardRef(function ProductLineOverview({ line, prod
         </ul>
         <div className={styles.footerRow}>
           <p className={styles.count} aria-live="polite" aria-atomic="true">{status}</p>
-          {line.route && <Link to={line.route}>Ver detalhes da linha <ArrowRight size={16} /></Link>}
+          {line.route && <Link className={`button button--outline button--small ${styles.detailsButton}`} to={line.route}>Ver detalhes da linha <ArrowRight size={16} /></Link>}
         </div>
       </div>
       <div className={styles.media} aria-hidden={visualProducts.length === 0}>

@@ -1,9 +1,11 @@
 import { ArrowRight, FlaskConical, HeartHandshake, Layers3, ShieldCheck } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import AboutPrinciples from '../components/AboutPrinciples'
+import InstitutionalVideo from '../components/InstitutionalVideo'
 import Reveal from '../components/Reveal'
 import Seo from '../components/Seo'
 import { aboutContent } from '../data/about'
+import { company } from '../data/company'
 import styles from './About.module.css'
 
 const commitmentIcons = {
@@ -14,7 +16,7 @@ const commitmentIcons = {
 }
 
 export default function About() {
-  const { hero, whoWeAre, careJourney, commitment, principles, finalCta } = aboutContent
+  const { hero, whoWeAre, history, careJourney, commitment, principles, finalCta } = aboutContent
 
   return <>
     <Seo title="A Atual Pet" description="Conheça a marca brasileira de cosméticos profissionais para pets e sua atuação no mercado pet." path="/sobre"/>
@@ -26,11 +28,15 @@ export default function About() {
             <h1 id="about-hero-title">{hero.title}</h1>
             <p>{hero.description}</p>
           </div>
-          <figure className={styles.heroMedia}>
-            <img src={hero.image} width={hero.imageWidth} height={hero.imageHeight} fetchPriority="high" decoding="async" alt={hero.imageAlt}/>
-          </figure>
         </div>
       </section>
+
+      <InstitutionalVideo video={company.institutionalVideo}/>
+
+      <Reveal as="section" className={`${styles.history} shell`} aria-labelledby="about-history-title">
+        <figure className={styles.historyMedia}><img src={history.image} width={history.imageWidth} height={history.imageHeight} loading="lazy" alt={history.imageAlt}/></figure>
+        <div className={styles.historyCopy}><span className="eyebrow">{history.eyebrow}</span><h2 id="about-history-title">{history.title}</h2>{history.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+      </Reveal>
 
       <Reveal as="section" className={`${styles.who} shell section`} aria-labelledby="who-we-are-title">
         <header className={styles.whoHeading}>
