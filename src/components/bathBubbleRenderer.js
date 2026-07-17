@@ -40,9 +40,11 @@ function createFoam(count, random) {
 
 function prepareCanvas(canvas) {
   const ratio = Math.min(window.devicePixelRatio || 1, 2)
-  const rect = canvas.getBoundingClientRect()
+  const rect = canvas.parentElement?.getBoundingClientRect() ?? canvas.getBoundingClientRect()
   const width = Math.max(1, rect.width)
   const height = Math.max(1, rect.height)
+  canvas.style.width = `${width}px`
+  canvas.style.height = `${height}px`
   canvas.width = Math.round(width * ratio)
   canvas.height = Math.round(height * ratio)
   const context = canvas.getContext('2d', { alpha: true })

@@ -15,28 +15,63 @@ gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 const desktopParticles = { background: 34, middle: 28, front: 10, foam: 48 }
 const mobileParticles = { background: 12, middle: 10, front: 4, foam: 20 }
+const desktopPinDistance = 1.78
+const mobileScrollDistance = 0.58
+
+const readMobileViewport = () => ({
+  width: Math.round(window.visualViewport?.width ?? document.documentElement.clientWidth ?? window.innerWidth),
+  height: Math.round(window.visualViewport?.height ?? window.innerHeight),
+  orientation: window.matchMedia('(orientation: portrait)').matches ? 'portrait' : 'landscape',
+})
 
 export default function BathTransformation({ content }) {
+  const experience = useRef(null)
   const hero = useRef(null)
   const backCanvas = useRef(null)
   const frontCanvas = useRef(null)
 
   useEffect(() => {
-    const image = new Image()
-    image.src = dogCleanWebp
-    image.decode?.().then(() => ScrollTrigger.refresh()).catch(() => {})
+    let active = true
+    const decodes = [dogDirtyWebp, dogCleanWebp].map((source) => {
+      const image = new Image()
+      image.src = source
+      return image.decode?.() ?? Promise.resolve()
+    })
+
+    Promise.allSettled(decodes).then(() => {
+      if (active) ScrollTrigger.refresh()
+    })
+
+    return () => { active = false }
   }, [])
 
   useGSAP(() => {
     const media = gsap.matchMedia()
 
     const createScene = ({ desktop }) => {
+      let mobileViewport = desktop ? null : readMobileViewport()
+      let stableStageHeight = desktop ? 0 : Math.max(
+        mobileViewport.height,
+        Number.parseFloat(window.getComputedStyle(hero.current).minHeight) || 0,
+      )
+
+      const applyMobileGeometry = (nextViewport = readMobileViewport()) => {
+        mobileViewport = nextViewport
+        stableStageHeight = Math.max(
+          nextViewport.height,
+          Number.parseFloat(window.getComputedStyle(hero.current).minHeight) || 0,
+        )
+        experience.current.style.setProperty('--mobile-stage-height', `${stableStageHeight}px`)
+        experience.current.style.setProperty('--mobile-scroll-distance', `${Math.round(stableStageHeight * mobileScrollDistance)}px`)
+      }
+
+      if (!desktop) applyMobileGeometry(mobileViewport)
+
       const renderer = createBathBubbleRenderer(
         backCanvas.current,
         frontCanvas.current,
         desktop ? desktopParticles : mobileParticles,
       )
-      const pinDistance = desktop ? 1.78 : 0.58
       const cleanDog = '[data-dog-clean]'
       const dirtyDog = '[data-dog-dirty]'
       const initialCopy = '[data-copy-initial]'
@@ -51,11 +86,13 @@ export default function BathTransformation({ content }) {
       const timeline = gsap.timeline({
         defaults: { ease: 'none' },
         scrollTrigger: {
-          trigger: hero.current,
+          trigger: desktop ? hero.current : experience.current,
           start: 'top top',
-          end: () => `+=${Math.round(window.innerHeight * pinDistance)}`,
-          pin: true,
-          pinSpacing: true,
+          end: () => `+=${Math.round(desktop
+            ? window.innerHeight * desktopPinDistance
+            : stableStageHeight * mobileScrollDistance)}`,
+          pin: desktop,
+          pinSpacing: desktop,
           anticipatePin: 1,
           scrub: desktop ? 0.72 : 0.38,
           invalidateOnRefresh: true,
@@ -82,11 +119,51 @@ export default function BathTransformation({ content }) {
       images.forEach((image) => {
         if (!image.complete) image.addEventListener('load', refresh, { once: true })
       })
-      window.addEventListener('resize', refresh)
+
+      let resizeFrame = 0
+      let orientationTimer = 0
+      const handleMobileResize = () => {
+        if (resizeFrame) window.cancelAnimationFrame(resizeFrame)
+        resizeFrame = window.requestAnimationFrame(() => {
+          resizeFrame = 0
+          const nextViewport = readMobileViewport()
+          const widthChanged = Math.abs(nextViewport.width - mobileViewport.width) > 2
+          const orientationChanged = nextViewport.orientation !== mobileViewport.orientation
+
+          if (!widthChanged && !orientationChanged) return
+          applyMobileGeometry(nextViewport)
+          ScrollTrigger.refresh()
+        })
+      }
+      const handleOrientationChange = () => {
+        window.clearTimeout(orientationTimer)
+        orientationTimer = window.setTimeout(() => {
+          applyMobileGeometry()
+          ScrollTrigger.refresh()
+        }, 240)
+      }
+
+      if (desktop) {
+        window.addEventListener('resize', refresh)
+      } else {
+        window.addEventListener('resize', handleMobileResize, { passive: true })
+        window.addEventListener('orientationchange', handleOrientationChange, { passive: true })
+        window.visualViewport?.addEventListener('resize', handleMobileResize, { passive: true })
+      }
 
       return () => {
         images.forEach((image) => image.removeEventListener('load', refresh))
-        window.removeEventListener('resize', refresh)
+        if (desktop) {
+          window.removeEventListener('resize', refresh)
+        } else {
+          window.removeEventListener('resize', handleMobileResize)
+          window.removeEventListener('orientationchange', handleOrientationChange)
+          window.visualViewport?.removeEventListener('resize', handleMobileResize)
+          if (resizeFrame) window.cancelAnimationFrame(resizeFrame)
+          window.clearTimeout(orientationTimer)
+          experience.current?.style.removeProperty('--mobile-stage-height')
+          experience.current?.style.removeProperty('--mobile-scroll-distance')
+        }
         renderer.destroy()
       }
     }
@@ -98,7 +175,7 @@ export default function BathTransformation({ content }) {
   }, { scope: hero })
 
   return (
-    <div className={styles.experience}>
+    <div ref={experience} className={styles.experience}>
       <section ref={hero} className={styles.hero} aria-labelledby="home-hero-title">
         <div className={styles.bathTint} data-bath-tint aria-hidden="true"/>
         <canvas ref={backCanvas} className={`${styles.canvas} ${styles.canvasBack}`} aria-hidden="true"/>
