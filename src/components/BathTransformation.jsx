@@ -15,8 +15,24 @@ gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 const desktopParticles = { background: 34, middle: 28, front: 10, foam: 48 }
 const mobileParticles = { background: 12, middle: 10, front: 4, foam: 20 }
-const desktopPinDistance = 1.78
-const mobileScrollDistance = 0.58
+const desktopPinDistance = 0.68
+const mobileAnimationDuration = 1.4
+const safeInitializationTimeout = 2400
+
+const emptyRenderer = {
+  render() {},
+  resize() {},
+  destroy() {},
+}
+
+const prefersSimplifiedExperience = () => {
+  const memory = Number(navigator.deviceMemory)
+  const cores = Number(navigator.hardwareConcurrency)
+  const lowMemory = Number.isFinite(memory) && memory > 0 && memory <= 2
+  const lowConcurrency = Number.isFinite(cores) && cores > 0 && cores <= 2
+
+  return lowConcurrency || (lowMemory && (!Number.isFinite(cores) || cores <= 4))
+}
 
 const readMobileViewport = () => ({
   width: Math.round(window.visualViewport?.width ?? document.documentElement.clientWidth ?? window.innerWidth),
@@ -32,6 +48,9 @@ export default function BathTransformation({ content }) {
 
   useEffect(() => {
     let active = true
+    const fallbackTimer = window.setTimeout(() => {
+      if (hero.current?.dataset.bathReady !== 'true') hero.current.dataset.bathMode = 'static'
+    }, safeInitializationTimeout)
     const decodes = [dogDirtyWebp, dogCleanWebp].map((source) => {
       const image = new Image()
       image.src = source
@@ -42,8 +61,26 @@ export default function BathTransformation({ content }) {
       if (active) ScrollTrigger.refresh()
     })
 
-    return () => { active = false }
+    return () => {
+      active = false
+      window.clearTimeout(fallbackTimer)
+    }
   }, [])
+
+  const handleDogImageError = (event, fallbackSource, variant) => {
+    const image = event.currentTarget
+    if (image.dataset.fallbackAttempted !== 'true') {
+      image.dataset.fallbackAttempted = 'true'
+      image.parentElement?.querySelector('source')?.remove()
+      image.src = fallbackSource
+      return
+    }
+
+    const failedImages = new Set(hero.current?.dataset.imageFailures?.split(' ').filter(Boolean))
+    failedImages.add(variant)
+    hero.current.dataset.imageFailures = [...failedImages].join(' ')
+    hero.current.dataset.bathMode = 'static'
+  }
 
   useGSAP(() => {
     const media = gsap.matchMedia()
@@ -62,16 +99,28 @@ export default function BathTransformation({ content }) {
           Number.parseFloat(window.getComputedStyle(hero.current).minHeight) || 0,
         )
         experience.current.style.setProperty('--mobile-stage-height', `${stableStageHeight}px`)
-        experience.current.style.setProperty('--mobile-scroll-distance', `${Math.round(stableStageHeight * mobileScrollDistance)}px`)
       }
 
       if (!desktop) applyMobileGeometry(mobileViewport)
 
-      const renderer = createBathBubbleRenderer(
-        backCanvas.current,
-        frontCanvas.current,
-        desktop ? desktopParticles : mobileParticles,
-      )
+      let simplified = prefersSimplifiedExperience()
+      let renderer = emptyRenderer
+
+      if (!simplified) {
+        try {
+          renderer = createBathBubbleRenderer(
+            backCanvas.current,
+            frontCanvas.current,
+            desktop ? desktopParticles : mobileParticles,
+            { maxDpr: desktop ? 2 : 1.25 },
+          )
+        } catch {
+          simplified = true
+          renderer = emptyRenderer
+        }
+      }
+
+      hero.current.dataset.bathMode = simplified ? 'simplified' : 'enhanced'
       const cleanDog = '[data-dog-clean]'
       const dirtyDog = '[data-dog-dirty]'
       const initialCopy = '[data-copy-initial]'
@@ -83,36 +132,63 @@ export default function BathTransformation({ content }) {
       gsap.set(bathTint, { opacity: 0 })
       renderer.render(0)
 
-      const timeline = gsap.timeline({
-        defaults: { ease: 'none' },
-        scrollTrigger: {
-          trigger: desktop ? hero.current : experience.current,
-          start: 'top top',
-          end: () => `+=${Math.round(desktop
-            ? window.innerHeight * desktopPinDistance
-            : stableStageHeight * mobileScrollDistance)}`,
-          pin: desktop,
-          pinSpacing: desktop,
-          anticipatePin: 1,
-          scrub: desktop ? 0.72 : 0.38,
-          invalidateOnRefresh: true,
-          onUpdate: (self) => renderer.render(self.progress),
-          onRefresh: (self) => {
-            renderer.resize()
-            renderer.render(self.progress)
-          },
-          onLeave: () => renderer.render(1),
-        },
-      })
+      const createTimeline = ({ paused = false, scrollTrigger, durationScale = 1 } = {}) => {
+        const renderState = { progress: 0 }
+        const timeline = gsap.timeline({
+          paused,
+          defaults: { ease: 'none' },
+          ...(scrollTrigger ? { scrollTrigger } : {}),
+          onComplete: () => renderer.render(1),
+        })
 
-      timeline
-        .to(bathTint, { opacity: 0.86, duration: 0.34 }, 0.1)
-        .to(initialCopy, { autoAlpha: 0.52, y: -5, duration: 0.18 }, 0.18)
-        .to(initialCopy, { autoAlpha: 0, y: -22, duration: 0.2 }, 0.38)
-        .to(dirtyDog, { autoAlpha: 0.04, scale: 1.012, duration: 0.27 }, 0.34)
-        .to(cleanDog, { autoAlpha: 1, scale: 1, clipPath: 'ellipse(96% 112% at 55% 58%)', duration: 0.3 }, 0.39)
-        .to(finalCopy, { autoAlpha: 1, y: 0, duration: 0.22 }, 0.58)
-        .to(bathTint, { opacity: 0.16, duration: 0.24 }, 0.74)
+        timeline
+          .to(renderState, { progress: 1, duration: durationScale, onUpdate: () => renderer.render(renderState.progress) }, 0)
+          .to(bathTint, { opacity: 0.86, duration: 0.34 * durationScale }, 0.1 * durationScale)
+          .to(initialCopy, { autoAlpha: 0.52, y: -5, duration: 0.18 * durationScale }, 0.18 * durationScale)
+          .to(initialCopy, { autoAlpha: 0, y: -22, duration: 0.2 * durationScale }, 0.38 * durationScale)
+          .to(dirtyDog, { autoAlpha: 0.04, scale: 1.012, duration: 0.27 * durationScale }, 0.34 * durationScale)
+          .to(cleanDog, { autoAlpha: 1, scale: 1, clipPath: 'ellipse(96% 112% at 55% 58%)', duration: 0.3 * durationScale }, 0.39 * durationScale)
+          .to(finalCopy, { autoAlpha: 1, y: 0, duration: 0.22 * durationScale }, 0.58 * durationScale)
+          .to(bathTint, { opacity: 0.16, duration: 0.24 * durationScale }, 0.74 * durationScale)
+
+        return timeline
+      }
+
+      if (desktop && !simplified) {
+        createTimeline({
+          scrollTrigger: {
+            trigger: hero.current,
+            start: 'top top',
+            end: () => `+=${Math.round(window.innerHeight * desktopPinDistance)}`,
+            pin: true,
+            pinSpacing: true,
+            anticipatePin: 1,
+            scrub: 0.46,
+            invalidateOnRefresh: true,
+            onRefresh: (self) => {
+              renderer.resize()
+              renderer.render(self.progress)
+            },
+            onLeave: () => renderer.render(1),
+          },
+        })
+      } else {
+        const timeline = createTimeline({
+          paused: true,
+          durationScale: simplified ? 1.05 : mobileAnimationDuration,
+        })
+
+        ScrollTrigger.create({
+          trigger: hero.current,
+          start: 'top top-=16',
+          once: true,
+          invalidateOnRefresh: true,
+          onEnter: () => timeline.play(),
+          onRefresh: () => renderer.resize(),
+        })
+      }
+
+      hero.current.dataset.bathReady = 'true'
 
       const refresh = () => ScrollTrigger.refresh()
       const images = hero.current.querySelectorAll('img')
@@ -162,14 +238,27 @@ export default function BathTransformation({ content }) {
           if (resizeFrame) window.cancelAnimationFrame(resizeFrame)
           window.clearTimeout(orientationTimer)
           experience.current?.style.removeProperty('--mobile-stage-height')
-          experience.current?.style.removeProperty('--mobile-scroll-distance')
         }
         renderer.destroy()
       }
     }
 
-    media.add('(min-width: 901px) and (prefers-reduced-motion: no-preference)', () => createScene({ desktop: true }))
-    media.add('(max-width: 900px) and (prefers-reduced-motion: no-preference)', () => createScene({ desktop: false }))
+    const safelyCreateScene = (options) => {
+      try {
+        return createScene(options)
+      } catch {
+        hero.current.dataset.bathMode = 'static'
+        hero.current.dataset.bathReady = 'true'
+        return undefined
+      }
+    }
+
+    media.add('(min-width: 901px) and (prefers-reduced-motion: no-preference)', () => safelyCreateScene({ desktop: true }))
+    media.add('(max-width: 900px) and (prefers-reduced-motion: no-preference)', () => safelyCreateScene({ desktop: false }))
+    media.add('(prefers-reduced-motion: reduce)', () => {
+      hero.current.dataset.bathMode = 'static'
+      hero.current.dataset.bathReady = 'true'
+    })
 
     return () => media.revert()
   }, { scope: hero })
@@ -204,13 +293,13 @@ export default function BathTransformation({ content }) {
             <div className={styles.dogLayer} data-dog-dirty>
               <picture>
                 <source srcSet={dogDirtyWebp} type="image/webp"/>
-                <img src={dogDirtyPng} width="1024" height="1536" fetchPriority="high" decoding="async" alt="Cachorro antes do cuidado durante o banho"/>
+                <img src={dogDirtyPng} width="1024" height="1536" fetchPriority="high" decoding="async" onError={(event) => handleDogImageError(event, dogDirtyPng, 'dirty')} alt="Cachorro antes do cuidado durante o banho"/>
               </picture>
             </div>
             <div className={`${styles.dogLayer} ${styles.cleanDog}`} data-dog-clean>
               <picture>
                 <source srcSet={dogCleanWebp} type="image/webp"/>
-                <img src={dogCleanPng} width="1024" height="1536" loading="eager" decoding="async" alt="Cachorro coberto por espuma durante o banho"/>
+                <img src={dogCleanPng} width="1024" height="1536" loading="eager" decoding="async" onError={(event) => handleDogImageError(event, dogCleanPng, 'clean')} alt="Cachorro coberto por espuma durante o banho"/>
               </picture>
             </div>
           </div>
@@ -227,7 +316,7 @@ export default function BathTransformation({ content }) {
         </picture>
         <div>
           <span className="eyebrow">Cuidado em processo</span>
-          <h2>{content.finalTitle}</h2>
+          <h1>{content.finalTitle}</h1>
           <p>{content.finalDescription}</p>
           <Link className="button" to={content.finalCtaUrl}>{content.finalCtaLabel} <ArrowRight size={17}/></Link>
         </div>

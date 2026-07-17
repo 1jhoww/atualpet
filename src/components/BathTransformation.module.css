@@ -79,19 +79,30 @@
 }
 
 @media (max-width: 900px) and (prefers-reduced-motion: no-preference) {
-  .experience { height: calc(var(--mobile-stage-height, 100svh) + var(--mobile-scroll-distance, 58svh)); }
-  .hero { position: sticky; top: 0; height: var(--mobile-stage-height, 100svh); }
+  .hero { height: var(--mobile-stage-height, 100svh); }
 }
 
+.hero[data-bath-mode='simplified'] .canvas { display: none; }
+.hero[data-bath-mode='static'] .canvas,
+.hero[data-bath-mode='static'] .bathTint,
+.hero[data-bath-mode='static'] .scrollCue,
+.hero[data-bath-mode='static'] .finalCopy,
+.hero[data-bath-mode='static'] .cleanDog { display: none; }
+.hero[data-bath-mode='static'] .initialCopy,
+.hero[data-bath-mode='static'] [data-dog-dirty] { opacity: 1 !important; visibility: visible !important; transform: none !important; }
+.hero[data-image-failures~='dirty'] [data-dog-dirty] { display: none; }
+.hero[data-image-failures~='dirty'] .cleanDog { display: block !important; opacity: 1 !important; visibility: visible !important; transform: none !important; clip-path: none !important; }
+.hero[data-image-failures~='clean'] .cleanDog { display: none !important; }
+
 @media (prefers-reduced-motion: reduce) {
-  .hero { height: auto; min-height: 820px; }
+  .hero { display: none; }
   .canvas, .bathTint, .scrollCue { display: none; }
   .copy > *, .dogLayer:first-child img { animation: none; }
   .finalCopy, .cleanDog { display: none; }
-  .reducedFallback { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 8vw, 120px); align-items: center; padding-block: clamp(72px, 8vw, 120px); }
+  .reducedFallback { min-height: 100svh; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 8vw, 120px); align-items: center; padding-block: clamp(120px, 11vw, 170px) clamp(72px, 8vw, 120px); }
   .reducedFallback picture { display: block; }
   .reducedFallback img { width: 100%; max-height: 680px; object-fit: contain; }
-  .reducedFallback h2 { margin: .25em 0; font-size: clamp(3rem, 5vw, 5.4rem); }
+  .reducedFallback h1 { margin: .25em 0; font-size: clamp(3rem, 5vw, 5.4rem); }
   .reducedFallback p { max-width: 560px; color: var(--neutral-700); }
 }
 

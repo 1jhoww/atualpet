@@ -38,8 +38,8 @@ function createFoam(count, random) {
   })
 }
 
-function prepareCanvas(canvas) {
-  const ratio = Math.min(window.devicePixelRatio || 1, 2)
+function prepareCanvas(canvas, maxDpr) {
+  const ratio = Math.min(window.devicePixelRatio || 1, maxDpr)
   const rect = canvas.parentElement?.getBoundingClientRect() ?? canvas.getBoundingClientRect()
   const width = Math.max(1, rect.width)
   const height = Math.max(1, rect.height)
@@ -48,6 +48,7 @@ function prepareCanvas(canvas) {
   canvas.width = Math.round(width * ratio)
   canvas.height = Math.round(height * ratio)
   const context = canvas.getContext('2d', { alpha: true })
+  if (!context) throw new Error('Canvas 2D unavailable')
   context.setTransform(ratio, 0, 0, ratio, 0, 0)
   return { context, width, height }
 }
@@ -107,7 +108,7 @@ function drawFoam(context, particles, width, height, progress) {
   })
 }
 
-export function createBathBubbleRenderer(backCanvas, frontCanvas, counts) {
+export function createBathBubbleRenderer(backCanvas, frontCanvas, counts, { maxDpr = 2 } = {}) {
   const random = createRandom(17072026)
   const background = createLayer(counts.background, {
     minRadius: 6, maxRadius: 27, startMin: 0.01, startMax: 0.3,
@@ -126,8 +127,8 @@ export function createBathBubbleRenderer(backCanvas, frontCanvas, counts) {
   }, random)
   const foam = createFoam(counts.foam, random)
 
-  let back = prepareCanvas(backCanvas)
-  let frontLayer = prepareCanvas(frontCanvas)
+  let back = prepareCanvas(backCanvas, maxDpr)
+  let frontLayer = prepareCanvas(frontCanvas, maxDpr)
   let frame = 0
   let latestProgress = 0
 
@@ -152,8 +153,8 @@ export function createBathBubbleRenderer(backCanvas, frontCanvas, counts) {
       if (!frame) frame = window.requestAnimationFrame(draw)
     },
     resize() {
-      back = prepareCanvas(backCanvas)
-      frontLayer = prepareCanvas(frontCanvas)
+      back = prepareCanvas(backCanvas, maxDpr)
+      frontLayer = prepareCanvas(frontCanvas, maxDpr)
       this.render(latestProgress)
     },
     destroy() {

@@ -21,26 +21,26 @@ const pillars = [
 ]
 
 export default function BrandPillars() {
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(null)
 
   return <div className={styles.list}>
     {pillars.map((pillar, index) => {
       const isActive = active === index
       const descriptionId = `brand-pillar-${index}`
+      const buttonId = `brand-pillar-button-${index}`
       return <div className={`${styles.item} ${isActive ? styles.active : ''}`} key={pillar.title}>
         <button
+          id={buttonId}
           type="button"
           aria-expanded={isActive}
           aria-controls={descriptionId}
-          onClick={() => setActive(index)}
-          onFocus={() => setActive(index)}
-          onMouseEnter={() => setActive(index)}
+          onClick={() => setActive(isActive ? null : index)}
         >
           <span>0{index + 1}</span>
           <strong>{pillar.title}</strong>
           <i aria-hidden="true">+</i>
         </button>
-        <div id={descriptionId} className={styles.description} aria-hidden={!isActive}>
+        <div id={descriptionId} className={styles.description} role="region" aria-labelledby={buttonId} aria-hidden={!isActive}>
           <p>{pillar.description}</p>
         </div>
       </div>
