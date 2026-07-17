@@ -1,3 +1,6 @@
+import institutionalVideoPoster from '../assets/home/institutional-video-poster.jpg'
+import heptaStudiosLogo from '../assets/brand/hepta-studios.png'
+
 export const company = {
   name: 'Atual Pet',
   companyType: 'marca',
@@ -10,6 +13,20 @@ export const company = {
   addressReviewNote: 'O site antigo também apresenta Avenida Sapopemba, 5964, São Paulo — SP. Validar endereço oficial.',
   instagram: 'https://www.instagram.com/atualpetoficial/',
   facebook: 'https://www.facebook.com/atualpetoficial/',
+  social: {
+    whatsapp: {
+      label: 'WhatsApp da Atual Pet',
+      url: 'https://wa.me/5511962320441',
+    },
+    instagram: {
+      label: 'Instagram da Atual Pet',
+      url: 'https://www.instagram.com/atualpetoficial/',
+    },
+    facebook: {
+      label: 'Facebook da Atual Pet',
+      url: 'https://www.facebook.com/atualpetoficial/',
+    },
+  },
   manifesto: 'Cosméticos profissionais para uma rotina de banho e tosa mais precisa, eficiente e cuidadosa — da preparação ao acabamento.',
   about: 'A Atual Pet é uma marca brasileira de cosméticos profissionais para pets. Suas linhas acompanham diferentes etapas da higiene, estética, perfumaria e cuidado animal.',
   homeTransformation: {
@@ -34,7 +51,7 @@ export const company = {
         imageKey: 'products',
         imageWidth: 1200,
         imageHeight: 650,
-        alt: 'Produtos profissionais da linha The Luxe',
+        alt: 'Cachorro recebendo shampoo durante o banho em ambiente profissional',
       },
       {
         id: 'cuidado',
@@ -64,7 +81,14 @@ export const company = {
     url: 'https://youtu.be/bbsd6U560AE',
     provider: 'youtube',
     title: 'Conheça a Atual Pet',
-    poster: '',
+    poster: institutionalVideoPoster,
+  },
+  developerCredit: {
+    name: 'Hepta Studios',
+    logo: heptaStudiosLogo,
+    website: 'https://www.heptastudios.com.br/',
+    instagram: 'https://www.instagram.com/hepta_studios/',
+    instagramHandle: '@hepta_studios',
   },
   mission: 'Oferecer soluções cosméticas que apoiem o cuidado profissional e o bem-estar animal, com qualidade e clareza de uso.',
   vision: 'Fortalecer a presença da Atual Pet como uma marca confiável para profissionais e parceiros do mercado pet brasileiro.',

@@ -55,6 +55,13 @@ Copie `.env.example` para `.env.local`.
 - Linhas e banners: edite `src/data/lines.js` e substitua arquivos em `src/assets/lines`.
 - Portal Comercial: defina `VITE_PORTAL_COMERCIAL_URL`.
 
+## Privacidade e cookies
+
+- Os dados, textos estruturados e a versão do consentimento ficam em `src/data/legal.js`.
+- A preferência é armazenada em `atualpet_cookie_consent_v1` e pode ser reaberta pelo rodapé.
+- O player do YouTube usa `youtube-nocookie.com` e só é inserido após consentimento funcional e interação do visitante.
+- Revise `LEGAL_CONTENT_REVIEW.md` antes de qualquer publicação.
+
 ## Créditos das fotografias editoriais
 
 As fotografias em `src/assets/editorial` são imagens gratuitas do Pexels, armazenadas localmente para evitar dependências externas:

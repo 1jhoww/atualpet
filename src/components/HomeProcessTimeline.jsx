@@ -4,13 +4,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import groomerBath from '../assets/editorial/groomer-bath.jpg'
 import groomerFur from '../assets/editorial/groomer-fur.jpg'
-import productLine from '../assets/lines/the-luxe.jpg'
+import hygienePreparation from '../assets/home/home-process-hygiene-preparation.webp'
 import styles from './HomeProcessTimeline.module.css'
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 
 const processImages = {
-  products: productLine,
+  products: hygienePreparation,
   bath: groomerBath,
   finish: groomerFur,
 }

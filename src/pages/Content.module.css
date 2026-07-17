@@ -40,6 +40,11 @@
 .contact aside h2 { font-size: 3rem; }
 .contact aside > a, .contact aside > span { display: grid; grid-template-columns: 28px 1fr; color: var(--neutral-700); }
 .contact aside svg { color: var(--brand-orange); }
+.socialLinks { display: flex; flex-wrap: wrap; gap: 10px; }
+.contact aside .socialLinks a { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); padding: 10px 13px; color: var(--neutral-900); font-size: .82rem; font-weight: 700; }
+.contact aside .socialLinks svg { color: var(--brand-cyan-dark); }
+.contact aside .socialLinks a:hover { border-color: var(--brand-cyan); background: var(--brand-cyan-light); }
+.contact aside .socialLinks a:focus-visible { outline: 3px solid var(--brand-orange); outline-offset: 3px; }
 .contact small { color: var(--neutral-700); }
 .distributorHero { min-height: 680px; background: linear-gradient(130deg, var(--brand-orange-light), var(--neutral-white) 52%, var(--brand-cyan-light)); color: var(--neutral-900); display: flex; align-items: center; padding: 130px 0 70px; position: relative; overflow: hidden; }
 .distributorHero::after { content: ''; position: absolute; width: min(42vw, 560px); height: 1px; background: linear-gradient(90deg, transparent, var(--brand-cyan), transparent); right: 3vw; top: 36%; opacity: .55; }

@@ -1,7 +1,8 @@
-import dogSalon from '../assets/editorial/dog-salon.jpg'
-import groomerBath from '../assets/editorial/groomer-bath.jpg'
-import groomerFur from '../assets/editorial/groomer-fur.jpg'
 import dreamImage from '../assets/lines/dream-color.jpg'
+import dreamStoryImage from '../assets/lines/line-dream-color-professional-care.webp'
+import luxeStoryImage from '../assets/lines/line-the-luxe-professional-routine.webp'
+import vanityStoryImage from '../assets/lines/line-vanity-pet-fragrance-finish.webp'
+import zoomStoryImage from '../assets/lines/line-zoom-pet-daily-care.webp'
 import luxeImage from '../assets/lines/the-luxe.jpg'
 import vanityImage from '../assets/lines/vanity-pet.jpg'
 import zoomImage from '../assets/lines/zoom-pet.png'
@@ -14,8 +15,8 @@ export const lines = [
     headline: 'Cor, fragrância e performance em uma linha versátil.',
     description: 'Shampoos, condicionadores, máscaras, colônias e aromatizadores com diferentes fragrâncias e soluções para a rotina profissional.',
     image: dreamImage,
-    storyImage: groomerBath,
-    storyImageAlt: 'Profissional realizando o banho de um cão',
+    storyImage: dreamStoryImage,
+    storyImageAlt: 'Profissional realizando cuidado detalhado na pelagem de um cachorro',
     tone: 'dream',
     benefits: ['Variedade de fragrâncias', 'Opções para diferentes etapas', 'Apresentações profissionais'],
     story: [
@@ -31,8 +32,8 @@ export const lines = [
     headline: 'Acabamento refinado para protocolos de alta performance.',
     description: 'Uma linha ampla de higiene, hidratação, finalização, perfumaria e cuidados especiais para compor serviços completos.',
     image: luxeImage,
-    storyImage: groomerFur,
-    storyImageAlt: 'Groomer trabalhando cuidadosamente a pelagem de um cão',
+    storyImage: luxeStoryImage,
+    storyImageAlt: 'Groomer trabalhando durante a rotina profissional de banho e tosa',
     tone: 'luxe',
     benefits: ['Rotina completa', 'Fragrâncias sofisticadas', 'Cuidados de acabamento'],
     story: [
@@ -48,8 +49,8 @@ export const lines = [
     headline: 'Fragrâncias que completam o ritual de cuidado.',
     description: 'Linha dedicada à perfumaria e à experiência sensorial, com apresentações voltadas ao uso profissional e ao acabamento.',
     image: vanityImage,
-    storyImage: dogSalon,
-    storyImageAlt: 'Cão em ambiente profissional de banho e tosa',
+    storyImage: vanityStoryImage,
+    storyImageAlt: 'Profissional aplicando spray no acabamento da pelagem de um cachorro',
     tone: 'vanity',
     benefits: ['Portfólio de fragrâncias', 'Identidade de perfumaria', 'Finalização sensorial'],
     story: [
@@ -60,13 +61,13 @@ export const lines = [
   },
   {
     slug: 'zoom-pet',
-    name: 'Zoom Pet',
+    name: 'Zoom',
     eyebrow: 'Praticidade diária',
     headline: 'Soluções diretas para uma rotina profissional eficiente.',
     description: 'Produtos de higiene e condicionamento com opções funcionais para diferentes pelagens e necessidades do dia a dia.',
     image: zoomImage,
-    storyImage: groomerBath,
-    storyImageAlt: 'Profissional cuidando de um cão durante o banho',
+    storyImage: zoomStoryImage,
+    storyImageAlt: 'Profissional realizando cuidado cotidiano em ambiente de banho e tosa',
     tone: 'zoom',
     benefits: ['Uso prático', 'Variedade funcional', 'Apresentações para rotina'],
     story: [

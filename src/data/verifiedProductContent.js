@@ -1,0 +1,88 @@
+// Conteúdo editorial adaptado de páginas individuais do site oficial da Atual Pet.
+// Cada entrada mantém a URL consultada para auditoria e futuras revisões.
+export const verifiedProductContent = {
+  'shampoo-pre-lavagem-dream-color': {
+    short: 'Limpeza de preparação com fragrância Coco e Menta Fresh.',
+    description: 'Shampoo de pré-lavagem desenvolvido para preparar a pelagem antes das etapas específicas do banho.',
+    indication: 'Indicado para a etapa inicial da higiene de cães e gatos, especialmente quando há sujidade mais intensa.',
+    benefits: ['Limpeza de preparação', 'Auxilia na neutralização de odores', 'Prepara a pelagem para as próximas etapas'],
+    sourceUrl: 'https://atualpet.com.br/produtos/shampoo-pre-lavagem/',
+  },
+  'shampoo-pre-lavagem-1-12-dream-color': {
+    short: 'Pré-lavagem concentrada para a etapa inicial do banho profissional.',
+    description: 'Versão concentrada do shampoo de pré-lavagem Dream Color, indicada para o preparo da pelagem.',
+    indication: 'Indicado para a etapa inicial da higiene de cães e gatos, antes do shampoo específico.',
+    benefits: ['Limpeza de preparação', 'Auxilia na neutralização de odores', 'Diluição de até 1:12'],
+    sourceUrl: 'https://atualpet.com.br/produtos/shampoo-dream-color-pre-lavagem-112/',
+  },
+  'shampoo-branqueador-dream-color': {
+    short: 'Cuidado cosmético para realçar pelagens brancas e o brilho de pelagens escuras.',
+    description: 'Shampoo branqueador com fragrância Blueberry, apresentado no rótulo catalogado na versão 1 L e diluição 1:12.',
+    indication: 'Indicado para cães e gatos a partir de 8 semanas e para diferentes tons de pelagem.',
+    benefits: ['Auxilia no realce da pelagem branca', 'Promove brilho em pelagens escuras', 'Cuidado cosmético dos fios'],
+    sourceUrl: 'https://atualpet.com.br/produtos/shampoo-branqueador/',
+  },
+  'shampoo-melancia-the-luxe': {
+    short: 'Limpeza suave com experiência sensorial de melancia.',
+    description: 'Shampoo da linha The Luxe com fragrância frutada de melancia para a rotina profissional de banho.',
+    indication: 'Indicado para cães e gatos de diferentes idades e tipos de pelagem, inclusive em rotinas de uso frequente.',
+    benefits: ['Limpeza suave', 'Auxilia no desembaraço', 'Fragrância frutada'],
+    sourceUrl: 'https://atualpet.com.br/produtos/shampoo-melancia-the-luxe/',
+  },
+  'shampoo-branqueador-the-luxe': {
+    short: 'Shampoo matizante para pelagens brancas ou claras.',
+    description: 'Fórmula cosmética voltada à limpeza e à neutralização visual de tons amarelados em pelagens claras.',
+    indication: 'Indicado para pelagens brancas ou claras de cães e gatos a partir de 8 semanas.',
+    benefits: ['Auxilia na neutralização de tons amarelados', 'Realça a aparência da cor natural', 'Promove limpeza da pelagem'],
+    sourceUrl: 'https://atualpet.com.br/produtos/shampoo-branqueador-matizante-the-luxe/',
+  },
+  'shampoo-peles-sensiveis-face-filhotes-the-luxe': {
+    short: 'Limpeza delicada para filhotes, peles sensíveis e região da face.',
+    description: 'Shampoo de cuidado especial da linha The Luxe, com proposta de higiene suave para áreas e peles delicadas.',
+    indication: 'Indicado para filhotes, pets idosos, peles sensíveis e higienização da face.',
+    benefits: ['Limpeza delicada', 'Auxilia no desembaraço', 'Fácil enxágue'],
+    sourceUrl: 'https://atualpet.com.br/produtos/shampoo-filhotes-the-luxe/',
+  },
+  'condicionador-cereja-avela-the-luxe': {
+    short: 'Condicionamento concentrado com fragrância Cereja & Avelã.',
+    description: 'Condicionador da linha The Luxe para a etapa de hidratação e acabamento da pelagem.',
+    indication: 'Indicado para pelagens sem brilho, ressecadas ou que precisam de mais maciez no acabamento.',
+    benefits: ['Auxilia na hidratação da pelagem', 'Facilita o pentear', 'Contribui para um toque mais macio'],
+    sourceUrl: 'https://atualpet.com.br/produtos/condicionador-cereja-avela-hidratacao-reparadora/',
+  },
+  'banho-a-seco-the-luxe': {
+    short: 'Higiene prática sem necessidade de enxágue.',
+    description: 'Produto pronto uso para higienização pontual da pelagem entre as rotinas completas de banho.',
+    indication: 'Indicado para cães e gatos de diferentes idades e tipos de pelagem.',
+    benefits: ['Limpeza sem enxágue', 'Auxilia na neutralização de odores', 'Aplicação prática'],
+    sourceUrl: 'https://atualpet.com.br/produtos/banho-a-seco-the-luxe/',
+  },
+  'fluido-finalizador-argan-the-luxe': {
+    short: 'Finalizador pronto uso para o acabamento da pelagem.',
+    description: 'Fluido da linha The Luxe para complementar a etapa final do cuidado profissional.',
+    indication: 'Indicado para aplicação na pelagem de cães e gatos a partir de 2 meses.',
+    benefits: ['Auxilia na hidratação dos fios', 'Complementa o acabamento', 'Aplicação pronta uso'],
+    sourceUrl: 'https://atualpet.com.br/produtos/fluido-finalizador-argan-the-luxe/',
+  },
+  'limpa-orelhas-the-luxe': {
+    short: 'Solução pronta uso para a higiene regular das orelhas.',
+    description: 'Produto de cuidado especial desenvolvido para complementar a higiene de cães e gatos.',
+    indication: 'Indicado para a higiene regular da região externa das orelhas de cães e gatos.',
+    benefits: ['Auxilia na remoção de resíduos', 'Fórmula sem fragrância', 'Aplicação pronta uso'],
+    sourceUrl: 'https://atualpet.com.br/produtos/limpa-orelhas-the-luxe/',
+  },
+  'shampoo-neutro-zoom': {
+    short: 'Limpeza neutra com apresentações profissional e pronta uso.',
+    description: 'Shampoo Zoom para a higiene de diferentes raças e tipos de pelagem.',
+    indication: 'Indicado para a higiene de cães e gatos de diferentes raças e tipos de pelagem.',
+    benefits: ['Limpeza da pelagem', 'Apresentação de 750 ml pronta uso', 'Apresentação de 5 L com diluição de até 1:4'],
+    sourceUrl: 'https://atualpet.com.br/produtos/shampoo-neutro/',
+  },
+  'colonia-you-vanity-pet': {
+    short: 'Perfume Vanity de perfil floral frutado.',
+    description: 'Fragrância animal pronta uso da coleção Vanity Pet, apresentada nos volumes de 50 ml e 500 ml.',
+    indication: 'Fragrância de perfil feminino, conforme a apresentação oficial da linha.',
+    benefits: ['Perfil floral frutado', 'Aplicação pronta uso', 'Duas apresentações comerciais'],
+    sourceUrl: 'https://atualpet.com.br/produtos/you/',
+  },
+}
