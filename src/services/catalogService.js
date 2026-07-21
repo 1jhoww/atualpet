@@ -1,4 +1,4 @@
-import { products } from '../data/products'
+import { compareLaunchDate, products } from '../data/products'
 import { distributors } from '../data/distributors'
 
 const normalize = (value = '') => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
@@ -15,7 +15,7 @@ export const catalogService = {
       && (!filters.fragrance || item.fragrance === filters.fragrance)
       && (!filters.volume || item.volumes.includes(filters.volume))
       && (!filters.dilution || item.dilutions.includes(filters.dilution))
-  }),
+  }).sort(filters.launch ? compareLaunchDate : (a, b) => a.order - b.order),
   searchDistributors: ({ search = '', state = '', region = '' }) => distributors.filter((item) => (
     (!search || normalize(`${item.name} ${item.city}`).includes(normalize(search)))
     && (!state || item.state === state)

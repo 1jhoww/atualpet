@@ -1,9 +1,13 @@
+import productPlaceholder from '../assets/placeholders/product-placeholder.svg'
+
 const productAssetModules = import.meta.glob(
   '../assets/products/optimized/**/*.webp',
   { eager: true, query: '?url', import: 'default' },
 )
 
 export const getProductAsset = (relativePath) => {
+  if (!relativePath) return productPlaceholder
+
   const asset = productAssetModules[`../assets/products/optimized/${relativePath}`]
 
   if (!asset) {
@@ -12,4 +16,3 @@ export const getProductAsset = (relativePath) => {
 
   return asset
 }
-

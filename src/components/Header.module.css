@@ -12,6 +12,12 @@
 .menuButton { display: none; color: var(--neutral-900); width: 44px; height: 44px; place-items: center; }
 .mobile { display: none; }
 
+@media (max-width: 1120px) and (min-width: 961px) {
+  .inner { gap: 22px; }
+  .desktop { gap: 18px; font-size: .77rem; }
+  .distributorCta { padding-inline: 14px; }
+}
+
 @media (max-width: 960px) {
   .desktop, .inner .distributorCta { display: none; }
   .menuButton { display: grid; }

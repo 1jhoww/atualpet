@@ -32,14 +32,17 @@
 .actionButton { min-height: 46px; margin-top: 18px; cursor: pointer; }
 .actionButton:active { transform: translateY(0) scale(.98); box-shadow: none; }
 
-.launches { background: var(--brand-orange-light); }
-.launches header { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 40px; }
-.launches h2 { font-size: clamp(3rem, 5vw, 5.5rem); margin: .2em 0 0; }
-.launchLayout { display: grid; grid-template-columns: 1.4fr repeat(2, .8fr); gap: 24px; }
-.launchLayout a { position: relative; min-height: 420px; background: var(--neutral-white); padding: 28px; display: flex; flex-direction: column; }
-.launchLayout a > span { width: max-content; background: var(--brand-orange); color: var(--neutral-900); padding: 7px 10px; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
-.launchLayout img { width: 100%; flex: 1; min-height: 0; object-fit: contain; }
-.launchLayout h3 { margin: 12px 0 0; }
+.launches { position: relative; overflow: hidden; border-block: 1px solid rgba(237,123,10,.24); background: linear-gradient(135deg, var(--brand-orange-light), var(--neutral-white) 72%); }
+.launches::after { content: 'NOVIDADES'; position: absolute; z-index: 0; top: 34px; right: -20px; color: rgba(237,123,10,.065); font-family: var(--display); font-size: clamp(5rem, 12vw, 12rem); font-weight: 700; letter-spacing: -.06em; line-height: .8; pointer-events: none; }
+.launches > div { position: relative; z-index: 1; }
+.launchesHeading { display: grid; grid-template-columns: 1.08fr .62fr; align-items: end; gap: clamp(48px, 8vw, 130px); margin-bottom: clamp(48px, 6vw, 78px); }
+.launchesHeading h2 { max-width: 850px; margin: .2em 0 0; font-size: clamp(3.2rem, 5.4vw, 6rem); }
+.launchesIntro { display: flex; flex-direction: column; align-items: flex-start; }
+.launchesIntro p { max-width: 470px; margin: 0; color: var(--neutral-700); }
+.launchLayout { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 2.6vw, 38px); }
+.launchCard { min-width: 0; }
+.launchCard > article { height: 100%; }
+.launchCard > article > a:first-child { border: 1px solid rgba(201,95,0,.12); background: rgba(255,255,255,.74); }
 
 .testimonials { background: var(--neutral-900); color: var(--neutral-white); }
 .testimonialsHeading { display: grid; grid-template-columns: .72fr 1.28fr; gap: 7vw; align-items: start; margin-bottom: clamp(48px, 6vw, 78px); }
@@ -75,13 +78,21 @@
 }
 
 @media (max-width: 620px) {
-  .pillarsIntro, .launches header { align-items: flex-start; flex-direction: column; }
+  .pillarsIntro { align-items: flex-start; flex-direction: column; }
   .linesHeading { grid-template-columns: 1fr; gap: 14px; }
   .linesHeading h2 { font-size: 3.35rem; }
   .lineCopy { padding: 46px 24px; }
   .lineCopy h3 { font-size: 3.7rem; }
   .lineVisual { aspect-ratio: 4 / 3; }
-  .launchLayout { grid-template-columns: 1fr; }
+  .launches { padding-block: 72px; }
+  .launches::after { top: 24px; right: -8px; font-size: 4.8rem; }
+  .launchesHeading { grid-template-columns: 1fr; gap: 20px; margin-bottom: 42px; }
+  .launchesHeading h2 { font-size: clamp(3rem, 13vw, 4rem); }
+  .launchLayout { display: flex; gap: 18px; margin-inline: -16px; padding: 2px 16px 18px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--brand-orange) transparent; }
+  .launchLayout::-webkit-scrollbar { height: 4px; }
+  .launchLayout::-webkit-scrollbar-track { background: transparent; }
+  .launchLayout::-webkit-scrollbar-thumb { background: var(--brand-orange); border-radius: 999px; }
+  .launchCard { flex: 0 0 min(84vw, 330px); scroll-snap-align: start; }
   .testimonialsHeading { grid-template-columns: 1fr; gap: 18px; }
   .testimonialsHeading h2 { font-size: clamp(3rem, 13vw, 4.1rem); }
   .testimonialGrid { grid-template-columns: 1fr; gap: 38px; }

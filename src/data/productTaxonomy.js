@@ -112,7 +112,7 @@ export const dilutionValues = ['Pronto uso', '1:4', '1:5', '1:12']
 
 // A apresentação continua no produto, mas embalagens de 120 ml/120 g não fazem
 // parte da navegação pública por volume nesta versão do catálogo.
-export const publicVolumeFilter = ['50 ml', '300 ml', '500 ml', '500 g', '750 ml', '1 L', '5 L']
+export const publicVolumeFilter = ['50 ml', '250 ml', '300 ml', '500 ml', '500 g', '750 ml', '1 L', '1 kg', '5 L']
 
 export const productTaxonomyAliases = {
   lines: {

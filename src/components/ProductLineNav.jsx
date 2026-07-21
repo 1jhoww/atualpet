@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { productLines } from '../data/productTaxonomy'
 import styles from './ProductLineNav.module.css'
 
-export default function ProductLineNav({ products, activeLine, onSelect }) {
+export default function ProductLineNav({ products, activeLine, onSelect, compact = false }) {
   const commercialLines = productLines.filter((line) => !line.supportMaterial)
   const railRef = useRef(null)
   const [hasMoreLines, setHasMoreLines] = useState(false)
@@ -31,13 +31,15 @@ export default function ProductLineNav({ products, activeLine, onSelect }) {
     }
   }, [])
 
-  return <section className={styles.section} aria-labelledby="line-navigation-title">
+  return <section className={`${styles.section} ${compact ? styles.compact : ''}`} aria-labelledby="line-navigation-title">
     <div className="shell">
-      <header className={styles.header}>
-        <div>
-          <span className="eyebrow">Navegue pelas linhas</span>
-          <h2 id="line-navigation-title">Encontre a família de produtos ideal.</h2>
-        </div>
+      <header className={`${styles.header} ${compact ? styles.headerCompact : ''}`}>
+        {compact
+          ? <h2 id="line-navigation-title" className={styles.srOnly}>Linhas de produtos</h2>
+          : <div>
+            <span className="eyebrow">Navegue pelas linhas</span>
+            <h2 id="line-navigation-title">Encontre a família de produtos ideal.</h2>
+          </div>}
         <button
           type="button"
           className={`${styles.allLines} ${!activeLine ? styles.allLinesActive : ''}`}

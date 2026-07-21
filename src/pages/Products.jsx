@@ -2,13 +2,11 @@ import { RotateCcw, Search, SlidersHorizontal } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import EmptyState from '../components/EmptyState'
-import PageHero from '../components/PageHero'
 import ProductCard from '../components/ProductCard'
 import ProductLineNav from '../components/ProductLineNav'
-import ProductLineOverview from '../components/ProductLineOverview'
 import Seo from '../components/Seo'
 import { products } from '../data/products'
-import { dilutionValues, getProductLine, productCategories, productLines, publicVolumeFilter } from '../data/productTaxonomy'
+import { dilutionValues, productCategories, productLines, publicVolumeFilter } from '../data/productTaxonomy'
 import { catalogService } from '../services/catalogService'
 import styles from './Products.module.css'
 
@@ -26,7 +24,7 @@ export default function Products() {
   const [params, setParams] = useSearchParams()
   const [limit, setLimit] = useState(8)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const overviewRef = useRef(null)
+  const catalogRef = useRef(null)
   const activeProducts = products.filter((product) => product.active)
   const hasLaunches = activeProducts.some((product) => product.isLaunch)
   const filters = {
@@ -61,7 +59,7 @@ export default function Products() {
 
   const selectLine = (line) => {
     setFilter('line', line)
-    window.requestAnimationFrame(() => overviewRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }))
+    window.requestAnimationFrame(() => catalogRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }))
   }
 
   const select = (label, key, options) => <label>
@@ -77,29 +75,19 @@ export default function Products() {
   </label>
 
   const results = catalogService.searchProducts(filters)
-  const selectedLine = getProductLine(filters.line)
-  const selectedCommercialLine = selectedLine?.supportMaterial ? null : selectedLine
-  const hasAdditionalFilters = Boolean(
-    filters.search
-    || filters.launch
-    || filters.category
-    || filters.fragrance
-    || filters.volume
-    || filters.dilution,
-  )
-
+  const visibleLimit = filters.launch ? results.length : limit
   return <>
     <Seo title="Catálogo de produtos" description="Explore o catálogo público Atual Pet por linha, categoria, fragrância, volume e diluição." path="/produtos" />
-    <PageHero eyebrow="Catálogo profissional" title="Encontre o produto certo para cada etapa." text="Consulte linhas, categorias e apresentações. O catálogo não exibe preços nem realiza vendas online." />
-    <ProductLineNav products={activeProducts} activeLine={filters.line} onSelect={selectLine} />
-    <ProductLineOverview
-      ref={overviewRef}
-      line={selectedCommercialLine}
-      products={activeProducts}
-      visibleCount={results.length}
-      hasAdditionalFilters={hasAdditionalFilters}
-    />
-    <main className={`${styles.catalog} shell section`}>
+    <header className={styles.intro}>
+      <div className="shell">
+        <span className="eyebrow">Catálogo profissional</span>
+        <h1>Explore nossas linhas.</h1>
+        <p>Encontre produtos por linha, categoria ou apresentação.</p>
+      </div>
+    </header>
+    <ProductLineNav products={activeProducts} activeLine={filters.line} onSelect={selectLine} compact />
+    <main ref={catalogRef} className={`${styles.catalog} shell section`}>
+      <p className={styles.catalogNote}>Catálogo informativo. Consulte um distribuidor para preços e disponibilidade.</p>
       <button className={styles.filterToggle} onClick={() => setMobileOpen(true)}><SlidersHorizontal size={18} /> Filtros</button>
       <aside className={`${styles.filters} ${mobileOpen ? styles.open : ''}`} aria-label="Filtros do catálogo">
         <div className={styles.filterTop}><h2>Filtros</h2><button onClick={() => setMobileOpen(false)}>Fechar</button></div>
@@ -115,11 +103,11 @@ export default function Products() {
       <section className={styles.results}>
         <div className={styles.resultTop}>
           <p><strong>{results.length}</strong> {results.length === 1 ? 'produto encontrado' : 'produtos encontrados'}</p>
-          <span>Organizado por linha</span>
+          <span>{filters.launch ? 'Mais recentes primeiro' : 'Organizado por linha'}</span>
         </div>
         {results.length ? <>
-          <div className="product-grid product-grid--catalog">{results.slice(0, limit).map((product) => <ProductCard key={product.id} product={product} />)}</div>
-          {limit < results.length && <div className="section-action"><button className="button button--outline" onClick={() => setLimit(limit + 8)}>Carregar mais</button></div>}
+          <div className="product-grid product-grid--catalog">{results.slice(0, visibleLimit).map((product) => <ProductCard key={product.id} product={product} />)}</div>
+          {!filters.launch && limit < results.length && <div className="section-action"><button className="button button--outline" onClick={() => setLimit(limit + 8)}>Carregar mais</button></div>}
         </> : <EmptyState />}
       </section>
     </main>

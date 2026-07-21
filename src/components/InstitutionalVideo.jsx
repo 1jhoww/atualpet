@@ -9,7 +9,8 @@ const getYouTubeId = (url = '') => {
   return match?.[1] || ''
 }
 
-export default function InstitutionalVideo({ video }) {
+export default function InstitutionalVideo({ video, titleAs = 'h2', opening = false }) {
+  const Heading = titleAs
   const { isAllowed, openPreferences } = useCookieConsent()
   const [playerRequested, setPlayerRequested] = useState(false)
   const videoId = video?.provider === 'youtube' ? getYouTubeId(video.url) : ''
@@ -22,10 +23,10 @@ export default function InstitutionalVideo({ video }) {
 
   if (!video?.url || !videoId) return null
 
-  return <section className={`${styles.section} section`} aria-labelledby="institutional-video-title">
+  return <section className={`${styles.section} ${opening ? styles.opening : ''} section`} aria-labelledby="institutional-video-title">
     <div className="shell">
       <Reveal as="header" className={styles.heading}>
-        <div><span className="eyebrow">Por dentro da Atual Pet</span><h2 id="institutional-video-title">{video.title}</h2></div>
+        <div><span className="eyebrow">Por dentro da Atual Pet</span><Heading id="institutional-video-title">{video.title}</Heading></div>
         <p>Conheça a atuação da marca e o cuidado por trás das linhas de cosméticos profissionais Atual Pet.</p>
       </Reveal>
       <Reveal className={styles.videoFrame} data-reveal="image">

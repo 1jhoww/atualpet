@@ -8,11 +8,6 @@ import aboutVisionProfessional from '../assets/about/about-vision-professional.w
 import { company } from './company'
 
 export const aboutContent = {
-  hero: {
-    eyebrow: 'A Atual Pet',
-    title: 'Cuidado profissional em cada detalhe.',
-    description: 'Uma marca brasileira de cosméticos profissionais para pets, presente em diferentes etapas da rotina de banho e tosa.',
-  },
   whoWeAre: {
     eyebrow: 'Quem somos',
     title: 'Uma marca dedicada ao cuidado profissional.',

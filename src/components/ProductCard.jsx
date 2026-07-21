@@ -15,7 +15,7 @@ export default function ProductCard({ product }) {
     <Link to={`/produtos/${product.slug}`} className={styles.imageWrap} aria-label={`Ver ${product.name}`}>
       {product.isLaunch && <span className={styles.launchBadge}>Lançamento</span>}
       {product.supportMaterial && <span className={styles.supportBadge}>Material de apoio</span>}
-      <img src={product.image} width={product.imageWidth} height={product.imageHeight} loading="lazy" decoding="async" alt={`${product.name} — ${line.name}`} />
+      <img src={product.image} width={product.imageWidth} height={product.imageHeight} loading="lazy" decoding="async" alt={product.imagePending ? `Imagem oficial de ${product.name} pendente` : `${product.name} — ${line.name}`} />
     </Link>
     <div className={styles.meta}><span>{line.name}</span><span>{category.name}</span></div>
     <h3><Link to={`/produtos/${product.slug}`}>{product.name}</Link></h3>

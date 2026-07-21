@@ -1,13 +1,4 @@
 .page { overflow: clip; background: var(--neutral-white); }
-.hero { padding: clamp(118px, 8vw, 140px) 0 clamp(48px, 4vw, 64px); background: linear-gradient(180deg, var(--brand-cyan-light) 0%, rgba(232,247,246,.42) 34%, var(--neutral-white) 72%); }
-.heroInner { display: block; }
-.heroCopy { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(310px, .65fr); column-gap: clamp(48px, 6vw, 100px); row-gap: 24px; align-items: end; max-width: 1200px; }
-.heroCopy > * { animation: aboutCopyReveal .8s var(--ease-premium) both; }
-.heroCopy > :nth-child(2) { animation-delay: 70ms; }
-.heroCopy > :nth-child(3) { animation-delay: 130ms; }
-.heroCopy > :first-child { grid-column: 1 / -1; }
-.heroCopy h1 { max-width: 790px; margin: 0; font-size: clamp(3.3rem, 4.5vw, 4.8rem); line-height: .96; }
-.heroCopy p { max-width: 500px; margin: 0 0 7px; color: var(--neutral-700); font-size: clamp(1rem, 1.25vw, 1.12rem); }
 
 .who { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(60px, 9vw, 150px); align-items: start; }
 .whoHeading h2 { max-width: 760px; margin: .25em 0 0; font-size: clamp(3.2rem, 5.2vw, 5.7rem); }
@@ -55,18 +46,11 @@
 .secondaryCta { border-color: var(--neutral-900); background: transparent; }
 .secondaryCta:hover { border-color: var(--neutral-900); background: var(--neutral-900); color: var(--neutral-white); }
 
-@keyframes aboutCopyReveal { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
-
 @media (max-width: 1050px) {
   .commitmentGrid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 800px) {
-  .hero { padding: 112px 0 54px; }
-  .heroCopy { grid-template-columns: 1fr; gap: 18px; }
-  .heroCopy > :first-child { grid-column: auto; }
-  .heroCopy h1 { max-width: 670px; font-size: clamp(3.3rem, 8vw, 4.4rem); }
-  .heroCopy p { max-width: 600px; margin-top: 4px; }
   .who { grid-template-columns: 1fr; gap: 32px; }
   .whoBody { padding-top: 0; }
   .history { min-height: 0; grid-template-columns: 1fr; }
@@ -83,9 +67,6 @@
 }
 
 @media (max-width: 560px) {
-  .hero { padding: 92px 0 40px; }
-  .heroCopy h1 { font-size: clamp(2.9rem, 12vw, 3.5rem); }
-  .heroCopy p { font-size: .98rem; }
   .who { padding-block: 84px; }
   .whoHeading h2 { font-size: clamp(3rem, 13vw, 4rem); }
   .whoText p { font-size: .98rem; }
@@ -110,8 +91,4 @@
   .finalCtaMedia { height: 420px; }
   .ctaActions { width: 100%; }
   .ctaActions :global(.button) { width: 100%; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .heroCopy > * { animation: none; }
 }

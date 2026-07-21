@@ -1,0 +1,266 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  border-block: 1px solid var(--neutral-300);
+  background:
+    radial-gradient(circle at 4% 54%, rgba(113, 196, 192, .15), transparent 28%),
+    var(--neutral-white);
+}
+
+.section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: clamp(24px, 7vw, 132px);
+  width: clamp(88px, 11vw, 190px);
+  height: 3px;
+  background: var(--brand-orange);
+}
+
+.heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(300px, .65fr);
+  gap: clamp(50px, 8vw, 130px);
+  align-items: end;
+  margin-bottom: clamp(58px, 6vw, 86px);
+}
+
+.heading h2 {
+  max-width: 790px;
+  margin: .2em 0 0;
+  font-size: clamp(3.1rem, 5.25vw, 6rem);
+}
+
+.heading > p {
+  max-width: 500px;
+  margin: 0 0 .35em;
+  color: var(--neutral-700);
+  font-size: clamp(1rem, 1.12vw, 1.1rem);
+}
+
+.body {
+  border-top: 1px solid var(--neutral-300);
+}
+
+.partnerFeature {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(300px, .8fr) minmax(0, 1.2fr);
+  gap: clamp(60px, 9vw, 145px);
+  padding: clamp(38px, 4.5vw, 64px) 0 clamp(44px, 5vw, 72px);
+}
+
+.partnerFeature::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: min(330px, 31%);
+  height: 3px;
+  background: var(--brand-cyan-dark);
+}
+
+.partnerCopy > span,
+.evidenceMeta {
+  color: var(--brand-orange-dark);
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.partnerCopy h3 {
+  max-width: 570px;
+  margin: 17px 0 0;
+  font-size: clamp(2.15rem, 3.2vw, 3.55rem);
+  line-height: 1.08;
+  letter-spacing: -.045em;
+}
+
+.partnerIdentity {
+  align-self: end;
+}
+
+.partnerIdentity p {
+  max-width: 590px;
+  margin: 26px 0 0;
+  color: var(--neutral-700);
+  font-size: .98rem;
+}
+
+.partnerLogo {
+  display: block;
+  width: min(390px, 80%);
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.evidenceRail {
+  display: grid;
+  grid-template-columns: .95fr 1.15fr .95fr;
+  border-block: 1px solid var(--neutral-300);
+}
+
+.evidence {
+  min-width: 0;
+  min-height: 310px;
+  padding: clamp(32px, 3.4vw, 50px);
+  border-right: 1px solid var(--neutral-300);
+}
+
+.evidence:last-child {
+  border-right: 0;
+}
+
+.evidenceFeatured {
+  background: linear-gradient(145deg, rgba(232, 247, 246, .88), rgba(255, 255, 255, .45));
+}
+
+.evidenceMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.evidenceMeta span:last-child {
+  color: var(--brand-cyan-dark);
+}
+
+.evidence h3 {
+  max-width: 430px;
+  margin: clamp(46px, 5vw, 74px) 0 12px;
+  font-size: clamp(1.7rem, 2.25vw, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: -.035em;
+}
+
+.evidenceFeatured h3 {
+  font-size: clamp(1.9rem, 2.65vw, 2.9rem);
+}
+
+.evidence p {
+  max-width: 410px;
+  margin: 0;
+  color: var(--neutral-700);
+  font-size: .9rem;
+}
+
+@media (max-width: 900px) {
+  .heading,
+  .partnerFeature {
+    grid-template-columns: 1fr;
+  }
+
+  .heading {
+    gap: 22px;
+  }
+
+  .heading > p {
+    max-width: 650px;
+  }
+
+  .partnerFeature {
+    gap: 34px;
+  }
+
+  .partnerCopy h3,
+  .partnerIdentity p {
+    max-width: 680px;
+  }
+
+  .evidenceRail {
+    grid-template-columns: 1fr;
+  }
+
+  .evidence {
+    min-height: 0;
+    padding: 30px 0 34px;
+    border-right: 0;
+    border-top: 1px solid var(--neutral-300);
+  }
+
+  .evidence:first-child {
+    border-top: 0;
+  }
+
+  .evidenceFeatured {
+    margin-inline: -24px;
+    padding-inline: 24px;
+  }
+
+  .evidence h3,
+  .evidenceFeatured h3 {
+    max-width: 720px;
+    margin-top: 26px;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding-block: 60px;
+    background:
+      linear-gradient(135deg, rgba(113, 196, 192, .14), transparent 38%),
+      var(--neutral-white);
+  }
+
+  .section::after {
+    right: 16px;
+    width: 84px;
+  }
+
+  .heading {
+    gap: 17px;
+    margin-bottom: 34px;
+  }
+
+  .heading h2 {
+    font-size: clamp(2.5rem, 11.3vw, 3.45rem);
+  }
+
+  .heading > p {
+    font-size: .94rem;
+  }
+
+  .partnerFeature {
+    gap: 25px;
+    padding: 30px 0 35px;
+  }
+
+  .partnerFeature::before {
+    width: 42%;
+  }
+
+  .partnerCopy h3 {
+    margin-top: 13px;
+    font-size: 1.85rem;
+  }
+
+  .partnerLogo {
+    width: min(280px, 88%);
+  }
+
+  .partnerIdentity p {
+    margin-top: 17px;
+    font-size: .9rem;
+  }
+
+  .evidence {
+    padding-block: 25px 29px;
+  }
+
+  .evidenceFeatured {
+    margin-inline: -16px;
+    padding-inline: 16px;
+  }
+
+  .evidence h3,
+  .evidenceFeatured h3 {
+    margin-top: 20px;
+    font-size: 1.65rem;
+  }
+
+  .evidence p {
+    font-size: .86rem;
+  }
+}

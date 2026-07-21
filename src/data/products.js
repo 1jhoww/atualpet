@@ -2,7 +2,25 @@
 import { getProductCategory, getProductLine } from './productTaxonomy'
 import { verifiedProductContent } from './verifiedProductContent'
 
+// Data provisória dos 12 lançamentos confirmados. Substituir pela data oficial
+// de lançamento antes do deploy.
+export const PROVISIONAL_LAUNCH_DATE = '2026-07-20'
+
 const productCatalog = [
+  // Lançamentos confirmados — volumes iguais pertencem ao mesmo registro, conforme o padrão do catálogo.
+  { slug: 'mascara-acao-rapida-cereja-e-avela', name: 'Máscara de Ação Rápida Cereja e Avelã', line: 'the-luxe', category: 'mascaras', fragrance: 'Cereja e Avelã', volumes: ['1 kg'], short: 'Máscara de ação rápida com tempo de ação de 60 segundos.', description: 'Máscara de ação rápida em embalagem de 1 kg, com tempo de ação de 60 segundos.', asset: 'the-luxe/mascara-acao-rapida-cereja-avela-1kg.webp', imageWidth: 1080, imageHeight: 1446, isLaunch: true, launchDate: PROVISIONAL_LAUNCH_DATE },
+  { slug: 'mascara-acao-rapida-lichia-e-roma', name: 'Máscara de Ação Rápida Lichia e Romã', line: 'the-luxe', category: 'mascaras', fragrance: 'Lichia e Romã', volumes: ['1 kg'], short: 'Máscara de ação rápida com tempo de ação de 60 segundos.', description: 'Máscara de ação rápida em embalagem de 1 kg, com tempo de ação de 60 segundos.', asset: 'the-luxe/mascara-acao-rapida-lichia-roma-1kg.webp', imageWidth: 1080, imageHeight: 1446, isLaunch: true, launchDate: PROVISIONAL_LAUNCH_DATE },
+  { slug: 'mascara-acao-rapida-melancia', name: 'Máscara de Ação Rápida Melancia', line: 'the-luxe', category: 'mascaras', volumes: ['1 kg'], short: 'Máscara de ação rápida com tempo de ação de 60 segundos.', description: 'Máscara de ação rápida em embalagem de 1 kg, com tempo de ação de 60 segundos.', asset: 'the-luxe/mascara-acao-rapida-melancia-1kg.webp', imageWidth: 1080, imageHeight: 1446, isLaunch: true, launchDate: PROVISIONAL_LAUNCH_DATE },
+  { slug: 'mascara-acao-rapida-neutro', name: 'Máscara de Ação Rápida Neutro', line: 'the-luxe', category: 'mascaras', volumes: ['1 kg'], short: 'Máscara de ação rápida com tempo de ação de 60 segundos.', description: 'Máscara de ação rápida em embalagem de 1 kg, com tempo de ação de 60 segundos.', asset: 'the-luxe/mascara-acao-rapida-neutro-1kg.webp', imageWidth: 1080, imageHeight: 1446, isLaunch: true, launchDate: PROVISIONAL_LAUNCH_DATE },
+  { slug: 'shampoo-vanilla', name: 'Shampoo Vanilla', line: 'dream-color', category: 'shampoos', fragrance: 'Vanilla', volumes: ['1 L', '5 L'], dilution: '1:12', short: 'Shampoo com fragrância Vanilla e diluição 1:12.', description: 'Shampoo com fragrância Vanilla nas apresentações de 1 L e 5 L. Diluição 1:12.', asset: 'dream-color/shampoo-vanilla-1l-5l.webp', imageWidth: 1536, imageHeight: 1024, isLaunch: true, launchDate: PROVISIONAL_LAUNCH_DATE },
+  { slug: 'condicionador-vanilla', name: 'Condicionador Vanilla', line: 'dream-color', category: 'condicionadores', fragrance: 'Vanilla', volumes: ['1 L', '5 L'], short: 'Condicionador com fragrância Vanilla.', description: 'Condicionador com fragrância Vanilla nas apresentações de 1 L e 5 L.', asset: 'dream-color/condicionador-vanilla-1l-5l.webp', imageWidth: 1536, imageHeight: 1024, isLaunch: true, launchDate: PROVISIONAL_LAUNCH_DATE },
+  { slug: 'colonia-vanilla', name: 'Colônia Vanilla', line: 'dream-color', category: 'colonias', fragrance: 'Vanilla', volumes: ['300 ml'], short: 'Colônia com fragrância Vanilla.', description: 'Colônia com fragrância Vanilla em embalagem de 300 ml.', asset: 'dream-color/colonia-vanilla-300ml.webp', imageWidth: 610, imageHeight: 610, isLaunch: true, launchDate: PROVISIONAL_LAUNCH_DATE },
+  { slug: 'aromatizador-vanilla', name: 'Aromatizador Vanilla', line: 'dream-color', category: 'aromatizadores', fragrance: 'Vanilla', volumes: ['250 ml'], short: 'Aromatizador com fragrância Vanilla.', description: 'Aromatizador com fragrância Vanilla em embalagem de 250 ml.', isLaunch: true, launchDate: PROVISIONAL_LAUNCH_DATE, imagePending: true },
+  { slug: 'shampoo-jasmim-com-amendoas', name: 'Shampoo Jasmim com Amêndoas', line: 'dream-color', category: 'shampoos', fragrance: 'Jasmim com Amêndoas', volumes: ['1 L', '5 L'], dilution: '1:12', short: 'Shampoo com fragrância Jasmim com Amêndoas e diluição 1:12.', description: 'Shampoo com fragrância Jasmim com Amêndoas nas apresentações de 1 L e 5 L. Diluição 1:12.', isLaunch: true, launchDate: PROVISIONAL_LAUNCH_DATE, imagePending: true },
+  { slug: 'condicionador-jasmim-com-amendoas', name: 'Condicionador Jasmim com Amêndoas', line: 'dream-color', category: 'condicionadores', fragrance: 'Jasmim com Amêndoas', volumes: ['1 L', '5 L'], short: 'Condicionador com fragrância Jasmim com Amêndoas.', description: 'Condicionador com fragrância Jasmim com Amêndoas nas apresentações de 1 L e 5 L.', isLaunch: true, launchDate: PROVISIONAL_LAUNCH_DATE, imagePending: true },
+  { slug: 'colonia-jasmim-com-amendoas', name: 'Colônia Jasmim com Amêndoas', line: 'dream-color', category: 'colonias', fragrance: 'Jasmim com Amêndoas', volumes: ['300 ml'], short: 'Colônia com fragrância Jasmim com Amêndoas.', description: 'Colônia com fragrância Jasmim com Amêndoas em embalagem de 300 ml.', isLaunch: true, launchDate: PROVISIONAL_LAUNCH_DATE, imagePending: true },
+  { slug: 'aromatizador-jasmim-com-amendoas', name: 'Aromatizador Jasmim com Amêndoas', line: 'dream-color', category: 'aromatizadores', fragrance: 'Jasmim com Amêndoas', volumes: ['250 ml'], short: 'Aromatizador com fragrância Jasmim com Amêndoas.', description: 'Aromatizador com fragrância Jasmim com Amêndoas em embalagem de 250 ml.', isLaunch: true, launchDate: PROVISIONAL_LAUNCH_DATE, imagePending: true },
+
   // Dream Color — diluições distintas permanecem como produtos distintos.
   { slug: 'shampoo-alecrim-do-campo-1-12-dream-color', name: 'Shampoo Alecrim do Campo 1:12', line: 'dream-color', category: 'shampoos', fragrance: 'Alecrim do Campo', volumes: ['5 L'], dilution: '1:12', asset: 'dream-color/1-12-shampoo-alecrim-do-campo-5l.webp' },
   { slug: 'shampoo-framboesa-com-chantilly-1-12-dream-color', name: 'Shampoo Framboesa com Chantilly 1:12', line: 'dream-color', category: 'shampoos', fragrance: 'Framboesa com Chantilly', volumes: ['5 L'], dilution: '1:12', asset: 'dream-color/1-12-shampoo-framboesa-5l.webp' },
@@ -130,6 +148,7 @@ export const products = productCatalog
     gallery: [],
     featured: false,
     isLaunch: false,
+    launchDate: '',
     active: true,
     supportMaterial: false,
     seo: { title: '', description: '' },
@@ -137,8 +156,8 @@ export const products = productCatalog
     ...product,
     ...verifiedProductContent[product.slug],
     image: getProductAsset(product.asset),
-    imageWidth: 1080,
-    imageHeight: 1080,
+    imageWidth: product.imageWidth ?? (product.asset ? 1080 : 700),
+    imageHeight: product.imageHeight ?? (product.asset ? 1080 : 800),
     sourceOrder: index,
     dilutions: [...new Set([product.dilution, ...(product.variants ?? []).map((variant) => variant.dilution)].filter(Boolean))],
   }))
@@ -149,3 +168,6 @@ export const products = productCatalog
   .map((product, index) => ({ ...product, order: index + 1 }))
 
 export const getProduct = (slug) => products.find((product) => product.slug === slug && product.active)
+
+export const compareLaunchDate = (a, b) => (Date.parse(b.launchDate) || 0) - (Date.parse(a.launchDate) || 0)
+  || a.sourceOrder - b.sourceOrder

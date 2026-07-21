@@ -54,7 +54,7 @@ export default function ProductDetail() {
         <div className={styles.main}>
           <div className={styles.gallery}>
             {product.supportMaterial && <span className={styles.supportBadge}>Material de apoio</span>}
-            <img src={product.image} width={product.imageWidth} height={product.imageHeight} alt={`${product.name} — ${line.name}`} />
+            <img src={product.image} width={product.imageWidth} height={product.imageHeight} alt={product.imagePending ? `Imagem oficial de ${product.name} pendente` : `${product.name} — ${line.name}`} />
           </div>
           <div className={styles.info}>
             <span className="eyebrow">{line.name} · {category.name}</span>

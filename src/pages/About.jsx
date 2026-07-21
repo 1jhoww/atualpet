@@ -16,22 +16,12 @@ const commitmentIcons = {
 }
 
 export default function About() {
-  const { hero, whoWeAre, history, careJourney, commitment, principles, finalCta } = aboutContent
+  const { whoWeAre, history, careJourney, commitment, principles, finalCta } = aboutContent
 
   return <>
     <Seo title="A Atual Pet" description="Conheça a marca brasileira de cosméticos profissionais para pets e sua atuação no mercado pet." path="/sobre"/>
     <main className={styles.page}>
-      <section className={styles.hero} aria-labelledby="about-hero-title">
-        <div className={`${styles.heroInner} shell`}>
-          <div className={styles.heroCopy}>
-            <span className="eyebrow">{hero.eyebrow}</span>
-            <h1 id="about-hero-title">{hero.title}</h1>
-            <p>{hero.description}</p>
-          </div>
-        </div>
-      </section>
-
-      <InstitutionalVideo video={company.institutionalVideo}/>
+      <InstitutionalVideo video={company.institutionalVideo} titleAs="h1" opening/>
 
       <Reveal as="section" className={`${styles.history} shell`} aria-labelledby="about-history-title">
         <figure className={styles.historyMedia}><img src={history.image} width={history.imageWidth} height={history.imageHeight} loading="lazy" alt={history.imageAlt}/></figure>
