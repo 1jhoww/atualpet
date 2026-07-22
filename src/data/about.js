@@ -1,5 +1,6 @@
 import aboutDogBath from '../assets/about/about-dog-bath.webp'
 import aboutGroomerTrimming from '../assets/about/about-groomer-trimming.webp'
+import orionLogo from '../assets/institutional/orion-logo.webp'
 import aboutMissionCare from '../assets/about/about-mission-care.webp'
 import aboutSalonCare from '../assets/about/about-salon-care.webp'
 import aboutTowelCare from '../assets/about/about-towel-care.webp'
@@ -32,6 +33,11 @@ export const aboutContent = {
     imageWidth: 1800,
     imageHeight: 1200,
     imageAlt: 'Profissional realizando o acabamento da pelagem de um cachorro',
+    brandLabel: 'Empresa responsável pela Atual Pet',
+    brandLogo: orionLogo,
+    brandLogoWidth: 1600,
+    brandLogoHeight: 424,
+    brandLogoAlt: 'Orion Indústria e Comércio de Cosméticos Ltda.',
   },
   careJourney: {
     label: 'Antes, durante e depois do banho',

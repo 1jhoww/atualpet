@@ -25,7 +25,22 @@ export default function About() {
 
       <Reveal as="section" className={`${styles.history} shell`} aria-labelledby="about-history-title">
         <figure className={styles.historyMedia}><img src={history.image} width={history.imageWidth} height={history.imageHeight} loading="lazy" alt={history.imageAlt}/></figure>
-        <div className={styles.historyCopy}><span className="eyebrow">{history.eyebrow}</span><h2 id="about-history-title">{history.title}</h2>{history.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+        <div className={styles.historyCopy}>
+          <span className="eyebrow">{history.eyebrow}</span>
+          <h2 id="about-history-title">{history.title}</h2>
+          {history.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          <div className={styles.historyBrand}>
+            <span>{history.brandLabel}</span>
+            <img
+              src={history.brandLogo}
+              width={history.brandLogoWidth}
+              height={history.brandLogoHeight}
+              loading="lazy"
+              decoding="async"
+              alt={history.brandLogoAlt}
+            />
+          </div>
+        </div>
       </Reveal>
 
       <Reveal as="section" className={`${styles.who} shell section`} aria-labelledby="who-we-are-title">

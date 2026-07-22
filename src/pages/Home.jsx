@@ -2,23 +2,15 @@ import { ArrowRight, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import BathTransformation from '../components/BathTransformation'
 import BrandPillars from '../components/BrandPillars'
-import ProductCard from '../components/ProductCard'
 import Reveal from '../components/Reveal'
 import Seo from '../components/Seo'
 import TechnicalCredibility from '../components/TechnicalCredibility'
 import { company } from '../data/company'
 import { homeEditorial } from '../data/home'
 import { lines } from '../data/lines'
-import { compareLaunchDate, products } from '../data/products'
 import styles from './Home.module.css'
 
-const HOME_LAUNCH_LIMIT = 3
-
 export default function Home() {
-  const launches = products
-    .filter((product) => product.active && product.isLaunch)
-    .sort(compareLaunchDate)
-  const homeLaunches = launches.slice(0, HOME_LAUNCH_LIMIT)
   return <>
     <Seo title="Atual Pet | Cosméticos profissionais para pets" description={`${company.legalPositioning}.`} path="/" jsonLd={{'@context':'https://schema.org','@type':'Organization',name:'Atual Pet',description:company.legalPositioning,url:'https://atualpet.com.br',email:company.email,telephone:company.phone}}/>
 
@@ -40,16 +32,6 @@ export default function Home() {
         </Reveal>)}</div>
       </div>
     </section>
-
-    {launches.length > 0 && <section className={`${styles.launches} section`} aria-labelledby="home-launches-title">
-      <div className="shell">
-        <Reveal as="header" className={styles.launchesHeading}>
-          <div><span className="eyebrow">Novidades do portfólio</span><h2 id="home-launches-title">Lançamentos Atual Pet</h2></div>
-          <div className={styles.launchesIntro}><p>Conheça os produtos que acabam de chegar ao portfólio Atual Pet.</p><Link className={`button button--outline button--small ${styles.actionButton}`} to="/lancamentos">Ver lançamentos <ArrowRight size={16}/></Link></div>
-        </Reveal>
-        <div className={styles.launchLayout}>{homeLaunches.map((product, index)=><Reveal className={styles.launchCard} delay={index * 70} key={product.id}><ProductCard product={product}/></Reveal>)}</div>
-      </div>
-    </section>}
 
     <section className={styles.pillars} aria-labelledby="brand-pillars-title">
       <div className="shell">

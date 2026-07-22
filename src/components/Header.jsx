@@ -7,8 +7,8 @@ import styles from './Header.module.css'
 const navItems = [
   ['Início', '/'],
   ['Sobre', '/sobre'],
-  ['Produtos', '/produtos'],
   ['Lançamentos', '/lancamentos'],
+  ['Produtos', '/produtos'],
   ['Onde encontrar', '/onde-encontrar'],
   ['Contato', '/contato'],
 ]

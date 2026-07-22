@@ -16,6 +16,9 @@
 .historyCopy { display: flex; flex-direction: column; justify-content: center; padding: clamp(48px, 7vw, 96px); }
 .historyCopy h2 { margin: .24em 0; font-size: clamp(3rem, 4.8vw, 5.2rem); }
 .historyCopy p { max-width: 650px; color: var(--neutral-700); }
+.historyBrand { display: grid; gap: 15px; max-width: 330px; margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--neutral-300); }
+.historyBrand span { color: var(--brand-orange-dark); font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.historyBrand img { width: min(260px, 100%); height: auto; object-fit: contain; object-position: left center; }
 
 .careJourney { display: grid; gap: 24px; padding-bottom: clamp(82px, 9vw, 145px); }
 .story { min-height: 600px; display: grid; grid-template-columns: 1.12fr .88fr; align-items: stretch; }
@@ -56,6 +59,7 @@
   .history { min-height: 0; grid-template-columns: 1fr; }
   .historyMedia { height: 440px; }
   .historyCopy { padding: 58px 34px; }
+  .historyBrand { max-width: 310px; }
   .story, .storyReverse { min-height: 0; grid-template-columns: 1fr; }
   .storyMedia, .storyReverse .storyMedia { order: 1; height: 460px; }
   .storyMedia img { min-height: 0; }

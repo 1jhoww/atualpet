@@ -1,5 +1,7 @@
 import historyImage from '../assets/about/about-groomer-trimming.webp'
+import kosmoscienceSeal from '../assets/institutional/kosmoscience-dermatologically-tested-seal.webp'
 import kosmoscienceLogo from '../assets/products/materiais/logo-group-kosmoscience.svg'
+import orionLogo from '../assets/institutional/orion-logo.webp'
 
 export const homeEditorial = {
   technicalCredibility: {
@@ -13,6 +15,7 @@ export const homeEditorial = {
       logo: kosmoscienceLogo,
       logoWidth: 2350,
       logoHeight: 429,
+      logoAlt: 'Grupo Kosmoscience',
     },
     evidence: [
       {
@@ -21,13 +24,21 @@ export const homeEditorial = {
         eyebrow: 'Desenvolvimento',
         title: 'Desenvolvimento realizado pela Orion Cosméticos.',
         description: 'A Orion Ind e Com de Cosméticos Ltda. desenvolve e fabrica os produtos Atual Pet.',
+        logo: orionLogo,
+        logoWidth: 1600,
+        logoHeight: 424,
+        logoAlt: 'Orion Indústria e Comércio de Cosméticos Ltda.',
       },
       {
         id: 'dermatologically-tested',
         number: '02',
-        eyebrow: 'Segurança',
+        eyebrow: 'Validação',
         title: 'Produtos testados dermatologicamente para oferecer mais segurança durante o cuidado animal.',
-        featured: true,
+        logo: kosmoscienceSeal,
+        logoWidth: 640,
+        logoHeight: 640,
+        logoAlt: 'Selo Kosmoscience: testado dermatologicamente',
+        logoVariant: 'seal',
       },
       {
         id: 'professional-performance',
