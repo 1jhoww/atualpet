@@ -10,7 +10,8 @@
 .heroCopy p { font-family: var(--display); font-size: clamp(1.45rem, 2.5vw, 2.6rem); max-width: 620px; }
 .heroMedia { overflow: hidden; position: relative; min-width: 0; animation: lineMediaReveal 1s var(--ease-premium) 120ms both; }
 .heroMedia::after { content: ''; position: absolute; inset: 0 auto 0 0; width: 18%; background: linear-gradient(90deg, var(--line-bg), transparent); pointer-events: none; }
-.heroMedia img { width: 182%; max-width: none; height: 100%; object-fit: cover; object-position: right center; transition: transform 1s var(--ease-premium); }
+.heroMedia picture { display: block; width: 100%; height: 100%; }
+.heroMedia img { width: 100%; max-width: none; height: 100%; object-fit: cover; object-position: center; transition: transform 1s var(--ease-premium); }
 .heroMedia:hover img { transform: scale(1.018); }
 .manifesto { display: grid; grid-template-columns: 1.2fr .8fr; gap: 9vw; }
 .manifesto h2 { font-size: clamp(3rem, 5vw, 5.8rem); }
@@ -40,7 +41,7 @@
 .vanity { --line-accent: #9a7412; --line-bg: #fff8df; }
 .zoom { --line-accent: var(--brand-orange-dark); --line-bg: #fff0e8; }
 .zoom .heroCopy h1 { font-family: var(--sans); font-weight: 850; letter-spacing: -.075em; }
-.zoom .heroMedia img { width: 100%; object-fit: contain; padding: 6%; }
+.zoom .heroMedia img { width: 100%; object-fit: cover; padding: 0; }
 
 @keyframes lineCopyReveal { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes lineMediaReveal { from { opacity: 0; transform: translateY(26px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
@@ -50,7 +51,6 @@
   .heroInner { grid-template-columns: 1fr; }
   .heroCopy { padding: 30px 0 44px; }
   .heroMedia { height: 360px; }
-  .heroMedia img { width: 165%; }
   .heroMedia::after { inset: 0 0 auto; width: 100%; height: 20%; background: linear-gradient(var(--line-bg), transparent); }
   .manifesto { grid-template-columns: 1fr; gap: 25px; }
   .campaignInner { grid-template-columns: 1fr; min-height: 0; }
@@ -62,8 +62,6 @@
 @media (max-width: 520px) {
   .heroCopy h1 { font-size: 4.7rem; }
   .heroMedia { height: 270px; }
-  .heroMedia img { width: 190%; }
-  .zoom .heroMedia img { width: 100%; }
   .campaignMedia { height: 380px; }
   .campaignCopy { padding: 48px 22px; }
   .campaignCopy h2 { font-size: 3rem; }

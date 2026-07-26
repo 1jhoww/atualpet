@@ -7,8 +7,11 @@ import {
   Sparkles,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import extraVolumeBannerWebp from '../assets/lancamentos/banners/dream-color-extra-volume.webp'
+import jasmimBannerWebp from '../assets/lancamentos/banners/dream-color-jasmim.webp'
 import vanillaBannerWebp from '../assets/lancamentos/banners/dream-color-vanilla.webp'
-import masksBannerWebp from '../assets/lancamentos/banners/the-luxe-mascaras-60-segundos.webp'
+import masksBannerDesktopWebp from '../assets/lancamentos/banners/the-luxe-cronograma-desktop.webp'
+import masksBannerMobileWebp from '../assets/lancamentos/banners/the-luxe-cronograma-mobile.webp'
 import launchesHeroImage from '../assets/lancamentos/hero/hero-lancamentos-conjuntos.webp'
 import ProductCard from '../components/ProductCard'
 import Reveal from '../components/Reveal'
@@ -23,12 +26,16 @@ const launchCatalogUrl = (filters = {}) => {
 
 const masksUrl = launchCatalogUrl({ linha: 'the-luxe' })
 const vanillaUrl = launchCatalogUrl({ busca: 'Vanilla' })
+const jasmimUrl = launchCatalogUrl({ linha: 'dream-color', busca: 'Jasmim' })
+const extraVolumeUrl = launchCatalogUrl({ busca: 'Extra Volume' })
 const launchProducts = products
   .filter((product) => product.isLaunch)
   .sort(compareLaunchDate)
 
 const maskVersions = ['Cereja e Avelã', 'Lichia e Romã', 'Melancia', 'Neutro']
 const vanillaProducts = ['Shampoo', 'Condicionador', 'Colônia', 'Aromatizador']
+const jasmimProducts = ['Shampoo', 'Condicionador', 'Colônia', 'Aromatizador']
+const extraVolumeDetails = ['Shampoo', '1 L', 'Diluição 1:5']
 
 const technologyHighlights = [
   {
@@ -106,14 +113,17 @@ export default function Launches() {
               to={masksUrl}
               aria-label="Conhecer as máscaras de ação rápida The Luxe"
             >
-              <img
-                src={masksBannerWebp}
-                width="1536"
-                height="1024"
-                loading="lazy"
-                decoding="async"
-                alt="Máscaras de ação rápida The Luxe em quatro versões, com ação em 60 segundos"
-              />
+              <picture>
+                <source media="(max-width: 620px)" srcSet={masksBannerMobileWebp} />
+                <img
+                  src={masksBannerDesktopWebp}
+                  width="3600"
+                  height="2400"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Máscaras de ação rápida The Luxe em quatro versões, com ação em 60 segundos"
+                />
+              </picture>
             </Link>
           </Reveal>
         </article>
@@ -143,6 +153,64 @@ export default function Launches() {
             <p>A fragrância Vanilla chega em diferentes etapas da rotina profissional.</p>
             <ul className={styles.chips} aria-label="Lançamentos Vanilla Dream Color">
               {vanillaProducts.map((product) => <li key={product}>{product}</li>)}
+            </ul>
+          </Reveal>
+        </article>
+
+        <article className={`${styles.campaign} shell`}>
+          <Reveal className={styles.campaignCopy}>
+            <span className="eyebrow">Dream Color · Jasmim e Amêndoas</span>
+            <h2>Dream Color</h2>
+            <p className={styles.campaignLead}>Jasmim e Amêndoas em diferentes etapas da rotina profissional.</p>
+            <p>Shampoo, condicionador, colônia e aromatizador reunidos na linha Dream Color.</p>
+            <ul className={styles.chips} aria-label="Lançamentos Jasmim e Amêndoas Dream Color">
+              {jasmimProducts.map((product) => <li key={product}>{product}</li>)}
+            </ul>
+          </Reveal>
+
+          <Reveal className={styles.campaignMedia} delay={90} data-reveal="image">
+            <Link
+              className={styles.campaignLink}
+              to={jasmimUrl}
+              aria-label="Conhecer os lançamentos Jasmim e Amêndoas da linha Dream Color"
+            >
+              <img
+                src={jasmimBannerWebp}
+                width="1536"
+                height="1024"
+                loading="lazy"
+                decoding="async"
+                alt="Lançamentos Jasmim e Amêndoas da linha Dream Color com shampoo, condicionador, colônia e aromatizador"
+              />
+            </Link>
+          </Reveal>
+        </article>
+
+        <article className={`${styles.campaign} ${styles.campaignReverse} shell`}>
+          <Reveal className={styles.campaignMedia} data-reveal="image">
+            <Link
+              className={styles.campaignLink}
+              to={extraVolumeUrl}
+              aria-label="Conhecer o Shampoo Extra Volume Dream Color Care"
+            >
+              <img
+                src={extraVolumeBannerWebp}
+                width="1536"
+                height="1024"
+                loading="lazy"
+                decoding="async"
+                alt="Shampoo Extra Volume da linha Dream Color Care em embalagem de 1 litro"
+              />
+            </Link>
+          </Reveal>
+
+          <Reveal className={styles.campaignCopy} delay={90}>
+            <span className="eyebrow">Dream Color Care · Extra Volume</span>
+            <h2>Extra Volume</h2>
+            <p className={styles.campaignLead}>Uma novidade para complementar a rotina profissional.</p>
+            <p>Shampoo em apresentação de 1 L, com diluição 1:5.</p>
+            <ul className={styles.chips} aria-label="Informações do Shampoo Extra Volume">
+              {extraVolumeDetails.map((detail) => <li key={detail}>{detail}</li>)}
             </ul>
           </Reveal>
         </article>

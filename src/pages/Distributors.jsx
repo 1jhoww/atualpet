@@ -1,5 +1,5 @@
 import { MapPin, Search } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import brazilMap from '../assets/maps/brazil-states-map.json'
 import BrazilMap from '../components/BrazilMap'
@@ -34,6 +34,8 @@ export default function Distributors() {
   const [hoveredPartnerId, setHoveredPartnerId] = useState('')
   const [focusedPartnerId, setFocusedPartnerId] = useState('')
   const [pinnedPartnerId, setPinnedPartnerId] = useState('')
+  const resultsSectionRef = useRef(null)
+  const pendingMapScrollStateRef = useRef('')
   const activePartnerId = focusedPartnerId || hoveredPartnerId || pinnedPartnerId
   const activePartner = distributors.find((partner) => partner.id === activePartnerId)
   const results = useMemo(() => distributors.filter((item) => {
@@ -44,6 +46,27 @@ export default function Distributors() {
   const groupedResults = useMemo(() => groupByState(results), [results])
   const hasFilters = Boolean(filters.search || filters.state)
   const resultLabel = `${results.length} ${results.length === 1 ? 'distribuidor encontrado' : 'distribuidores encontrados'}`
+
+  useEffect(() => {
+    const state = pendingMapScrollStateRef.current
+    if (!state || filters.state !== state) return
+
+    const frame = window.requestAnimationFrame(() => {
+      const resultsElement = resultsSectionRef.current
+      const stateElement = resultsElement?.querySelector(`[data-state-group="${state}"]`)
+      const target = stateElement || resultsElement
+      if (!target) {
+        pendingMapScrollStateRef.current = ''
+        return
+      }
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' })
+      pendingMapScrollStateRef.current = ''
+    })
+
+    return () => window.cancelAnimationFrame(frame)
+  }, [filters.state, groupedResults])
 
   const clearPartnerHighlight = () => {
     setHoveredPartnerId('')
@@ -62,6 +85,12 @@ export default function Distributors() {
   }
 
   const toggleState = (state) => set('state', filters.state === state ? '' : state)
+
+  const handleMapToggleState = (state) => {
+    const isRemovingFilter = filters.state === state
+    pendingMapScrollStateRef.current = isRemovingFilter ? '' : state
+    toggleState(state)
+  }
 
   const togglePartner = (partnerId) => {
     setPinnedPartnerId((current) => current === partnerId ? '' : partnerId)
@@ -150,7 +179,7 @@ export default function Distributors() {
               counts={stateCounts}
               selectedState={filters.state}
               highlightedState={activePartner?.state || ''}
-              onToggleState={toggleState}
+              onToggleState={handleMapToggleState}
             />
           </Reveal>
 
@@ -209,12 +238,14 @@ export default function Distributors() {
         </section>
 
         {groupedResults.length
-          ? <div className={styles.stateList} id="distributor-results" tabIndex="-1">
+          ? <div className={styles.stateList} id="distributor-results" ref={resultsSectionRef} tabIndex="-1">
             {groupedResults.map((group, groupIndex) => <Reveal
               as="section"
               className={`${styles.stateGroup} ${filters.state === group.state ? styles.filteredGroup : ''}`}
               key={group.state}
               delay={Math.min(groupIndex * 35, 210)}
+              data-state-group={group.state}
+              style={{ scrollMarginTop: '112px' }}
               aria-labelledby={`state-${group.state}`}
             >
               <header className={styles.stateHeader}>
@@ -247,7 +278,12 @@ export default function Distributors() {
               </div>
             </Reveal>)}
           </div>
-          : <section className={styles.emptyState} aria-labelledby="empty-distributors-title">
+          : <section
+            className={styles.emptyState}
+            ref={resultsSectionRef}
+            style={{ scrollMarginTop: '112px' }}
+            aria-labelledby="empty-distributors-title"
+          >
             <h2 id="empty-distributors-title">Nenhum distribuidor encontrado.</h2>
             <p>Tente buscar por outro nome ou selecione um estado diferente.</p>
             <button type="button" className="button button--outline" onClick={clearFilters}>Limpar filtros</button>

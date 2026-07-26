@@ -1,11 +1,19 @@
 import dreamImage from '../assets/lines/dream-color.jpg'
+import dreamHomeBanner from '../assets/lines/home/dream-color-desktop.webp'
+import dreamHomeBannerMobile from '../assets/lines/home/dream-color-mobile.webp'
 import dreamStoryImage from '../assets/lines/line-dream-color-professional-care.webp'
 import luxeStoryImage from '../assets/lines/line-the-luxe-professional-routine.webp'
 import vanityStoryImage from '../assets/lines/line-vanity-pet-fragrance-finish.webp'
 import zoomStoryImage from '../assets/lines/line-zoom-pet-daily-care.webp'
 import luxeImage from '../assets/lines/the-luxe.jpg'
+import luxeHomeBanner from '../assets/lines/home/the-luxe-desktop.webp'
+import luxeHomeBannerMobile from '../assets/lines/home/the-luxe-mobile.webp'
 import vanityImage from '../assets/lines/vanity-pet.jpg'
+import vanityHomeBanner from '../assets/lines/home/vanity-pet-desktop.webp'
+import vanityHomeBannerMobile from '../assets/lines/home/vanity-pet-mobile.webp'
 import zoomImage from '../assets/lines/zoom-pet.png'
+import zoomHomeBanner from '../assets/lines/home/zoom-desktop.webp'
+import zoomHomeBannerMobile from '../assets/lines/home/zoom-pet.webp'
 
 export const lines = [
   {
@@ -15,10 +23,10 @@ export const lines = [
     headline: 'Cor, fragrância e performance em uma linha versátil.',
     description: 'Shampoos, condicionadores, máscaras, colônias e aromatizadores com diferentes fragrâncias e soluções para a rotina profissional.',
     image: dreamImage,
-    homeBanner: dreamImage,
-    homeBannerWidth: 1920,
-    homeBannerHeight: 550,
-    homeMobileBanner: null,
+    homeBanner: dreamHomeBanner,
+    homeBannerWidth: 3600,
+    homeBannerHeight: 2400,
+    homeMobileBanner: dreamHomeBannerMobile,
     storyImage: dreamStoryImage,
     storyImageAlt: 'Profissional realizando cuidado detalhado na pelagem de um cachorro',
     tone: 'dream',
@@ -36,10 +44,10 @@ export const lines = [
     headline: 'Acabamento refinado para protocolos de alta performance.',
     description: 'Uma linha ampla de higiene, hidratação, finalização, perfumaria e cuidados especiais para compor serviços completos.',
     image: luxeImage,
-    homeBanner: luxeImage,
-    homeBannerWidth: 2560,
-    homeBannerHeight: 733,
-    homeMobileBanner: null,
+    homeBanner: luxeHomeBanner,
+    homeBannerWidth: 3600,
+    homeBannerHeight: 2400,
+    homeMobileBanner: luxeHomeBannerMobile,
     storyImage: luxeStoryImage,
     storyImageAlt: 'Groomer trabalhando durante a rotina profissional de banho e tosa',
     tone: 'luxe',
@@ -57,10 +65,10 @@ export const lines = [
     headline: 'Fragrâncias que completam o ritual de cuidado.',
     description: 'Linha dedicada à perfumaria e à experiência sensorial, com apresentações voltadas ao uso profissional e ao acabamento.',
     image: vanityImage,
-    homeBanner: vanityImage,
-    homeBannerWidth: 1920,
-    homeBannerHeight: 550,
-    homeMobileBanner: null,
+    homeBanner: vanityHomeBanner,
+    homeBannerWidth: 3600,
+    homeBannerHeight: 2400,
+    homeMobileBanner: vanityHomeBannerMobile,
     storyImage: vanityStoryImage,
     storyImageAlt: 'Profissional aplicando spray no acabamento da pelagem de um cachorro',
     tone: 'vanity',
@@ -78,10 +86,10 @@ export const lines = [
     headline: 'Soluções diretas para uma rotina profissional eficiente.',
     description: 'Produtos de higiene e condicionamento com opções funcionais para diferentes pelagens e necessidades do dia a dia.',
     image: zoomImage,
-    homeBanner: zoomImage,
-    homeBannerWidth: 629,
-    homeBannerHeight: 217,
-    homeMobileBanner: null,
+    homeBanner: zoomHomeBanner,
+    homeBannerWidth: 3600,
+    homeBannerHeight: 2400,
+    homeMobileBanner: zoomHomeBannerMobile,
     storyImage: zoomStoryImage,
     storyImageAlt: 'Profissional realizando cuidado cotidiano em ambiente de banho e tosa',
     tone: 'zoom',

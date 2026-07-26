@@ -19,7 +19,18 @@ export default function LinePage() {
       <section className={styles.hero}>
         <div className={`${styles.heroInner} shell`}>
           <div className={styles.heroCopy}><span className="eyebrow">{line.eyebrow}</span><h1>{line.name}</h1><p>{line.headline}</p><Link className="text-link" to={`/produtos?linha=${line.slug}`}>Ver produtos <ArrowRight size={16}/></Link></div>
-          <div className={styles.heroMedia}><img src={line.image} width="1920" height="900" alt={`Produtos da linha ${line.name}`}/></div>
+          <div className={styles.heroMedia}>
+            <picture>
+              {line.homeMobileBanner && <source media="(max-width: 620px)" srcSet={line.homeMobileBanner}/>}
+              <img
+                src={line.homeBanner || line.image}
+                width={line.homeBannerWidth || 1920}
+                height={line.homeBannerHeight || 900}
+                decoding="async"
+                alt={`Produtos da linha ${line.name}`}
+              />
+            </picture>
+          </div>
         </div>
       </section>
 
