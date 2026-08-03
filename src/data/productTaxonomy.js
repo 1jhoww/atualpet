@@ -1,4 +1,5 @@
 import dreamColorLogo from '../assets/lines/logos/dream-color-logo.png'
+import dreamColorCareLogo from '../assets/lines/logos/dream-color-care-logo.png'
 import theLuxeLogo from '../assets/lines/logos/the-luxe-logo.png'
 import vanityPetLogo from '../assets/lines/logos/vanity-pet-logo.png'
 import zoomLogo from '../assets/lines/logos/zoom-logo.png'
@@ -31,7 +32,9 @@ export const productLines = [
     description: 'Extensão ultra premium da Dream Color criada para complementar a rotina profissional com produtos voltados a cuidados específicos, sem perder a linguagem sensorial da linha de origem.',
     highlights: ['Cuidados especiais', 'Produtos complementares', 'Atenção direcionada'],
     focus: 'Cuidados especiais e complementares',
-    logo: null,
+    logo: dreamColorCareLogo,
+    logoWidth: 500,
+    logoHeight: 300,
     visualProducts: ['shampoo-propolis-dream-color-care', 'power-puff-spray-de-volume-dream-color-care'],
     route: '',
     accent: '#469f9b',
