@@ -19,7 +19,7 @@ export default function ProductCard({ product }) {
     </Link>
     <div className={styles.meta}><span>{line.name}</span><span>{category.name}</span></div>
     <h3><Link to={`/produtos/${product.slug}`}>{product.name}</Link></h3>
-    {product.short && <p>{product.short}</p>}
+    {product.description && <p className={styles.description}>{product.description}</p>}
     <div className={styles.bottom}>
       {details.length > 0 && <span>{details.join(' · ')}</span>}
       <Link className={styles.cta} to={`/produtos/${product.slug}`} aria-label={`Saiba mais sobre ${product.name}`}>Saiba mais <ArrowUpRight size={17} /></Link>

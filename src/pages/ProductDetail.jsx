@@ -32,7 +32,7 @@ export default function ProductDetail() {
   const presentations = product.variants.length > 0
     ? product.variants.map((variant) => `${variant.volume} — ${variant.dilution}`).join(' · ')
     : product.volumes.join(' · ')
-  const seoDescription = product.seo.description || product.short || `${product.name}, da linha ${line.name}, no catálogo Atual Pet.`
+  const seoDescription = product.seo.description || product.description || product.short || `${product.name}, da linha ${line.name}, no catálogo Atual Pet.`
   const contactSubject = product.supportMaterial ? 'material' : 'produto'
   const whatsappMessage = `Olá! Gostaria de mais informações sobre o ${contactSubject} ${product.name}.\n\nVi o ${contactSubject} no site da Atual Pet.`
   const whatsappUrl = `https://wa.me/${company.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`

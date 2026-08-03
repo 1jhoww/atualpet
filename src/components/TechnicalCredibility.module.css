@@ -15,7 +15,7 @@
   background: var(--brand-orange);
 }
 
-.partnerFeature {
+.brandFeature {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(340px, .8fr);
   gap: clamp(70px, 9vw, 150px);
@@ -23,7 +23,7 @@
   padding-bottom: clamp(72px, 7vw, 108px);
 }
 
-.partnerEyebrow,
+.brandEyebrow,
 .stageLabel {
   color: var(--brand-orange-dark);
   font-size: .68rem;
@@ -32,7 +32,7 @@
   text-transform: uppercase;
 }
 
-.partnerCopy h2 {
+.brandCopy h2 {
   max-width: 800px;
   margin: .2em 0 0;
   font-size: clamp(3.25rem, 5.3vw, 5rem);
@@ -40,14 +40,14 @@
   letter-spacing: -.055em;
 }
 
-.partnerCopy p {
+.brandCopy p {
   max-width: 610px;
   margin: clamp(25px, 3vw, 38px) 0 0;
   color: var(--neutral-700);
   font-size: clamp(.98rem, 1.08vw, 1.08rem);
 }
 
-.partnerBrand {
+.brandMark {
   display: flex;
   min-height: 210px;
   align-items: center;
@@ -55,7 +55,7 @@
   border-left: 1px solid var(--neutral-300);
 }
 
-.partnerLogo {
+.brandLogo {
   display: block;
   width: min(520px, 100%);
   height: auto;
@@ -154,46 +154,14 @@
   margin-top: 30px;
 }
 
-.stageMark {
-  display: block;
-  width: min(210px, 82%);
-  height: auto;
-  max-height: 76px;
-  object-fit: contain;
-  object-position: left center;
-}
-
-.stageSeal {
-  width: clamp(178px, 13.5vw, 200px);
-  max-height: none;
-}
-
-.performanceSignal {
-  display: block;
-  width: min(205px, 84%);
-  height: auto;
+.stageWord {
   color: var(--brand-cyan-dark);
-  overflow: visible;
-}
-
-.signalAxis {
-  fill: none;
-  stroke: var(--neutral-300);
-  stroke-width: 1;
-}
-
-.signalPath {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.performanceSignal circle {
-  fill: var(--neutral-white);
-  stroke: var(--brand-orange-dark);
-  stroke-width: 2;
+  font-family: var(--display);
+  font-size: clamp(2.7rem, 4.1vw, 4.8rem);
+  font-weight: 760;
+  line-height: .9;
+  letter-spacing: -.06em;
+  text-transform: lowercase;
 }
 
 .stage h3 {
@@ -212,7 +180,7 @@
 }
 
 @media (max-width: 1050px) {
-  .partnerFeature {
+  .brandFeature {
     gap: 64px;
   }
 
@@ -247,24 +215,24 @@
 }
 
 @media (max-width: 900px) {
-  .partnerFeature {
+  .brandFeature {
     grid-template-columns: 1fr;
     gap: 42px;
   }
 
-  .partnerCopy h2,
-  .partnerCopy p {
+  .brandCopy h2,
+  .brandCopy p {
     max-width: 720px;
   }
 
-  .partnerBrand {
+  .brandMark {
     min-height: 0;
     padding: 34px 0 0;
     border-top: 1px solid var(--neutral-300);
     border-left: 0;
   }
 
-  .partnerLogo {
+  .brandLogo {
     width: min(500px, 78%);
   }
 }
@@ -279,26 +247,26 @@
     width: 84px;
   }
 
-  .partnerFeature {
+  .brandFeature {
     gap: 30px;
     padding-bottom: 54px;
   }
 
-  .partnerCopy h2 {
+  .brandCopy h2 {
     margin-top: 14px;
     font-size: clamp(2.55rem, 12.2vw, 3.35rem);
   }
 
-  .partnerCopy p {
+  .brandCopy p {
     margin-top: 22px;
     font-size: .92rem;
   }
 
-  .partnerBrand {
+  .brandMark {
     padding-top: 27px;
   }
 
-  .partnerLogo {
+  .brandLogo {
     width: min(360px, 100%);
   }
 
@@ -364,18 +332,8 @@
     margin: 34px 0 30px 64px;
   }
 
-  .stageMark {
-    width: min(188px, 72%);
-    max-height: 68px;
-  }
-
-  .stageSeal {
-    width: min(190px, 68vw);
-    max-height: none;
-  }
-
-  .performanceSignal {
-    width: min(185px, 70%);
+  .stageWord {
+    font-size: clamp(2.8rem, 14vw, 4rem);
   }
 
   .stage h3,
@@ -395,8 +353,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .connector,
-  .performanceSignal {
+  .connector {
     transition: none;
   }
 }

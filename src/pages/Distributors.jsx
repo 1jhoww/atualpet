@@ -1,4 +1,4 @@
-import { MapPin, Search } from 'lucide-react'
+import { MapPin, Phone, Search } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import brazilMap from '../assets/maps/brazil-states-map.json'
@@ -28,6 +28,15 @@ const groupByState = (items) => Object.entries(items.reduce((groups, item) => {
   .sort((first, second) => first.state.localeCompare(second.state, 'pt-BR'))
 
 const distributorLabel = (count) => `${count} ${count === 1 ? 'distribuidor' : 'distribuidores'}`
+const getCoverage = (partner) => [...(partner.serviceCities || []), ...(partner.serviceAreas || [])]
+const getWhatsapps = (partner) => [partner.whatsapp, ...(partner.additionalWhatsapps || [])].filter(Boolean)
+const formatWhatsapp = (value) => {
+  const digits = value.replace(/\D/g, '')
+  const localNumber = digits.startsWith('55') ? digits.slice(2) : digits
+  if (localNumber.length === 11) return `(${localNumber.slice(0, 2)}) ${localNumber.slice(2, 7)}-${localNumber.slice(7)}`
+  if (localNumber.length === 10) return `(${localNumber.slice(0, 2)}) ${localNumber.slice(2, 6)}-${localNumber.slice(6)}`
+  return `+${digits}`
+}
 
 export default function Distributors() {
   const [filters, setFilters] = useState({ search: '', state: '' })
@@ -39,7 +48,7 @@ export default function Distributors() {
   const activePartnerId = focusedPartnerId || hoveredPartnerId || pinnedPartnerId
   const activePartner = distributors.find((partner) => partner.id === activePartnerId)
   const results = useMemo(() => distributors.filter((item) => {
-    const haystack = normalize(`${item.name} ${item.city} ${item.state} ${stateNames[item.state] || ''}`)
+    const haystack = normalize(`${item.name} ${item.contactName || ''} ${item.city} ${item.state} ${stateNames[item.state] || ''} ${getCoverage(item).join(' ')}`)
     return (!filters.search || haystack.includes(normalize(filters.search)))
       && (!filters.state || item.state === filters.state)
   }), [filters])
@@ -94,12 +103,6 @@ export default function Distributors() {
 
   const togglePartner = (partnerId) => {
     setPinnedPartnerId((current) => current === partnerId ? '' : partnerId)
-  }
-
-  const handlePartnerKeyDown = (event, partnerId) => {
-    if (event.key !== 'Enter' && event.key !== ' ') return
-    event.preventDefault()
-    togglePartner(partnerId)
   }
 
   const scrollToResults = () => {
@@ -257,22 +260,48 @@ export default function Distributors() {
                 {group.partners.map((partner) => {
                   const isActive = activePartnerId === partner.id
                   const isPinned = pinnedPartnerId === partner.id
+                  const coverage = getCoverage(partner)
+                  const whatsapps = getWhatsapps(partner)
                   return <article
                     className={`${styles.partner} ${isActive ? styles.partnerActive : ''}`}
                     key={partner.id}
-                    role="button"
-                    tabIndex="0"
-                    aria-pressed={isPinned}
-                    aria-label={`${partner.name}, ${partner.city}, ${stateNames[partner.state]}. Destacar ${partner.state} no mapa.`}
                     onPointerEnter={() => setHoveredPartnerId(partner.id)}
                     onPointerLeave={() => setHoveredPartnerId('')}
-                    onFocus={() => setFocusedPartnerId(partner.id)}
-                    onBlur={() => setFocusedPartnerId('')}
-                    onClick={() => togglePartner(partner.id)}
-                    onKeyDown={(event) => handlePartnerKeyDown(event, partner.id)}
                   >
-                    <h3>{partner.name}</h3>
-                    <p><MapPin size={15} aria-hidden="true" />{partner.city} · {partner.state}</p>
+                    <button
+                      type="button"
+                      className={styles.partnerMain}
+                      aria-pressed={isPinned}
+                      aria-label={`${partner.name}, ${partner.city}, ${stateNames[partner.state]}. Destacar ${partner.state} no mapa.`}
+                      onFocus={() => setFocusedPartnerId(partner.id)}
+                      onBlur={() => setFocusedPartnerId('')}
+                      onClick={() => togglePartner(partner.id)}
+                    >
+                      <span className={styles.partnerName}>{partner.name}</span>
+                      {partner.contactName && <span className={styles.contactName}>Contato comercial: {partner.contactName}</span>}
+                      <span className={styles.partnerLocation}><MapPin size={15} aria-hidden="true" />{partner.city} · {partner.state}</span>
+                    </button>
+
+                    {coverage.length > 0 && <details className={styles.coverage}>
+                      <summary>Área atendida <span>ver detalhes</span></summary>
+                      <p>{coverage.join(' · ')}</p>
+                    </details>}
+
+                    {whatsapps.length > 0 && <div className={styles.contacts} aria-label={`Contatos de ${partner.name}`}>
+                      {whatsapps.map((whatsapp, index) => <a
+                        key={whatsapp}
+                        href={`https://wa.me/${whatsapp}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Abrir WhatsApp ${index + 1} de ${partner.name}: ${formatWhatsapp(whatsapp)}`}
+                        onFocus={() => setFocusedPartnerId(partner.id)}
+                        onBlur={() => setFocusedPartnerId('')}
+                      >
+                        <Phone size={14} aria-hidden="true" />
+                        <span>{index === 0 ? 'WhatsApp' : `WhatsApp ${index + 1}`}</span>
+                        <strong>{formatWhatsapp(whatsapp)}</strong>
+                      </a>)}
+                    </div>}
                   </article>
                 })}
               </div>
