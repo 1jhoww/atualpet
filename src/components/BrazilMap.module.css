@@ -114,32 +114,6 @@
   filter: drop-shadow(0 3px 5px rgba(23, 33, 31, .18));
 }
 
-.tooltip {
-  position: absolute;
-  z-index: 3;
-  top: clamp(18px, 3vw, 34px);
-  left: clamp(18px, 3vw, 34px);
-  display: grid;
-  min-width: 190px;
-  gap: 4px;
-  padding: 13px 15px;
-  border-left: 3px solid var(--brand-orange);
-  background: rgba(255, 255, 255, .96);
-  box-shadow: 0 12px 32px rgba(23, 33, 31, .1);
-  color: var(--neutral-900);
-  pointer-events: none;
-}
-
-.tooltip strong {
-  font-size: .76rem;
-  letter-spacing: .02em;
-}
-
-.tooltip span {
-  color: var(--neutral-700);
-  font-size: .68rem;
-}
-
 .caption {
   display: grid;
   gap: 16px;
@@ -200,13 +174,6 @@
 
   .hitArea {
     r: 14px;
-  }
-
-  .tooltip {
-    top: 12px;
-    left: 12px;
-    min-width: min(190px, calc(100% - 24px));
-    padding: 10px 12px;
   }
 
   .caption {

@@ -6,14 +6,18 @@ import BrazilMap from '../components/BrazilMap'
 import Reveal from '../components/Reveal'
 import Seo from '../components/Seo'
 import { distributors } from '../data/distributors'
+import {
+  countCoverageByState,
+  getCoverageSearchText,
+  getServedStates,
+  listCoveredStates,
+  normalizeStateCode,
+  servesState,
+} from '../utils/distributorCoverage'
 import styles from './Distributors.module.css'
 
 const stateNames = Object.fromEntries(brazilMap.states.map(({ uf, name }) => [uf, name]))
-const stateCounts = distributors.reduce((counts, item) => {
-  counts[item.state] = (counts[item.state] || 0) + 1
-  return counts
-}, {})
-const states = Object.keys(stateCounts).sort()
+const states = listCoveredStates(distributors)
 const normalize = (value = '') => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
 
 const groupByState = (items) => Object.entries(items.reduce((groups, item) => {
@@ -30,6 +34,13 @@ const groupByState = (items) => Object.entries(items.reduce((groups, item) => {
 const distributorLabel = (count) => `${count} ${count === 1 ? 'distribuidor' : 'distribuidores'}`
 const getCoverage = (partner) => [...(partner.serviceCities || []), ...(partner.serviceAreas || [])]
 const getWhatsapps = (partner) => [partner.whatsapp, ...(partner.additionalWhatsapps || [])].filter(Boolean)
+const matchesDistributorSearch = (partner, search) => {
+  if (!search) return true
+  const searchedState = normalizeStateCode(search)
+  if (searchedState) return servesState(partner, searchedState)
+  const haystack = normalize(`${partner.name} ${partner.contactName || ''} ${partner.city} ${getCoverage(partner).join(' ')} ${getCoverageSearchText(partner)}`)
+  return haystack.includes(normalize(search))
+}
 const formatWhatsapp = (value) => {
   const digits = value.replace(/\D/g, '')
   const localNumber = digits.startsWith('55') ? digits.slice(2) : digits
@@ -47,11 +58,15 @@ export default function Distributors() {
   const pendingMapScrollStateRef = useRef('')
   const activePartnerId = focusedPartnerId || hoveredPartnerId || pinnedPartnerId
   const activePartner = distributors.find((partner) => partner.id === activePartnerId)
-  const results = useMemo(() => distributors.filter((item) => {
-    const haystack = normalize(`${item.name} ${item.contactName || ''} ${item.city} ${item.state} ${stateNames[item.state] || ''} ${getCoverage(item).join(' ')}`)
-    return (!filters.search || haystack.includes(normalize(filters.search)))
-      && (!filters.state || item.state === filters.state)
-  }), [filters])
+  const mapCandidates = useMemo(
+    () => distributors.filter((item) => matchesDistributorSearch(item, filters.search)),
+    [filters.search],
+  )
+  const results = useMemo(
+    () => mapCandidates.filter((item) => !filters.state || servesState(item, filters.state)),
+    [filters.state, mapCandidates],
+  )
+  const stateCounts = useMemo(() => countCoverageByState(mapCandidates), [mapCandidates])
   const groupedResults = useMemo(() => groupByState(results), [results])
   const hasFilters = Boolean(filters.search || filters.state)
   const resultLabel = `${results.length} ${results.length === 1 ? 'distribuidor encontrado' : 'distribuidores encontrados'}`
@@ -117,18 +132,18 @@ export default function Distributors() {
     ? {
       eyebrow: 'Distribuidor em destaque',
       title: activePartner.name,
-      text: `${activePartner.city} · ${stateNames[activePartner.state]} (${activePartner.state}). O estado está realçado no mapa sem alterar os filtros.`,
+      text: `${activePartner.city} · ${stateNames[activePartner.state]} (${activePartner.state}).${filters.state && activePartner.state !== filters.state ? ` Atende ${stateNames[filters.state]} sem possuir sede local.` : ' O estado da sede está realçado no mapa sem alterar os filtros.'}`,
     }
     : filters.state
       ? {
         eyebrow: 'Estado selecionado',
         title: stateNames[filters.state],
-        text: `${distributorLabel(stateCounts[filters.state] || 0)} na rede Atual Pet.`,
+        text: `${distributorLabel(stateCounts[filters.state] || 0)} com cobertura no estado.`,
       }
       : {
         eyebrow: 'Rede Atual Pet',
         title: 'Selecione um estado no mapa',
-        text: `A Atual Pet está presente em ${states.length} estados por meio de ${distributors.length} distribuidores oficiais.`,
+        text: `A rede possui cobertura comercial em ${states.length} estados por meio de ${distributors.length} distribuidores oficiais.`,
       }
 
   return <>
@@ -197,7 +212,7 @@ export default function Distributors() {
 
           <form className={styles.filterForm} role="search" onSubmit={(event) => event.preventDefault()}>
             <div className={styles.field}>
-              <label htmlFor="distributor-search">Nome do distribuidor</label>
+              <label htmlFor="distributor-search">Distribuidor, cidade ou estado</label>
               <div className={styles.searchField}>
                 <Search size={18} aria-hidden="true" />
                 <input
@@ -205,7 +220,7 @@ export default function Distributors() {
                   type="search"
                   value={filters.search}
                   onChange={(event) => set('search', event.target.value)}
-                  placeholder="Ex.: PetMais"
+                  placeholder="Ex.: Mato Grosso, Manaus ou PetMais"
                   autoComplete="off"
                 />
               </div>
@@ -262,6 +277,12 @@ export default function Distributors() {
                   const isPinned = pinnedPartnerId === partner.id
                   const coverage = getCoverage(partner)
                   const whatsapps = getWhatsapps(partner)
+                  const servedStates = getServedStates(partner)
+                  const coverageLabel = filters.state && partner.state !== filters.state
+                    ? `Atende ${stateNames[filters.state]}`
+                    : servedStates.length > 1
+                      ? `Cobertura: ${servedStates.join(', ')}`
+                      : ''
                   return <article
                     className={`${styles.partner} ${isActive ? styles.partnerActive : ''}`}
                     key={partner.id}
@@ -280,6 +301,7 @@ export default function Distributors() {
                       <span className={styles.partnerName}>{partner.name}</span>
                       {partner.contactName && <span className={styles.contactName}>Contato comercial: {partner.contactName}</span>}
                       <span className={styles.partnerLocation}><MapPin size={15} aria-hidden="true" />{partner.city} · {partner.state}</span>
+                      {coverageLabel && <span className={styles.coverageStates}>{coverageLabel}</span>}
                     </button>
 
                     {coverage.length > 0 && <details className={styles.coverage}>
