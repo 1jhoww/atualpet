@@ -23,12 +23,12 @@ export default function Home() {
         <Reveal as="header" className={styles.linesHeading}><div><span className="eyebrow">Quatro universos</span><h2 id="lines-title">Uma linha para cada intenção de cuidado.</h2></div><p>Identidades próprias para diferentes rotinas, unidas pela experiência profissional Atual Pet.</p></Reveal>
         <div className={styles.lineList}>{lines.map((line, index)=><Reveal as="article" key={line.slug} data-reveal="image" className={`${styles.lineRow} ${styles[line.tone]} ${index % 2 ? styles.lineRowReverse : ''}`}>
           <div className={styles.lineCopy}><span className={styles.lineIndex}>0{index + 1}</span><span className="eyebrow">{line.eyebrow}</span><h3>{line.name}</h3><p>{line.description}</p><Link className={`button button--outline button--small ${styles.actionButton}`} to={`/linhas/${line.slug}`}>Conheça a linha <ArrowRight size={16}/></Link></div>
-          <div className={styles.lineVisual}>
+          <Link className={styles.lineVisual} to={`/linhas/${line.slug}`} aria-label={`Conheça a linha ${line.name}`}>
             <picture>
               {line.homeMobileBanner && <source media="(max-width: 620px)" srcSet={line.homeMobileBanner}/>}
               <img src={line.homeBanner || line.image} width={line.homeBannerWidth} height={line.homeBannerHeight} loading="lazy" decoding="async" alt={`Produtos da linha ${line.name}`}/>
             </picture>
-          </div>
+          </Link>
         </Reveal>)}</div>
       </div>
     </section>

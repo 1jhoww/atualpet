@@ -5,6 +5,7 @@ import brazilMap from '../assets/maps/brazil-states-map.json'
 import BrazilMap from '../components/BrazilMap'
 import Reveal from '../components/Reveal'
 import Seo from '../components/Seo'
+import { company } from '../data/company'
 import { distributors } from '../data/distributors'
 import {
   countCoverageByState,
@@ -17,7 +18,9 @@ import {
 import styles from './Distributors.module.css'
 
 const stateNames = Object.fromEntries(brazilMap.states.map(({ uf, name }) => [uf, name]))
-const states = listCoveredStates(distributors)
+const allStates = brazilMap.states.map(({ uf }) => uf).sort()
+const coveredStates = listCoveredStates(distributors)
+const coverageCounts = countCoverageByState(distributors)
 const normalize = (value = '') => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
 
 const groupByState = (items) => Object.entries(items.reduce((groups, item) => {
@@ -34,6 +37,14 @@ const groupByState = (items) => Object.entries(items.reduce((groups, item) => {
 const distributorLabel = (count) => `${count} ${count === 1 ? 'distribuidor' : 'distribuidores'}`
 const getCoverage = (partner) => [...(partner.serviceCities || []), ...(partner.serviceAreas || [])]
 const getWhatsapps = (partner) => [partner.whatsapp, ...(partner.additionalWhatsapps || [])].filter(Boolean)
+const getPhones = (partner) => [partner.phone].filter(Boolean)
+const whatsappMessage = 'Olá! Vim pelo site da Atual Pet e gostaria de receber mais informações sobre os produtos.'
+const encodedWhatsappMessage = encodeURIComponent(whatsappMessage)
+const normalizeWhatsapp = (value = '') => {
+  const digits = value.replace(/\D/g, '')
+  return digits.startsWith('55') && [12, 13].includes(digits.length) ? digits : `55${digits}`
+}
+const getWhatsappUrl = (value) => `https://wa.me/${normalizeWhatsapp(value)}?text=${encodedWhatsappMessage}`
 const matchesDistributorSearch = (partner, search) => {
   if (!search) return true
   const searchedState = normalizeStateCode(search)
@@ -41,12 +52,12 @@ const matchesDistributorSearch = (partner, search) => {
   const haystack = normalize(`${partner.name} ${partner.contactName || ''} ${partner.city} ${getCoverage(partner).join(' ')} ${getCoverageSearchText(partner)}`)
   return haystack.includes(normalize(search))
 }
-const formatWhatsapp = (value) => {
-  const digits = value.replace(/\D/g, '')
-  const localNumber = digits.startsWith('55') ? digits.slice(2) : digits
+const formatPhone = (value) => {
+  const normalizedNumber = normalizeWhatsapp(value)
+  const localNumber = normalizedNumber.slice(2)
   if (localNumber.length === 11) return `(${localNumber.slice(0, 2)}) ${localNumber.slice(2, 7)}-${localNumber.slice(7)}`
   if (localNumber.length === 10) return `(${localNumber.slice(0, 2)}) ${localNumber.slice(2, 6)}-${localNumber.slice(6)}`
-  return `+${digits}`
+  return `+${normalizedNumber}`
 }
 
 export default function Distributors() {
@@ -69,6 +80,7 @@ export default function Distributors() {
   const stateCounts = useMemo(() => countCoverageByState(mapCandidates), [mapCandidates])
   const groupedResults = useMemo(() => groupByState(results), [results])
   const hasFilters = Boolean(filters.search || filters.state)
+  const showAdministrativeContact = Boolean(filters.state && !coverageCounts[filters.state])
   const resultLabel = `${results.length} ${results.length === 1 ? 'distribuidor encontrado' : 'distribuidores encontrados'}`
 
   useEffect(() => {
@@ -134,7 +146,13 @@ export default function Distributors() {
       title: activePartner.name,
       text: `${activePartner.city} · ${stateNames[activePartner.state]} (${activePartner.state}).${filters.state && activePartner.state !== filters.state ? ` Atende ${stateNames[filters.state]} sem possuir sede local.` : ' O estado da sede está realçado no mapa sem alterar os filtros.'}`,
     }
-    : filters.state
+    : filters.state && showAdministrativeContact
+      ? {
+        eyebrow: 'Atendimento administrativo',
+        title: stateNames[filters.state],
+        text: 'Ainda não há distribuidor cadastrado neste estado. Nossa equipe administrativa pode direcionar o atendimento.',
+      }
+      : filters.state
       ? {
         eyebrow: 'Estado selecionado',
         title: stateNames[filters.state],
@@ -143,7 +161,7 @@ export default function Distributors() {
       : {
         eyebrow: 'Rede Atual Pet',
         title: 'Selecione um estado no mapa',
-        text: `A rede possui cobertura comercial em ${states.length} estados por meio de ${distributors.length} distribuidores oficiais.`,
+        text: `A rede possui cobertura comercial em ${coveredStates.length} estados por meio de ${distributors.length} distribuidores oficiais.`,
       }
 
   return <>
@@ -161,7 +179,7 @@ export default function Distributors() {
         </div>
         <div className={styles.heroCopy}>
           <p>Conheça os distribuidores oficiais da Atual Pet em diferentes regiões do Brasil.</p>
-          <strong>{distributors.length} distribuidores em {states.length} estados</strong>
+          <strong>{distributors.length} distribuidores em {coveredStates.length} estados</strong>
         </div>
       </Reveal>
     </header>
@@ -174,7 +192,7 @@ export default function Distributors() {
         </div>
         <div>
           <dt>Estados atendidos</dt>
-          <dd>{states.length}</dd>
+          <dd>{coveredStates.length}</dd>
         </div>
         <div>
           <dt>Presença nacional</dt>
@@ -230,7 +248,7 @@ export default function Distributors() {
               <label htmlFor="distributor-state">Estado</label>
               <select id="distributor-state" value={filters.state} onChange={(event) => set('state', event.target.value)}>
                 <option value="">Todos os estados</option>
-                {states.map((state) => <option key={state} value={state}>{state} — {stateNames[state]}</option>)}
+                {allStates.map((state) => <option key={state} value={state}>{state} — {stateNames[state]}</option>)}
               </select>
             </div>
 
@@ -243,10 +261,10 @@ export default function Distributors() {
           <nav className={styles.stateNav} aria-label="Navegação rápida por estado">
             <span>Atalhos por UF</span>
             <div>
-              {states.map((state) => <button
+              {allStates.map((state) => <button
                 type="button"
                 key={state}
-                className={filters.state === state ? styles.stateActive : undefined}
+                className={`${filters.state === state ? styles.stateActive : ''} ${!coverageCounts[state] ? styles.stateUnavailable : ''}`}
                 aria-pressed={filters.state === state}
                 aria-label={`${filters.state === state ? 'Remover filtro' : 'Filtrar'} por ${stateNames[state]}`}
                 onClick={() => toggleState(state)}
@@ -277,6 +295,7 @@ export default function Distributors() {
                   const isPinned = pinnedPartnerId === partner.id
                   const coverage = getCoverage(partner)
                   const whatsapps = getWhatsapps(partner)
+                  const phones = getPhones(partner)
                   const servedStates = getServedStates(partner)
                   const coverageLabel = filters.state && partner.state !== filters.state
                     ? `Atende ${stateNames[filters.state]}`
@@ -309,19 +328,30 @@ export default function Distributors() {
                       <p>{coverage.join(' · ')}</p>
                     </details>}
 
-                    {whatsapps.length > 0 && <div className={styles.contacts} aria-label={`Contatos de ${partner.name}`}>
+                    {(phones.length > 0 || whatsapps.length > 0) && <div className={styles.contacts} aria-label={`Contatos de ${partner.name}`}>
+                      {phones.map((phone) => <a
+                        key={phone}
+                        href={`tel:+${phone.replace(/\D/g, '')}`}
+                        aria-label={`Ligar para ${partner.name}: ${formatPhone(phone)}`}
+                        onFocus={() => setFocusedPartnerId(partner.id)}
+                        onBlur={() => setFocusedPartnerId('')}
+                      >
+                        <Phone size={14} aria-hidden="true" />
+                        <span>Telefone</span>
+                        <strong>{formatPhone(phone)}</strong>
+                      </a>)}
                       {whatsapps.map((whatsapp, index) => <a
                         key={whatsapp}
-                        href={`https://wa.me/${whatsapp}`}
+                        href={getWhatsappUrl(whatsapp)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={`Abrir WhatsApp ${index + 1} de ${partner.name}: ${formatWhatsapp(whatsapp)}`}
+                        aria-label={`Abrir WhatsApp ${index + 1} de ${partner.name}: ${formatPhone(whatsapp)}`}
                         onFocus={() => setFocusedPartnerId(partner.id)}
                         onBlur={() => setFocusedPartnerId('')}
                       >
                         <Phone size={14} aria-hidden="true" />
                         <span>{index === 0 ? 'WhatsApp' : `WhatsApp ${index + 1}`}</span>
-                        <strong>{formatWhatsapp(whatsapp)}</strong>
+                        <strong>{formatPhone(whatsapp)}</strong>
                       </a>)}
                     </div>}
                   </article>
@@ -329,7 +359,32 @@ export default function Distributors() {
               </div>
             </Reveal>)}
           </div>
-          : <section
+          : showAdministrativeContact
+            ? <div className={styles.stateList} id="distributor-results" ref={resultsSectionRef} tabIndex="-1">
+              <section className={`${styles.stateGroup} ${styles.filteredGroup}`} data-state-group={filters.state} aria-labelledby={`state-${filters.state}`}>
+                <header className={styles.stateHeader}>
+                  <h2 id={`state-${filters.state}`}><span>{filters.state}</span>{stateNames[filters.state]}</h2>
+                  <p>Atendimento administrativo</p>
+                </header>
+                <div className={styles.partnerGrid}>
+                  <article className={`${styles.partner} ${styles.administrativePartner}`}>
+                    <div className={`${styles.partnerMain} ${styles.administrativeMain}`}>
+                      <span className={styles.partnerName}>Atendimento administrativo Atual Pet</span>
+                      <p className={styles.administrativeMessage}>Ainda não possuímos um distribuidor nesta região. Entre em contato com nosso setor administrativo para que possamos direcionar seu atendimento.</p>
+                      <span className={styles.partnerLocation}><MapPin size={15} aria-hidden="true" />{stateNames[filters.state]} · {filters.state}</span>
+                    </div>
+                    <div className={styles.contacts} aria-label="Contato administrativo da Atual Pet">
+                      <a href={getWhatsappUrl(company.whatsapp)} target="_blank" rel="noopener noreferrer" aria-label={`Abrir WhatsApp administrativo da Atual Pet: ${formatPhone(company.whatsapp)}`}>
+                        <Phone size={14} aria-hidden="true" />
+                        <span>WhatsApp</span>
+                        <strong>{formatPhone(company.whatsapp)}</strong>
+                      </a>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            </div>
+            : <section
             className={styles.emptyState}
             ref={resultsSectionRef}
             style={{ scrollMarginTop: '112px' }}

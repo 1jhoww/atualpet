@@ -9,7 +9,7 @@ export const legal = {
   relationship: 'A Atual Pet é uma marca da Orion Ind e Com de Cosméticos Ltda.',
   address: '',
   privacyEmail: '',
-  contactEmail: 'marketingatualpet@outlook.com',
+  contactEmail: 'marketing@orionpet.com.br',
   lastUpdated: '16 de julho de 2026',
   consentVersion: CONSENT_VERSION,
   consentStorageKey: CONSENT_STORAGE_KEY,

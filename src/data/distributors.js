@@ -10,8 +10,7 @@ export const distributors = [
     whatsapp: '5511963702580',
     serviceCities: ['Mauá', 'Rio Grande da Serra', 'Ribeirão Pires', 'Suzano', 'Ferraz de Vasconcelos', 'Itaquaquecetuba', 'Arujá', 'Santo André', 'Mogi das Cruzes'],
   },
-  { id: 'sp-patinha', name: 'Patinha', state: 'SP', servedStates: ['SP'], city: 'Campinas', region: 'Sudeste' },
-  { id: 'sp-dulcy', name: 'Dulcy', state: 'SP', servedStates: ['SP'], city: 'Campinas', region: 'Sudeste' },
+  { id: 'sp-dulcy', name: 'Dulcy', state: 'SP', servedStates: ['SP'], city: 'Campinas', region: 'Sudeste', whatsapp: '5519995567174' },
   {
     id: 'sp-celso-zafalon',
     name: 'Celso Zafalon',
@@ -40,7 +39,6 @@ export const distributors = [
       'Ferraz de Vasconcelos', 'Itaquera', 'Artur Alvim', 'Penha', 'Carrão', 'Vila Matilde', 'Tatuapé',
     ],
   },
-  { id: 'sp-pasdog', name: 'Pasdog', state: 'SP', servedStates: ['SP'], city: 'São Bernardo do Campo', region: 'Sudeste' },
   { id: 'sp-gb-de-oliveira', name: 'GB de Oliveira', state: 'SP', servedStates: ['SP'], city: 'São Paulo', region: 'Sudeste' },
   {
     id: 'sp-lpg-distribuidora-pet',
@@ -67,11 +65,9 @@ export const distributors = [
     whatsapp: '5511976459093',
     serviceAreas: ['Guarulhos e adjacências', 'São Paulo capital', 'Grande São Paulo'],
   },
-  { id: 'sp-caoforto', name: 'Caoforto', state: 'SP', servedStates: ['SP'], city: 'Pindorama', region: 'Sudeste' },
-  { id: 'sp-medvet', name: 'MedVet', state: 'SP', servedStates: ['SP'], city: 'São Paulo', region: 'Sudeste' },
-  { id: 'sp-ideal-pet', name: 'Ideal Pet', state: 'SP', servedStates: ['SP'], city: 'General Salgado', region: 'Sudeste' },
+  { id: 'sp-caoforto', name: 'Jacqueline Caoforto', state: 'SP', servedStates: ['SP'], city: 'Pindorama', region: 'Sudeste', whatsapp: '5517981387279' },
   { id: 'sp-komatsu-pet', name: 'Komatsu Pet', state: 'SP', servedStates: ['SP'], city: 'Mogi das Cruzes', region: 'Sudeste' },
-  { id: 'sp-perros-dog', name: 'Perros Dog', state: 'SP', servedStates: ['SP'], city: 'Mogi das Cruzes', region: 'Sudeste' },
+  { id: 'sp-perros-dog', name: 'Perros Dog', state: 'SP', servedStates: ['SP'], city: 'Mogi das Cruzes', region: 'Sudeste', whatsapp: '5511981420122' },
   {
     id: 'sp-ld-daniel',
     name: 'L&D',
@@ -96,14 +92,15 @@ export const distributors = [
   },
   {
     id: 'sp-daiane',
-    name: 'Daiane',
+    name: 'Lady Representações',
     state: 'SP',
     servedStates: ['SP'],
     city: 'Cotia',
     region: 'Sudeste',
+    contactName: 'Daiane',
+    whatsapp: '5511996930613',
     serviceCities: ['Cotia', 'Vargem Grande Paulista', 'Itapevi', 'Ibiúna', 'Osasco', 'Jandira', 'Barueri', 'São Roque'],
   },
-  { id: 'rj-afetto-pet', name: 'Afetto Pet', state: 'RJ', servedStates: ['RJ'], city: 'Rio de Janeiro', region: 'Sudeste' },
   {
     id: 'rj-lagiz',
     name: 'Lagiz',
@@ -118,7 +115,7 @@ export const distributors = [
   { id: 'rj-love-for-dogs', name: 'Love for Dogs', state: 'RJ', servedStates: ['RJ'], city: 'Campos dos Goytacazes', region: 'Sudeste' },
   {
     id: 'mg-ostentacao-moda-pet',
-    name: 'Ostentação Moda Pet',
+    name: 'Pet Laços',
     state: 'MG',
     servedStates: ['MG', 'GO', 'MT', 'TO', 'PA'],
     city: 'Uberaba',
@@ -152,7 +149,7 @@ export const distributors = [
       'Alto Caparaó', 'Timóteo', 'Inhapim', 'Ubaporanga', 'Caratinga', 'Iapu', 'João Monlevade', 'Lajinha',
     ],
   },
-  { id: 'mg-wa', name: 'WA', state: 'MG', servedStates: ['MG'], city: 'Belo Horizonte', region: 'Sudeste' },
+  { id: 'mg-wa', name: 'WA', state: 'MG', servedStates: ['MG'], city: 'Belo Horizonte', region: 'Sudeste', phone: '553136422428', whatsapp: '5531996084862' },
   {
     id: 'rn-petmais',
     name: 'PetMais',
@@ -197,7 +194,7 @@ export const distributors = [
       'Roque Gonzales', 'Rio dos Índios', 'Rodeio Bonito', 'Ronda Alta', 'Rondinha', 'Santo Antônio das Missões', 'Santo Cristo', 'Ijuí',
     ],
   },
-  { id: 'rs-dogs-fricotes', name: 'Dogs Fricotes', state: 'RS', servedStates: ['RS'], city: 'Pelotas', region: 'Sul' },
+  { id: 'rs-dogs-fricotes', name: 'Dogs e Fricotes', state: 'RS', servedStates: ['RS'], city: 'Pelotas', region: 'Sul', contactName: 'Mirela', whatsapp: '555381260812' },
   {
     id: 'rs-neto',
     name: 'Neto',
@@ -215,7 +212,7 @@ export const distributors = [
       'Encruzilhada do Sul', 'Canguçu', 'Santana da Boa Vista',
     ],
   },
-  { id: 'rs-teka-bicho', name: 'Teka Bicho', state: 'RS', servedStates: ['RS'], city: 'Taquara', region: 'Sul' },
+  { id: 'rs-teka-bicho', name: 'Tekabicho', state: 'RS', servedStates: ['RS'], city: 'Taquara', region: 'Sul', contactName: 'Maristela', whatsapp: '555192207670' },
   {
     id: 'sc-helpet',
     name: 'HelPet',
@@ -226,8 +223,7 @@ export const distributors = [
     whatsapp: '554899096922',
     serviceCities: ['Florianópolis', 'São José', 'Palhoça', 'Santo Amaro', 'Águas Mornas', 'Biguaçu'],
   },
-  { id: 'es-distripet', name: 'Distripet', state: 'ES', servedStates: ['ES'], city: 'Cariacica', region: 'Sudeste' },
-  { id: 'es-vetrio', name: 'Vetrio', state: 'ES', servedStates: ['ES'], city: 'Vila Velha', region: 'Sudeste' },
+  { id: 'es-distripet', name: 'Distripet', state: 'ES', servedStates: ['ES'], city: 'Cariacica', region: 'Sudeste', whatsapp: '5527992419631' },
   {
     id: 'ce-rei-dog',
     name: 'Rei Dog',
@@ -258,7 +254,7 @@ export const distributors = [
     whatsapp: '5587988024136',
     serviceAreas: ['Raio de 400 km em torno do Vale do São Francisco'],
   },
-  { id: 'se-mvr', name: 'MVR', state: 'SE', servedStates: ['SE'], city: 'Aracaju', region: 'Nordeste' },
+  { id: 'se-mvr', name: 'MVR Distribuidora', state: 'SE', servedStates: ['SE'], city: 'Aracaju', region: 'Nordeste', contactName: 'Marcus', whatsapp: '557998096568' },
   {
     id: 'df-roberto',
     name: 'Roberto',
@@ -298,13 +294,5 @@ export const distributors = [
       'Laguna Carapã', 'Amambai', 'Aral Moreira', 'Sete Quedas', 'Tacuru', 'Coronel Sapucaia', 'Naviraí',
       'Fátima do Sul', 'Glória de Dourados', 'Deodápolis', 'Ivinhema', 'Nova Andradina', 'Iguatemi', 'Mundo Novo', 'Caarapó',
     ],
-  },
-  {
-    id: 'go-centro-oeste',
-    name: 'Centro Oeste',
-    state: 'GO',
-    servedStates: ['GO'],
-    city: 'Goiânia',
-    region: 'Centro-Oeste',
   },
 ]

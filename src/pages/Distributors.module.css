@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   overflow: hidden;
-  padding: clamp(126px, 10vw, 158px) 0 clamp(62px, 6vw, 88px);
+  padding: clamp(112px, 9vw, 140px) 0 clamp(54px, 5vw, 76px);
   border-bottom: 1px solid var(--neutral-300);
   background: linear-gradient(135deg, var(--brand-cyan-light), var(--neutral-white) 68%);
 }
@@ -30,7 +30,7 @@
 .heroTitle h1 {
   max-width: 900px;
   margin: 0;
-  font-size: clamp(3.6rem, 6vw, 5.4rem);
+  font-size: clamp(3.3rem, 5.4vw, 4.9rem);
   line-height: .92;
 }
 
@@ -68,10 +68,10 @@
 
 .presence dl > div {
   display: flex;
-  min-height: 126px;
+  min-height: 110px;
   flex-direction: column-reverse;
   justify-content: center;
-  padding: 24px clamp(24px, 4vw, 58px);
+  padding: 20px clamp(22px, 3.5vw, 50px);
   border-right: 1px solid var(--neutral-300);
 }
 
@@ -104,7 +104,7 @@
 }
 
 .page {
-  padding: clamp(72px, 7vw, 108px) 0 clamp(98px, 10vw, 156px);
+  padding: clamp(62px, 6vw, 92px) 0 clamp(84px, 8.5vw, 132px);
   background: var(--neutral-50);
 }
 
@@ -118,7 +118,7 @@
     'map nav';
   gap: 26px clamp(38px, 5vw, 78px);
   align-items: start;
-  padding: clamp(38px, 4vw, 56px) 0;
+  padding: clamp(34px, 3.5vw, 48px) 0;
   border-block: 1px solid var(--neutral-300);
 }
 
@@ -129,7 +129,7 @@
 .locatorHeader h2 {
   max-width: 620px;
   margin: .2em 0 0;
-  font-size: clamp(2.75rem, 4vw, 4.25rem);
+  font-size: clamp(2.55rem, 3.6vw, 3.85rem);
   line-height: .95;
 }
 
@@ -152,8 +152,8 @@
   grid-area: summary;
   display: grid;
   gap: 8px;
-  min-height: 132px;
-  padding: 21px 24px;
+  min-height: 116px;
+  padding: 18px 21px;
   border-left: 3px solid var(--brand-cyan-dark);
   background: var(--neutral-white);
 }
@@ -314,16 +314,21 @@
   box-shadow: inset 0 -2px var(--brand-orange);
 }
 
+.stateNav .stateUnavailable {
+  color: #71807c;
+}
+
 .stateList {
   display: grid;
-  gap: clamp(66px, 7vw, 104px);
-  margin-top: clamp(76px, 8vw, 118px);
+  gap: clamp(56px, 6vw, 88px);
+  margin-top: clamp(64px, 6.8vw, 100px);
   outline: none;
   scroll-margin-top: 112px;
 }
 
 .stateGroup {
   min-width: 0;
+  scroll-margin-top: 112px;
 }
 
 .stateHeader {
@@ -373,7 +378,7 @@
 
 .partner {
   min-width: 0;
-  min-height: 118px;
+  min-height: 104px;
   overflow: hidden;
   border: 1px solid var(--neutral-300);
   background: var(--neutral-white);
@@ -394,11 +399,11 @@
 .partnerMain {
   display: flex;
   width: 100%;
-  min-height: 118px;
+  min-height: 104px;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 22px 24px;
+  padding: 19px 21px;
   border: 0;
   background: transparent;
   color: inherit;
@@ -410,6 +415,24 @@
 .partnerMain:focus-visible {
   outline: 2px solid var(--brand-orange);
   outline-offset: -3px;
+}
+
+.administrativePartner {
+  max-width: 560px;
+  border-color: rgba(70, 159, 155, .55);
+}
+
+.administrativeMain {
+  min-height: 0;
+  cursor: default;
+}
+
+.administrativeMessage {
+  max-width: 480px;
+  margin: 14px 0 0;
+  color: var(--neutral-700);
+  font-size: .82rem;
+  line-height: 1.55;
 }
 
 .partnerName {
@@ -577,18 +600,18 @@
 
 .ctaInner {
   display: flex;
-  min-height: clamp(380px, 34vw, 500px);
+  min-height: clamp(340px, 30vw, 440px);
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-block: 80px;
+  padding-block: 68px;
   text-align: center;
 }
 
 .cta h2 {
   max-width: 1050px;
   margin: .25em 0 0;
-  font-size: clamp(3rem, 5.3vw, 4.8rem);
+  font-size: clamp(2.8rem, 4.8vw, 4.35rem);
   line-height: .94;
 }
 

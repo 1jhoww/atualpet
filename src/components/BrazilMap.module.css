@@ -68,12 +68,19 @@
 }
 
 .unavailable {
-  cursor: default;
+  cursor: pointer;
 }
 
 .unavailable .shape {
   fill: #e4e9e7;
   stroke: rgba(255, 255, 255, .94);
+}
+
+.unavailable:hover .shape,
+.unavailable:focus-visible .shape {
+  fill: #d3ddda;
+  stroke: var(--brand-orange-dark);
+  stroke-width: 2.4;
 }
 
 .available {

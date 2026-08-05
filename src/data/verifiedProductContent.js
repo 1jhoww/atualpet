@@ -10,14 +10,14 @@ export const verifiedProductContent = {
   },
   'shampoo-pre-lavagem-1-12-dream-color': {
     short: 'Pré-lavagem concentrada para a etapa inicial do banho profissional.',
-    description: 'Versão concentrada do shampoo de pré-lavagem Dream Color, indicada para o preparo da pelagem.',
+    description: 'Versão concentrada do shampoo de pré-lavagem Dream Color, indicada para o preparo da pelagem e disponível em 1 L e 5 L.',
     indication: 'Indicado para a etapa inicial da higiene de cães e gatos, antes do shampoo específico.',
     benefits: ['Limpeza de preparação', 'Auxilia na neutralização de odores', 'Diluição de até 1:12'],
     sourceUrl: 'https://atualpet.com.br/produtos/shampoo-dream-color-pre-lavagem-112/',
   },
   'shampoo-branqueador-dream-color': {
     short: 'Cuidado cosmético para realçar pelagens brancas e o brilho de pelagens escuras.',
-    description: 'Shampoo branqueador com fragrância Blueberry, apresentado no rótulo catalogado na versão 1 L e diluição 1:12.',
+    description: 'Shampoo branqueador com fragrância Blueberry, disponível nas apresentações de 1 L e 5 L e com diluição 1:12.',
     indication: 'Indicado para cães e gatos a partir de 8 semanas e para diferentes tons de pelagem.',
     benefits: ['Auxilia no realce da pelagem branca', 'Promove brilho em pelagens escuras', 'Cuidado cosmético dos fios'],
     sourceUrl: 'https://atualpet.com.br/produtos/shampoo-branqueador/',
@@ -80,7 +80,7 @@ export const verifiedProductContent = {
   },
   'colonia-you-vanity-pet': {
     short: 'Perfume Vanity de perfil floral frutado.',
-    description: 'Fragrância animal pronta uso da coleção Vanity Pet, apresentada nos volumes de 50 ml e 500 ml.',
+    description: 'Fragrância animal pronta uso da coleção Vanity Pet, apresentada nos volumes de 50 ml e 500 ml. Inspiração olfativa: Lady Million — Paco Rabanne.',
     indication: 'Fragrância de perfil feminino, conforme a apresentação oficial da linha.',
     benefits: ['Perfil floral frutado', 'Aplicação pronta uso', 'Duas apresentações comerciais'],
     sourceUrl: 'https://atualpet.com.br/produtos/you/',

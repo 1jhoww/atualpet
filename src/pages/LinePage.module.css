@@ -1,12 +1,12 @@
 .page { --line-accent: var(--brand-cyan-dark); --line-bg: #fff3f8; }
-.hero { min-height: 650px; padding: 130px 0 64px; background: var(--line-bg); overflow: hidden; }
-.heroInner { min-height: 456px; display: grid; grid-template-columns: .82fr 1.18fr; align-items: stretch; }
+.hero { min-height: 575px; padding: 116px 0 56px; background: var(--line-bg); overflow: hidden; }
+.heroInner { min-height: 400px; display: grid; grid-template-columns: .82fr 1.18fr; align-items: stretch; }
 .heroCopy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; position: relative; z-index: 2; padding-right: 5vw; }
 .heroCopy > * { animation: lineCopyReveal .82s var(--ease-premium) both; }
 .heroCopy > :nth-child(2) { animation-delay: 70ms; }
 .heroCopy > :nth-child(3) { animation-delay: 140ms; }
 .heroCopy > :nth-child(4) { animation-delay: 210ms; }
-.heroCopy h1 { font-size: clamp(4.7rem, 9vw, 9.5rem); line-height: .82; margin: .2em 0; }
+.heroCopy h1 { font-size: clamp(4.2rem, 8.1vw, 8.5rem); line-height: .82; margin: .2em 0; }
 .heroCopy p { font-family: var(--display); font-size: clamp(1.45rem, 2.5vw, 2.6rem); max-width: 620px; }
 .heroMedia { overflow: hidden; position: relative; min-width: 0; animation: lineMediaReveal 1s var(--ease-premium) 120ms both; }
 .heroMedia::after { content: ''; position: absolute; inset: 0 auto 0 0; width: 18%; background: linear-gradient(90deg, var(--line-bg), transparent); pointer-events: none; }
@@ -20,12 +20,12 @@
 .manifesto li { display: flex; gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--line); }
 .manifesto li svg { color: var(--line-accent); }
 .campaign { background: var(--line-bg); }
-.campaignInner { display: grid; grid-template-columns: 1.12fr .88fr; min-height: 660px; align-items: stretch; }
+.campaignInner { display: grid; grid-template-columns: 1.12fr .88fr; min-height: 580px; align-items: stretch; }
 .campaignMedia { margin: 0; min-width: 0; overflow: hidden; }
-.campaignMedia img { width: 100%; height: 100%; min-height: 660px; object-fit: cover; transition: transform .9s var(--ease-premium); }
+.campaignMedia img { width: 100%; height: 100%; min-height: 580px; object-fit: cover; transition: transform .9s var(--ease-premium); }
 .campaignMedia:hover img { transform: scale(1.02); }
-.campaignCopy { padding: clamp(50px, 6vw, 92px); display: flex; flex-direction: column; justify-content: center; }
-.campaignCopy h2 { font-size: clamp(2.8rem, 4.7vw, 5.3rem); margin: .25em 0 .55em; }
+.campaignCopy { padding: clamp(44px, 5.2vw, 80px); display: flex; flex-direction: column; justify-content: center; }
+.campaignCopy h2 { font-size: clamp(2.6rem, 4.25vw, 4.75rem); margin: .25em 0 .55em; }
 .campaignCopy ol { list-style: none; padding: 0; margin: 0; border-top: 1px solid rgba(23,33,31,.18); }
 .campaignCopy li { display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid rgba(23,33,31,.18); }
 .campaignCopy li > span { padding-top: 4px; font-size: .63rem; letter-spacing: .12em; color: var(--line-accent); }

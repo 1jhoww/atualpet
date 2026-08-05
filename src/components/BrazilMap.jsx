@@ -30,7 +30,7 @@ function BrazilMap({ counts, selectedState, highlightedState, onToggleState }) {
       >
         <title id="brazil-map-title">Mapa interativo dos distribuidores Atual Pet no Brasil</title>
         <desc id="brazil-map-description">
-          Mapa vetorial com os 27 estados. Estados em ciano possuem cobertura comercial e podem ser selecionados com Enter ou Espaço. Estados em cinza ainda não possuem cobertura cadastrada.
+          Mapa vetorial com os 27 estados. Todos podem ser selecionados com Enter ou Espaço. Estados em ciano possuem cobertura comercial; nos estados em cinza, o contato administrativo será apresentado.
         </desc>
 
         {states.map((state) => {
@@ -45,25 +45,13 @@ function BrazilMap({ counts, selectedState, highlightedState, onToggleState }) {
             isHighlighted ? styles.highlighted : '',
           ].filter(Boolean).join(' ')
 
-          if (!isAvailable) {
-            return <g
-              key={state.uf}
-              className={className}
-              role="img"
-              aria-label={`${state.name}, sem cobertura cadastrada`}
-              aria-disabled="true"
-            >
-              <path className={styles.shape} d={state.d} />
-            </g>
-          }
-
           return <g
             key={state.uf}
             className={className}
             role="button"
             tabIndex="0"
             aria-pressed={isSelected}
-            aria-label={`${state.name}, estado com cobertura comercial, ${isSelected ? 'pressione Enter para remover o filtro' : 'pressione Enter para filtrar'}`}
+            aria-label={`${state.name}, ${isAvailable ? 'estado com cobertura comercial' : 'estado sem distribuidor cadastrado, com atendimento administrativo disponível'}, ${isSelected ? 'pressione Enter para remover o filtro' : 'pressione Enter para selecionar'}`}
             onClick={() => onToggleState(state.uf)}
             onKeyDown={(event) => handleKeyDown(event, state.uf)}
           >
@@ -82,7 +70,7 @@ function BrazilMap({ counts, selectedState, highlightedState, onToggleState }) {
     </div>
 
     <figcaption className={styles.caption}>
-      <p>Selecione um estado em ciano para consultar a cobertura comercial.</p>
+      <p>Selecione qualquer estado para consultar a cobertura ou falar com o setor administrativo.</p>
       <ul className={styles.legend} aria-label="Legenda do mapa">
         <li><span className={styles.legendAvailable} aria-hidden="true" />Com cobertura</li>
         <li><span className={styles.legendUnavailable} aria-hidden="true" />Sem cobertura</li>

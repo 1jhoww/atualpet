@@ -4,8 +4,8 @@
 }
 
 .hero {
-  min-height: clamp(680px, 79vh, 850px);
-  padding: 142px 0 84px;
+  min-height: clamp(600px, 72vh, 760px);
+  padding: 126px 0 70px;
   display: flex;
   align-items: center;
   position: relative;
@@ -26,7 +26,7 @@
 .heroInner {
   display: grid;
   grid-template-columns: minmax(0, .72fr) minmax(0, 1fr);
-  gap: clamp(42px, 5vw, 82px);
+  gap: clamp(38px, 4.5vw, 72px);
   align-items: center;
   position: relative;
   z-index: 1;
@@ -39,7 +39,7 @@
 .heroCopy h1 {
   max-width: 680px;
   margin: .2em 0 .28em;
-  font-size: clamp(4.2rem, 5.35vw, 5.75rem);
+  font-size: clamp(3.8rem, 4.85vw, 5.2rem);
 }
 
 .heroCopy p {
@@ -81,11 +81,11 @@
 }
 
 .campaign {
-  padding-block: clamp(92px, 10vw, 158px);
+  padding-block: clamp(78px, 8.5vw, 134px);
   display: grid;
   grid-template-columns: minmax(280px, .66fr) minmax(0, 1.34fr);
   grid-template-areas: 'copy media';
-  gap: clamp(48px, 7vw, 116px);
+  gap: clamp(42px, 6vw, 98px);
   align-items: center;
   border-top: 1px solid var(--neutral-300);
   scroll-margin-top: 96px;
@@ -108,7 +108,7 @@
 .campaignCopy h2 {
   max-width: 580px;
   margin: .2em 0 .28em;
-  font-size: clamp(3.3rem, 4.4vw, 5.65rem);
+  font-size: clamp(3rem, 4vw, 5.1rem);
 }
 
 .campaignCopy > p {
