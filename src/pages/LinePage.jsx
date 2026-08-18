@@ -1,11 +1,14 @@
 import { ArrowRight, Check } from 'lucide-react'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import BathCalculatorCallout from '../components/BathCalculatorCallout'
 import ProductCard from '../components/ProductCard'
 import Reveal from '../components/Reveal'
 import Seo from '../components/Seo'
 import { getLine } from '../data/lines'
 import { products } from '../data/products'
 import styles from './LinePage.module.css'
+
+const calculatorLineSlugs = new Set(['dream-color', 'the-luxe', 'zoom-pet'])
 
 export default function LinePage() {
   const { slug } = useParams()
@@ -57,6 +60,7 @@ export default function LinePage() {
 
       <section className={`${styles.products} section`}><div className="shell">
         <div className={styles.productsTop}><div><span className="eyebrow">Portfólio</span><h2>Produtos da linha</h2></div><Link className="button button--outline" to="/onde-encontrar">Onde encontrar</Link></div>
+        {calculatorLineSlugs.has(slug) && <BathCalculatorCallout compact lineName={line.name}/>}
         <div className="product-grid product-grid--three">{lineProducts.map(product=><ProductCard key={product.id} product={product}/>)}</div>
       </div></section>
 

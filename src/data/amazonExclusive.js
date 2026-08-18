@@ -1,0 +1,117 @@
+import amazonExclusiveBanner from '../assets/lancamentos/amazon/amazon-exclusive-banner.webp'
+import blossomImage from '../assets/lancamentos/amazon/kit-blossom.webp'
+import brazilianBerryImage from '../assets/lancamentos/amazon/kit-brazilian-berry.webp'
+import grapeImage from '../assets/lancamentos/amazon/kit-grape.webp'
+import softBabyImage from '../assets/lancamentos/amazon/kit-soft-baby.webp'
+import vanillaImage from '../assets/lancamentos/amazon/kit-vanilla.webp'
+import whiteTeaImage from '../assets/lancamentos/amazon/kit-white-tea.webp'
+import wildBreezeImage from '../assets/lancamentos/amazon/kit-wild-breeze.webp'
+
+const amazonProductUrl = (asin) => `https://www.amazon.com.br/dp/${asin}`
+
+export const amazonExclusiveLine = {
+  route: '/lancamentos/linha-exclusiva-amazon',
+  eyebrow: 'Home care exclusivo Amazon',
+  name: 'Linha exclusiva Atual Pet na Amazon',
+  title: 'O cuidado Atual Pet também acompanha os tutores em casa.',
+  description: 'A linha exclusiva Amazon reúne sete kits home care com shampoo, condicionador e colônia para a rotina de cuidado de cães e gatos em casa.',
+  banner: {
+    image: amazonExclusiveBanner,
+    width: 1536,
+    height: 1024,
+    alt: 'Lançamentos exclusivos Atual Pet disponíveis na Amazon',
+  },
+  products: [
+    {
+      id: 'amazon-white-tea',
+      slug: 'white-tea',
+      name: 'White Tea',
+      title: 'Kit Banho Atual Pet – White Tea',
+      image: whiteTeaImage,
+      imageWidth: 1200,
+      imageHeight: 1600,
+      amazonUrl: amazonProductUrl('B0GL9CXF27'),
+      asin: 'B0GL9CXF27',
+      alt: 'Kit White Tea da Atual Pet',
+      order: 1,
+    },
+    {
+      id: 'amazon-blossom',
+      slug: 'blossom',
+      name: 'Blossom',
+      title: 'Kit Banho Atual Pet – Blossom',
+      image: blossomImage,
+      imageWidth: 1600,
+      imageHeight: 1600,
+      amazonUrl: amazonProductUrl('B0GL9VPPVK'),
+      asin: 'B0GL9VPPVK',
+      alt: 'Kit Blossom da Atual Pet',
+      order: 2,
+    },
+    {
+      id: 'amazon-vanilla',
+      slug: 'vanilla',
+      name: 'Vanilla',
+      title: 'Kit Banho Atual Pet – Vanilla',
+      image: vanillaImage,
+      imageWidth: 1587,
+      imageHeight: 1600,
+      amazonUrl: amazonProductUrl('B0GL9R422V'),
+      asin: 'B0GL9R422V',
+      alt: 'Kit Vanilla da Atual Pet',
+      order: 3,
+    },
+    {
+      id: 'amazon-grape',
+      slug: 'grape',
+      name: 'Grape',
+      title: 'Kit Banho Atual Pet – Grape',
+      image: grapeImage,
+      imageWidth: 1200,
+      imageHeight: 1600,
+      amazonUrl: amazonProductUrl('B0GL9Y3DPL'),
+      asin: 'B0GL9Y3DPL',
+      alt: 'Kit Grape da Atual Pet',
+      order: 4,
+    },
+    {
+      id: 'amazon-wild-breeze',
+      slug: 'wild-breeze',
+      name: 'Wild Breeze',
+      title: 'Kit Banho Atual Pet – Wild Breeze',
+      image: wildBreezeImage,
+      imageWidth: 1600,
+      imageHeight: 1600,
+      amazonUrl: amazonProductUrl('B0GLB6VYV6'),
+      asin: 'B0GLB6VYV6',
+      alt: 'Kit Wild Breeze da Atual Pet',
+      order: 5,
+    },
+    {
+      id: 'amazon-soft-baby',
+      slug: 'soft-baby',
+      name: 'Soft Baby',
+      title: 'Kit Banho Atual Pet – Soft Baby',
+      image: softBabyImage,
+      imageWidth: 1200,
+      imageHeight: 1600,
+      amazonUrl: amazonProductUrl('B0GL9ZJ5F7'),
+      asin: 'B0GL9ZJ5F7',
+      alt: 'Kit Soft Baby da Atual Pet',
+      order: 6,
+    },
+    {
+      id: 'amazon-brazilian-berry',
+      slug: 'brazilian-berry',
+      name: 'Brazilian Berry',
+      title: 'Kit Banho Atual Pet – Brazilian Berry',
+      image: brazilianBerryImage,
+      imageWidth: 1200,
+      imageHeight: 1600,
+      amazonUrl: amazonProductUrl('B0GLD3Q53L'),
+      asin: 'B0GLD3Q53L',
+      alt: 'Kit Brazilian Berry da Atual Pet',
+      order: 7,
+    },
+  ],
+}

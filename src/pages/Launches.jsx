@@ -4,6 +4,7 @@ import {
   BadgeCheck,
   BriefcaseBusiness,
   Gauge,
+  ShoppingBag,
   Sparkles,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -16,6 +17,7 @@ import launchesHeroImage from '../assets/lancamentos/hero/hero-lancamentos-conju
 import ProductCard from '../components/ProductCard'
 import Reveal from '../components/Reveal'
 import Seo from '../components/Seo'
+import { amazonExclusiveLine } from '../data/amazonExclusive'
 import { compareLaunchDate, products } from '../data/products'
 import styles from './Launches.module.css'
 
@@ -214,6 +216,41 @@ export default function Launches() {
             </ul>
           </Reveal>
         </article>
+      </section>
+
+      <section className={styles.discover} aria-labelledby="launches-discover-title">
+        <div className="shell">
+          <Reveal as="header" className={styles.discoverHeading}>
+            <span className="eyebrow">Home care para tutores</span>
+            <h2 id="launches-discover-title">O cuidado Atual Pet também continua em casa.</h2>
+          </Reveal>
+
+          <div className={styles.discoverGrid}>
+            <Reveal as="article" className={`${styles.discoverItem} ${styles.amazonDiscover}`}>
+              <Link
+                className={styles.amazonBannerLink}
+                to={amazonExclusiveLine.route}
+                aria-label="Conhecer os kits exclusivos Atual Pet na Amazon"
+              >
+                <img
+                  src={amazonExclusiveLine.banner.image}
+                  width={amazonExclusiveLine.banner.width}
+                  height={amazonExclusiveLine.banner.height}
+                  loading="lazy"
+                  decoding="async"
+                  alt={amazonExclusiveLine.banner.alt}
+                />
+              </Link>
+              <div className={styles.amazonDiscoverCopy}>
+                <ShoppingBag size={27} strokeWidth={1.35} aria-hidden="true" />
+                <span>Exclusividade Amazon</span>
+                <h3>Kits home care para tutores</h3>
+                <p>Sete kits com shampoo, condicionador e colônia para a rotina de cuidado de cães e gatos em casa.</p>
+                <Link className="text-link" to={amazonExclusiveLine.route}>Conhecer os kits <ArrowRight size={16} aria-hidden="true" /></Link>
+              </div>
+            </Reveal>
+          </div>
+        </div>
       </section>
 
       <section className={styles.technology} aria-labelledby="technology-title">

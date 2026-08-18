@@ -1,0 +1,267 @@
+.page {
+  overflow: clip;
+  background: var(--neutral-white);
+}
+
+.hero {
+  padding: 118px 0 clamp(34px, 5vw, 72px);
+  background:
+    radial-gradient(circle at 86% 8%, rgba(237, 123, 10, .1), transparent 30%),
+    linear-gradient(118deg, var(--brand-cyan-light), var(--neutral-white) 68%);
+}
+
+.heroTop {
+  margin-bottom: 28px;
+}
+
+.heroMedia {
+  overflow: hidden;
+  border: 1px solid rgba(23, 33, 31, .14);
+  background: #14251d;
+  box-shadow: 0 24px 64px rgba(23, 33, 31, .12);
+}
+
+.heroMedia img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.introduction {
+  padding-block: clamp(72px, 8vw, 116px);
+  border-bottom: 1px solid var(--neutral-300);
+}
+
+.introductionInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, .34fr);
+  gap: clamp(48px, 9vw, 140px);
+  align-items: end;
+}
+
+.introductionCopy h1 {
+  max-width: 930px;
+  margin: .2em 0 .25em;
+  font-size: clamp(3.25rem, 5.2vw, 6rem);
+}
+
+.introductionCopy p {
+  max-width: 720px;
+  color: var(--neutral-700);
+  font-size: 1.02rem;
+}
+
+.purchaseNote {
+  min-width: 0;
+  padding: 24px 0 4px;
+  border-top: 3px solid var(--brand-orange);
+}
+
+.purchaseNote svg {
+  margin-bottom: 30px;
+  color: var(--brand-cyan-dark);
+}
+
+.purchaseNote strong,
+.purchaseNote span {
+  display: block;
+}
+
+.purchaseNote strong {
+  margin-bottom: 7px;
+  font-family: var(--display);
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1;
+}
+
+.purchaseNote span {
+  max-width: 230px;
+  color: var(--neutral-700);
+  font-size: .82rem;
+  line-height: 1.5;
+}
+
+.products {
+  padding-block: clamp(88px, 10vw, 154px);
+  background: var(--neutral-50);
+}
+
+.sectionHeading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, .45fr);
+  gap: 38px clamp(48px, 8vw, 126px);
+  align-items: end;
+  margin-bottom: clamp(50px, 6vw, 82px);
+}
+
+.sectionHeading h2 {
+  max-width: 900px;
+  margin: .2em 0 0;
+  font-size: clamp(3rem, 4.8vw, 5.5rem);
+}
+
+.sectionHeading > p {
+  max-width: 390px;
+  margin: 0 0 .5em;
+  color: var(--neutral-700);
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(22px, 2.5vw, 38px);
+}
+
+.product {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--neutral-300);
+  background: var(--neutral-white);
+}
+
+.productMedia {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  position: relative;
+  background:
+    linear-gradient(145deg, rgba(232, 247, 246, .36), rgba(255, 255, 255, .7)),
+    var(--neutral-100);
+}
+
+.productMedia img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.productBody {
+  min-height: 190px;
+  padding: clamp(24px, 2.3vw, 34px);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.productBody > span {
+  color: var(--brand-orange-dark);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.productBody h3 {
+  margin: 10px 0 25px;
+  font-size: clamp(1.7rem, 2.25vw, 2.5rem);
+}
+
+.buyButton {
+  width: 100%;
+  margin-top: auto;
+  justify-content: center;
+}
+
+.buyButton:focus-visible {
+  outline: 3px solid var(--brand-orange);
+  outline-offset: 4px;
+}
+
+.backRow {
+  padding-top: clamp(48px, 6vw, 82px);
+  display: flex;
+  justify-content: center;
+}
+
+.backLink {
+  min-height: 44px;
+  padding-inline: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+.backLink:focus-visible {
+  outline: 3px solid var(--brand-orange);
+  outline-offset: 4px;
+}
+
+@media (max-width: 960px) {
+  .introductionInner,
+  .sectionHeading {
+    grid-template-columns: 1fr;
+  }
+
+  .purchaseNote {
+    max-width: 360px;
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sectionHeading > p {
+    margin: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 106px 0 38px;
+  }
+
+  .heroTop {
+    margin-bottom: 20px;
+  }
+
+  .heroMedia {
+    box-shadow: 0 14px 34px rgba(23, 33, 31, .1);
+  }
+
+  .introduction {
+    padding-block: 68px;
+  }
+
+  .introductionInner {
+    gap: 42px;
+  }
+
+  .introductionCopy h1,
+  .sectionHeading h2 {
+    font-size: clamp(2.9rem, 12vw, 3.9rem);
+  }
+
+  .purchaseNote svg {
+    margin-bottom: 22px;
+  }
+
+  .products {
+    padding-block: 78px;
+  }
+
+  .sectionHeading {
+    margin-bottom: 42px;
+  }
+
+  .productGrid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .productBody {
+    min-height: 178px;
+  }
+
+  .buyButton {
+    min-height: 48px;
+  }
+}

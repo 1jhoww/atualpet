@@ -1,6 +1,7 @@
 import { ArrowRight, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import BathTransformation from '../components/BathTransformation'
+import BathCalculatorCallout from '../components/BathCalculatorCallout'
 import BrandPillars from '../components/BrandPillars'
 import Reveal from '../components/Reveal'
 import Seo from '../components/Seo'
@@ -32,6 +33,8 @@ export default function Home() {
         </Reveal>)}</div>
       </div>
     </section>
+
+    <BathCalculatorCallout/>
 
     <section className={styles.pillars} aria-labelledby="brand-pillars-title">
       <div className="shell">

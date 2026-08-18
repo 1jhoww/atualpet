@@ -1,0 +1,249 @@
+.section {
+  padding: 0 0 clamp(68px, 7.5vw, 112px);
+  background: var(--neutral-white);
+}
+
+.feature {
+  min-height: 310px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(330px, .72fr);
+  gap: clamp(42px, 7vw, 110px);
+  align-items: center;
+  padding: clamp(44px, 5vw, 72px);
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(113, 196, 192, .18), transparent 28%),
+    var(--neutral-900);
+  color: var(--neutral-white);
+}
+
+.feature::before {
+  content: '';
+  width: 92px;
+  height: 3px;
+  position: absolute;
+  inset: 0 auto auto 0;
+  background: var(--brand-orange);
+}
+
+.copy {
+  min-width: 0;
+}
+
+.copy h2 {
+  margin: .18em 0 .25em;
+  max-width: 720px;
+  font-size: clamp(2.8rem, 4.5vw, 5rem);
+}
+
+.copy p {
+  max-width: 650px;
+  margin-bottom: 26px;
+  color: rgba(255, 255, 255, .78);
+}
+
+.preview {
+  min-width: 0;
+  padding: clamp(26px, 3vw, 38px);
+  border: 1px solid rgba(255, 255, 255, .16);
+  background: rgba(255, 255, 255, .06);
+  backdrop-filter: blur(10px);
+}
+
+.previewHeading {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, .14);
+}
+
+.previewHeading svg,
+.previewResult svg {
+  flex: 0 0 auto;
+  color: var(--brand-cyan);
+}
+
+.previewHeading span,
+.previewHeading strong {
+  display: block;
+}
+
+.previewHeading span {
+  color: rgba(255, 255, 255, .62);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.previewHeading strong {
+  margin-top: 2px;
+  font-family: var(--display);
+  font-size: 1.08rem;
+}
+
+.preview ol {
+  list-style: none;
+  margin: 0;
+  padding: 13px 0;
+}
+
+.preview li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 9px 0;
+}
+
+.preview li span {
+  color: var(--brand-orange);
+  font-size: .63rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.preview li strong {
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+.previewResult {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, .14);
+  font-family: var(--display);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.compact {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 20px;
+  align-items: center;
+  margin: 0 0 40px;
+  padding: 22px 26px;
+  border-top: 1px solid var(--neutral-300);
+  border-bottom: 1px solid var(--neutral-300);
+  background: var(--neutral-white);
+}
+
+.compactIcon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  background: var(--brand-cyan-light);
+  color: var(--brand-cyan-dark);
+}
+
+.compactCopy > span {
+  display: block;
+  color: var(--brand-orange-dark);
+  font-size: .63rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.compactCopy h3 {
+  margin: 3px 0 2px;
+  font-size: 1.2rem;
+}
+
+.compactCopy p {
+  margin: 0;
+  color: var(--neutral-700);
+  font-size: .8rem;
+}
+
+.compact :global(.text-link) {
+  white-space: nowrap;
+}
+
+@media (max-width: 850px) {
+  .feature {
+    grid-template-columns: 1fr;
+  }
+
+  .preview {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 0 26px;
+  }
+
+  .previewHeading {
+    grid-column: 1 / -1;
+  }
+
+  .previewResult {
+    align-self: center;
+    border-top: 0;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .section {
+    padding-bottom: 60px;
+  }
+
+  .feature {
+    width: 100%;
+    min-height: 0;
+    gap: 26px;
+    padding: 44px 24px;
+  }
+
+  .copy h2 {
+    font-size: clamp(2.75rem, 13vw, 3.7rem);
+  }
+
+  .copy :global(.button) {
+    width: 100%;
+  }
+
+  .preview {
+    display: block;
+    padding: 24px 20px;
+  }
+
+  .preview ol {
+    display: none;
+  }
+
+  .previewResult {
+    margin-top: 18px;
+    padding-top: 17px;
+    border-top: 1px solid rgba(255, 255, 255, .14);
+  }
+
+  .compact {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 15px;
+    padding: 20px 0;
+  }
+
+  .compactIcon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .compact :global(.text-link) {
+    grid-column: 2;
+    justify-self: start;
+    min-height: 44px;
+    align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature,
+  .compact {
+    transition: none;
+  }
+}

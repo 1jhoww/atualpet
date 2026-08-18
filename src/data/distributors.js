@@ -35,11 +35,24 @@ export const distributors = [
     contactName: 'Claudia Carlos',
     whatsapp: '5511952743996',
     serviceAreas: [
-      'Itaim Paulista', 'São Miguel Paulista', 'Jardim Helena', 'Vila Nova Curuçá', 'Ermelino Matarazzo', 'Guaianases',
-      'Ferraz de Vasconcelos', 'Itaquera', 'Artur Alvim', 'Penha', 'Carrão', 'Vila Matilde', 'Tatuapé',
+      'Itaim Paulista', 'São Miguel Paulista', 'Ermelino Matarazzo', 'Vila Matilde', 'Penha', 'Tatuapé',
+      'Guaianases', 'Ferraz de Vasconcelos',
     ],
   },
-  { id: 'sp-gb-de-oliveira', name: 'GB de Oliveira', state: 'SP', servedStates: ['SP'], city: 'São Paulo', region: 'Sudeste' },
+  {
+    id: 'sp-bicho-log',
+    name: 'Bicho Log',
+    state: 'SP',
+    servedStates: ['SP'],
+    city: 'São Paulo',
+    region: 'Sudeste',
+    contactName: 'Gilson',
+    whatsapp: '5511924743045',
+    serviceCities: [
+      'Mauá', 'Arujá', 'Mogi das Cruzes', 'Poá', 'São Caetano do Sul', 'São Bernardo do Campo',
+      'Diadema', 'São Paulo', 'Ribeirão Pires', 'Rio Grande da Serra', 'Ferraz de Vasconcelos', 'Itaquaquecetuba',
+    ],
+  },
   {
     id: 'sp-lpg-distribuidora-pet',
     name: 'LPG Distribuidora Pet',
@@ -52,6 +65,8 @@ export const distributors = [
     serviceCities: [
       'Pinhalzinho', 'Piracaia', 'Santo Antônio de Posse', 'Serra Negra', 'Socorro', 'Águas de Lindóia', 'Jaguariúna',
       'Lindóia', 'Mogi Mirim', 'Monte Alegre do Sul', 'Monte Sião', 'Ouro Fino', 'Pedreira',
+      'Atibaia/SP', 'Bragança Paulista/SP', 'Amparo/SP', 'Mogi Guaçu/SP', 'Itapira/SP',
+      'Jacutinga/MG', 'Bueno Brandão/MG', 'Inconfidentes/MG',
     ],
   },
   {
@@ -103,7 +118,7 @@ export const distributors = [
   },
   {
     id: 'rj-lagiz',
-    name: 'Lagiz',
+    name: 'Zigal',
     state: 'RJ',
     servedStates: ['RJ'],
     city: 'Nova Iguaçu',
@@ -254,7 +269,7 @@ export const distributors = [
     whatsapp: '5587988024136',
     serviceAreas: ['Raio de 400 km em torno do Vale do São Francisco'],
   },
-  { id: 'se-mvr', name: 'MVR Distribuidora', state: 'SE', servedStates: ['SE'], city: 'Aracaju', region: 'Nordeste', contactName: 'Marcus', whatsapp: '557998096568' },
+  { id: 'se-mvr', name: 'Alfa Distribuidora', state: 'SE', servedStates: ['SE'], city: 'Aracaju', region: 'Nordeste', contactName: 'Marcus', whatsapp: '557998096568' },
   {
     id: 'df-roberto',
     name: 'Roberto',
