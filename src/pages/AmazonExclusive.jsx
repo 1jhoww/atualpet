@@ -1,5 +1,6 @@
 import { ArrowLeft, ExternalLink, ShoppingBag } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import amazonPurchaseBanner from '../assets/lancamentos/amazon/amazon-purchase-banner.jpeg'
 import Breadcrumbs from '../components/Breadcrumbs'
 import Reveal from '../components/Reveal'
 import Seo from '../components/Seo'
@@ -17,38 +18,40 @@ export default function AmazonExclusive() {
     />
 
     <main className={styles.page}>
-      <section className={styles.hero} aria-label="Linha exclusiva Atual Pet na Amazon">
+      <section className={styles.introduction} aria-labelledby="amazon-exclusive-title">
         <div className="shell">
           <Reveal className={styles.heroTop}>
             <Breadcrumbs items={[{ label: 'Lançamentos', to: '/lancamentos' }, { label: 'Linha exclusiva Amazon' }]} />
           </Reveal>
 
-          <Reveal className={styles.heroMedia} delay={70} data-reveal="image">
-            <img
-              src={line.banner.image}
-              width={line.banner.width}
-              height={line.banner.height}
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              alt={line.banner.alt}
-            />
-          </Reveal>
+          <div className={styles.introductionInner}>
+            <Reveal className={styles.introductionCopy}>
+              <span className="eyebrow">{line.eyebrow}</span>
+              <h1 id="amazon-exclusive-title">Home Care Exclusiva da Amazon</h1>
+              <h2>{line.title}</h2>
+              <p>{line.description}</p>
+            </Reveal>
+
+            <Reveal className={styles.purchaseNote} delay={80}>
+              <ShoppingBag size={28} strokeWidth={1.35} aria-hidden="true" />
+              <strong>{kits.length} kits home care</strong>
+              <span>Para tutores, com compra realizada no site da Amazon</span>
+            </Reveal>
+          </div>
         </div>
       </section>
 
-      <section className={styles.introduction} aria-labelledby="amazon-exclusive-title">
-        <div className={`${styles.introductionInner} shell`}>
-          <Reveal className={styles.introductionCopy}>
-            <span className="eyebrow">{line.eyebrow}</span>
-            <h1 id="amazon-exclusive-title">{line.title}</h1>
-            <p>{line.description}</p>
-          </Reveal>
-
-          <Reveal className={styles.purchaseNote} delay={80}>
-            <ShoppingBag size={28} strokeWidth={1.35} aria-hidden="true" />
-            <strong>{kits.length} kits home care</strong>
-            <span>Para tutores, com compra realizada no site da Amazon</span>
+      <section className={styles.hero} aria-label="Compre os produtos exclusivos Atual Pet na Amazon">
+        <div className="shell">
+          <Reveal className={styles.heroMedia} delay={70} data-reveal="image">
+            <img
+              src={amazonPurchaseBanner}
+              width="2560"
+              height="1066"
+              loading="lazy"
+              decoding="async"
+              alt="Conheça os produtos exclusivos Atual Pet na Amazon: escolha no site e receba em casa"
+            />
           </Reveal>
         </div>
       </section>

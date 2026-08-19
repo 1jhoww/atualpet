@@ -4,7 +4,7 @@
 }
 
 .hero {
-  padding: 118px 0 clamp(34px, 5vw, 72px);
+  padding: 0 0 clamp(72px, 8vw, 116px);
   background:
     radial-gradient(circle at 86% 8%, rgba(237, 123, 10, .1), transparent 30%),
     linear-gradient(118deg, var(--brand-cyan-light), var(--neutral-white) 68%);
@@ -29,8 +29,7 @@
 }
 
 .introduction {
-  padding-block: clamp(72px, 8vw, 116px);
-  border-bottom: 1px solid var(--neutral-300);
+  padding: 118px 0 clamp(52px, 6vw, 84px);
 }
 
 .introductionInner {
@@ -40,10 +39,16 @@
   align-items: end;
 }
 
-.introductionCopy h1 {
+.introductionCopy h1,
+.introductionCopy h2 {
   max-width: 930px;
   margin: .2em 0 .25em;
   font-size: clamp(3.25rem, 5.2vw, 6rem);
+}
+
+.introductionCopy h2 {
+  margin-top: .35em;
+  font-size: clamp(2rem, 3.3vw, 3.7rem);
 }
 
 .introductionCopy p {
@@ -216,7 +221,7 @@
 
 @media (max-width: 600px) {
   .hero {
-    padding: 106px 0 38px;
+    display: none;
   }
 
   .heroTop {
@@ -228,7 +233,7 @@
   }
 
   .introduction {
-    padding-block: 68px;
+    padding: 106px 0 52px;
   }
 
   .introductionInner {
@@ -236,6 +241,7 @@
   }
 
   .introductionCopy h1,
+  .introductionCopy h2,
   .sectionHeading h2 {
     font-size: clamp(2.9rem, 12vw, 3.9rem);
   }

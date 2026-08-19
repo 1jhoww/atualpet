@@ -1,5 +1,9 @@
 import { ArrowRight, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import amazonHomeBanner1280 from '../assets/lancamentos/amazon/amazon-home-banner-1280.webp'
+import amazonHomeBanner2560 from '../assets/lancamentos/amazon/amazon-home-banner-2560.webp'
+import amazonHomeBanner3840 from '../assets/lancamentos/amazon/amazon-home-banner-3840.webp'
+import amazonPurchaseBanner from '../assets/lancamentos/amazon/amazon-purchase-banner.jpeg'
 import BathTransformation from '../components/BathTransformation'
 import BathCalculatorCallout from '../components/BathCalculatorCallout'
 import BrandPillars from '../components/BrandPillars'
@@ -31,6 +35,34 @@ export default function Home() {
             </picture>
           </Link>
         </Reveal>)}</div>
+      </div>
+    </section>
+
+    <section className={styles.amazonBanner} aria-labelledby="home-amazon-title">
+      <div className={`${styles.amazonBannerInner} shell`}>
+        <header className={styles.amazonBannerHeading}>
+          <h2 id="home-amazon-title">Exclusivos Amazon</h2>
+          <p>Conheça os kits home care Atual Pet disponíveis exclusivamente na Amazon.</p>
+        </header>
+        <Link
+          className={styles.amazonBannerLink}
+          to="/lancamentos/linha-exclusiva-amazon"
+          aria-label="Conhecer a linha exclusiva Atual Pet na Amazon"
+        >
+          <picture>
+            <source media="(max-width: 620px)" srcSet={amazonPurchaseBanner} />
+            <img
+              src={amazonHomeBanner2560}
+              srcSet={`${amazonHomeBanner1280} 1280w, ${amazonHomeBanner2560} 2560w, ${amazonHomeBanner3840} 3840w`}
+              sizes="(max-width: 620px) calc(100vw - 48px), min(1280px, calc(100vw - 48px))"
+              width="3840"
+              height="1183"
+              loading="lazy"
+              decoding="async"
+              alt="Linha exclusiva Atual Pet: compre nossos produtos exclusivos na Amazon"
+            />
+          </picture>
+        </Link>
       </div>
     </section>
 
