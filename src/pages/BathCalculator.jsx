@@ -1,5 +1,8 @@
 import { Calculator, Droplets, FlaskConical, Gauge, Package, PawPrint } from 'lucide-react'
 import { useId, useState } from 'react'
+import dreamColorLogo from '../assets/lines/logos/dream-color-logo.png'
+import theLuxeLogo from '../assets/lines/logos/the-luxe-logo.png'
+import zoomLogo from '../assets/lines/logos/zoom-logo.png'
 import Breadcrumbs from '../components/Breadcrumbs'
 import Reveal from '../components/Reveal'
 import Seo from '../components/Seo'
@@ -28,6 +31,12 @@ const formatVolume = (volumeMl) => volumeMl >= 1000
 const formatInputNumber = (value) => new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 3 }).format(value)
 
 const getDefaultVolume = (option) => option.volumePresets[0]
+
+const lineLogos = {
+  'dream-color': dreamColorLogo,
+  'the-luxe': theLuxeLogo,
+  zoom: zoomLogo,
+}
 
 export default function BathCalculator() {
   const priceHintId = useId()
@@ -148,6 +157,7 @@ export default function BathCalculator() {
                     name="bath-line"
                     value={line.id}
                     checked={lineId === line.id}
+                    aria-label={`Selecionar linha ${line.name}`}
                     onChange={() => handleLineChange(line.id)}
                     onKeyDown={(event) => {
                       if (event.key === ' ' || event.key === 'Enter') {
@@ -156,7 +166,15 @@ export default function BathCalculator() {
                       }
                     }}
                   />
-                  <span>{line.name}</span>
+                  <img
+                    className={styles.lineLogo}
+                    src={lineLogos[line.id]}
+                    width="500"
+                    height="300"
+                    alt=""
+                    aria-hidden="true"
+                    draggable="false"
+                  />
                 </label>)}
               </div>
             </fieldset>

@@ -10,26 +10,6 @@ const dreamColorVolumes = [
 
 export const bathCalculatorLines = [
   {
-    id: 'zoom',
-    name: 'Zoom',
-    options: [
-      {
-        id: 'zoom-pronto-uso',
-        label: 'Zoom pronto uso',
-        dilution: 0,
-        dilutionLabel: 'Pronto uso',
-        volumePresets: [{ amount: 750, unit: 'ml', label: '750 ml' }],
-      },
-      {
-        id: 'zoom-shampoo-1-4',
-        label: 'Shampoo Zoom 1:4',
-        dilution: 4,
-        dilutionLabel: '1:4',
-        volumePresets: [{ amount: 5, unit: 'l', label: '5 L' }],
-      },
-    ],
-  },
-  {
     id: 'dream-color',
     name: 'Dream Color',
     options: [
@@ -72,6 +52,26 @@ export const bathCalculatorLines = [
         label: 'Condicionador 1:5',
         dilution: 5,
         dilutionLabel: '1:5',
+        volumePresets: [{ amount: 5, unit: 'l', label: '5 L' }],
+      },
+    ],
+  },
+  {
+    id: 'zoom',
+    name: 'Zoom',
+    options: [
+      {
+        id: 'zoom-pronto-uso',
+        label: 'Zoom pronto uso',
+        dilution: 0,
+        dilutionLabel: 'Pronto uso',
+        volumePresets: [{ amount: 750, unit: 'ml', label: '750 ml' }],
+      },
+      {
+        id: 'zoom-shampoo-1-4',
+        label: 'Shampoo Zoom 1:4',
+        dilution: 4,
+        dilutionLabel: '1:4',
         volumePresets: [{ amount: 5, unit: 'l', label: '5 L' }],
       },
     ],

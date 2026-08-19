@@ -149,7 +149,7 @@
 }
 
 .choice {
-  padding: 18px;
+  padding: 13px 18px;
   justify-content: center;
   text-align: center;
 }
@@ -181,10 +181,11 @@
   opacity: 0;
 }
 
-.choice span {
-  font-family: var(--display);
-  font-size: 1rem;
-  font-weight: 700;
+.lineLogo {
+  width: min(82%, 148px);
+  height: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .selectField,
