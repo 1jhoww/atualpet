@@ -29,14 +29,35 @@ const launchCatalogUrl = (filters = {}) => {
 const masksUrl = launchCatalogUrl({ linha: 'the-luxe' })
 const vanillaUrl = launchCatalogUrl({ busca: 'Vanilla' })
 const jasmimUrl = launchCatalogUrl({ linha: 'dream-color', busca: 'Jasmim' })
-const extraVolumeUrl = launchCatalogUrl({ busca: 'Extra Volume' })
 const launchProducts = products
   .filter((product) => product.isLaunch)
   .sort(compareLaunchDate)
 
-const maskVersions = ['Cereja e Avelã', 'Lichia e Romã', 'Melancia', 'Neutro']
-const vanillaProducts = ['Shampoo', 'Condicionador', 'Colônia', 'Aromatizador']
-const jasmimProducts = ['Shampoo', 'Condicionador', 'Colônia', 'Aromatizador']
+const productLink = (label, slug) => {
+  const product = products.find((item) => item.active && item.slug === slug)
+  if (!product) throw new Error(`Produto de lançamento não encontrado: ${slug}`)
+  return { label, productName: product.name, to: `/produtos/${product.slug}` }
+}
+
+const maskVersions = [
+  productLink('Cereja e Avelã', 'mascara-acao-rapida-cereja-e-avela'),
+  productLink('Lichia e Romã', 'mascara-acao-rapida-lichia-e-roma'),
+  productLink('Melancia', 'mascara-acao-rapida-melancia'),
+  productLink('Neutro', 'mascara-acao-rapida-neutro'),
+]
+const vanillaProducts = [
+  productLink('Shampoo', 'shampoo-vanilla'),
+  productLink('Condicionador', 'condicionador-vanilla'),
+  productLink('Colônia', 'colonia-vanilla'),
+  productLink('Aromatizador', 'aromatizador-vanilla'),
+]
+const jasmimProducts = [
+  productLink('Shampoo', 'shampoo-jasmim-com-amendoas'),
+  productLink('Condicionador', 'condicionador-jasmim-com-amendoas'),
+  productLink('Colônia', 'colonia-jasmim-com-amendoas'),
+  productLink('Aromatizador', 'aromatizador-jasmim-com-amendoas'),
+]
+const extraVolumeProduct = productLink('Shampoo Extra Volume', 'shampoo-extra-volume')
 const extraVolumeDetails = ['Shampoo', '1 L', 'Diluição 1:5']
 
 const technologyHighlights = [
@@ -105,8 +126,15 @@ export default function Launches() {
             <p className={styles.campaignLead}>Alta performance em 60 segundos para a rotina profissional.</p>
             <p>Quatro versões desenvolvidas para ampliar as possibilidades de cuidado e acabamento.</p>
             <ul className={styles.chips} aria-label="Versões das máscaras de ação rápida">
-              {maskVersions.map((version) => <li key={version}>{version}</li>)}
+              {maskVersions.map((version) => <li key={version.to}>
+                <Link className={styles.chipLink} to={version.to} aria-label={`Ver ${version.productName}`}>
+                  {version.label}<ArrowRight size={14} aria-hidden="true" />
+                </Link>
+              </li>)}
             </ul>
+            <Link className={`button button--outline button--small ${styles.campaignCta}`} to={masksUrl}>
+              Conheça as máscaras <ArrowRight size={16} aria-hidden="true" />
+            </Link>
           </Reveal>
 
           <Reveal className={styles.campaignMedia} delay={90} data-reveal="image">
@@ -154,8 +182,15 @@ export default function Launches() {
             <p className={styles.campaignLead}>Uma nova geração de produtos para elevar a experiência no banho e tosa.</p>
             <p>A fragrância Vanilla chega em diferentes etapas da rotina profissional.</p>
             <ul className={styles.chips} aria-label="Lançamentos Vanilla Dream Color">
-              {vanillaProducts.map((product) => <li key={product}>{product}</li>)}
+              {vanillaProducts.map((product) => <li key={product.to}>
+                <Link className={styles.chipLink} to={product.to} aria-label={`Ver ${product.productName}`}>
+                  {product.label}<ArrowRight size={14} aria-hidden="true" />
+                </Link>
+              </li>)}
             </ul>
+            <Link className={`button button--outline button--small ${styles.campaignCta}`} to={vanillaUrl}>
+              Conheça os produtos Vanilla <ArrowRight size={16} aria-hidden="true" />
+            </Link>
           </Reveal>
         </article>
 
@@ -166,8 +201,15 @@ export default function Launches() {
             <p className={styles.campaignLead}>Jasmim e Amêndoas em diferentes etapas da rotina profissional.</p>
             <p>Shampoo, condicionador, colônia e aromatizador reunidos na linha Dream Color.</p>
             <ul className={styles.chips} aria-label="Lançamentos Jasmim e Amêndoas Dream Color">
-              {jasmimProducts.map((product) => <li key={product}>{product}</li>)}
+              {jasmimProducts.map((product) => <li key={product.to}>
+                <Link className={styles.chipLink} to={product.to} aria-label={`Ver ${product.productName}`}>
+                  {product.label}<ArrowRight size={14} aria-hidden="true" />
+                </Link>
+              </li>)}
             </ul>
+            <Link className={`button button--outline button--small ${styles.campaignCta}`} to={jasmimUrl}>
+              Conheça os produtos Jasmim <ArrowRight size={16} aria-hidden="true" />
+            </Link>
           </Reveal>
 
           <Reveal className={styles.campaignMedia} delay={90} data-reveal="image">
@@ -192,7 +234,7 @@ export default function Launches() {
           <Reveal className={styles.campaignMedia} data-reveal="image">
             <Link
               className={styles.campaignLink}
-              to={extraVolumeUrl}
+              to={extraVolumeProduct.to}
               aria-label="Conhecer o Shampoo Extra Volume Dream Color Care"
             >
               <img
@@ -212,8 +254,11 @@ export default function Launches() {
             <p className={styles.campaignLead}>Uma novidade para complementar a rotina profissional.</p>
             <p>Shampoo em apresentação de 1 L, com diluição 1:5.</p>
             <ul className={styles.chips} aria-label="Informações do Shampoo Extra Volume">
-              {extraVolumeDetails.map((detail) => <li key={detail}>{detail}</li>)}
+              {extraVolumeDetails.map((detail) => <li key={detail}><span className={styles.chipLabel}>{detail}</span></li>)}
             </ul>
+            <Link className={`button button--outline button--small ${styles.campaignCta}`} to={extraVolumeProduct.to}>
+              Ver produto <ArrowRight size={16} aria-hidden="true" />
+            </Link>
           </Reveal>
         </article>
       </section>

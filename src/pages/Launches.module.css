@@ -167,10 +167,16 @@
 }
 
 .chips li {
+  display: inline-flex;
+}
+
+.chipLink,
+.chipLabel {
   min-height: 35px;
   padding: 8px 13px 7px;
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   border: 1px solid var(--neutral-300);
   border-radius: 999px;
   background: var(--neutral-white);
@@ -178,13 +184,26 @@
   font-size: .72rem;
   font-weight: 650;
   letter-spacing: .035em;
+}
+
+.chipLink {
   transition: border-color .3s ease, color .3s ease, transform .35s var(--ease-premium);
 }
 
-.chips li:hover {
+.chipLink:hover,
+.chipLink:focus-visible {
   border-color: var(--brand-cyan-dark);
   color: var(--neutral-900);
   transform: translateY(-2px);
+}
+
+.chipLink:focus-visible {
+  outline: 3px solid var(--brand-orange);
+  outline-offset: 2px;
+}
+
+.campaignCta {
+  margin-top: 26px;
 }
 
 :global(.reveal).campaignCopy {
@@ -642,7 +661,8 @@
     margin-top: 23px;
   }
 
-  .chips li {
+  .chipLink,
+  .chipLabel {
     font-size: .69rem;
   }
 
@@ -748,14 +768,15 @@
 @media (prefers-reduced-motion: reduce) {
   .campaignLink,
   .campaignLink img,
-  .chips li,
+  .chipLink,
   .amazonBannerLink img {
     transition: none;
   }
 
   .campaignLink:hover,
   .campaignLink:hover img,
-  .chips li:hover,
+  .chipLink:hover,
+  .chipLink:focus-visible,
   .amazonBannerLink:hover img {
     transform: none;
   }
