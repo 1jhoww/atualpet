@@ -1,4 +1,4 @@
-import { Calculator, Handshake, Home, Mail, MapPin, PackageSearch } from 'lucide-react'
+import { Calculator, Handshake, Home, Mail, MapPin, PackageSearch, Star } from 'lucide-react'
 import { FaFacebookF, FaInstagram, FaWhatsapp } from 'react-icons/fa'
 import { company } from './company'
 
@@ -18,6 +18,9 @@ export const linksPage = {
     title: 'Tudo da Atual Pet em um só lugar.',
     text: 'Cosméticos profissionais para higiene, estética e perfumaria pet. Escolha por onde quer começar.',
   },
+  // Destaque único do momento (campanha/inscrição temporária). Basta trocar
+  // o conteúdo ou definir `highlight: null` quando a ação terminar.
+  highlight: { id: 'groomer-got-talent', label: 'Inscrição Groomer Got Talent', description: 'Inscreva-se pelo formulário oficial.', href: 'https://forms.gle/AUUS4fV3nmmjmq529', icon: Star },
   // Destaques principais: no máximo dois, para preservar a hierarquia.
   featured: [
     { id: 'site', label: 'Conheça nosso site', description: 'Institucional, linhas e catálogo completo.', to: '/', icon: Home },

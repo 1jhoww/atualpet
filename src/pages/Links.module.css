@@ -1,7 +1,9 @@
 /* Página da bio (/links). Mobile-first: as media queries crescem a partir do
    celular. A coluna esquerda do desktop fica propositalmente com respiro
    abaixo da apresentação para receber elementos gráficos no futuro. */
-.page { min-height: 100dvh; display: flex; flex-direction: column; background: linear-gradient(168deg, var(--brand-cyan-light), var(--neutral-white) 46%); position: relative; overflow: hidden; }
+/* Lilás exclusivo do destaque de campanha desta página; os demais elementos
+   seguem os tokens da marca. */
+.page { --campaign: #6b53a8; --campaign-deep: #513e83; --campaign-soft: rgba(255,255,255,.16); min-height: 100dvh; display: flex; flex-direction: column; background: linear-gradient(168deg, var(--brand-cyan-light), var(--neutral-white) 46%); position: relative; overflow: hidden; }
 .page::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--brand-cyan), transparent); opacity: .6; }
 
 .layout { width: min(100% - 32px, 560px); margin-inline: auto; padding: 46px 0 40px; flex: 1; }
@@ -31,6 +33,13 @@
 .tileFeatured .tileText strong { font-size: 1.18rem; }
 .tileFeatured:hover { border-color: var(--brand-orange); border-left-color: var(--brand-orange-dark); }
 .tileFeatured:hover .tileArrow { color: var(--brand-orange-dark); }
+
+.tileHighlight { min-height: 92px; padding: 22px 20px; background: var(--campaign); border-color: var(--campaign); color: var(--neutral-white); }
+.tileHighlight .tileIcon { width: 42px; height: 42px; background: var(--campaign-soft); color: var(--neutral-white); }
+.tileHighlight .tileText strong { font-size: 1.24rem; }
+.tileHighlight .tileText small, .tileHighlight .tileArrow { color: rgba(255,255,255,.82); }
+.tileHighlight:hover { background: var(--campaign-deep); border-color: var(--campaign-deep); box-shadow: 0 14px 30px rgba(81,62,131,.24); }
+.tileHighlight:hover .tileArrow { color: var(--neutral-white); }
 
 .tileCampaign { border-left: 3px solid var(--brand-cyan-dark); }
 

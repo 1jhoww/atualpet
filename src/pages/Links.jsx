@@ -26,7 +26,7 @@ function LinkTile({ item, className }) {
 }
 
 export default function Links() {
-  const { seo, intro, featured, campaigns, shortcuts, contact, social } = linksPage
+  const { seo, intro, highlight, featured, campaigns, shortcuts, contact, social } = linksPage
   return <main className={styles.page}>
     <Seo title={seo.title} description={seo.description} path={seo.path} />
     <div className={styles.layout}>
@@ -38,7 +38,11 @@ export default function Links() {
       </Reveal>
 
       <div className={styles.content}>
-        <Reveal as="section" className={styles.featured} aria-label="Destaques">
+        {highlight && <Reveal as="section" aria-label="Destaque do momento">
+          <LinkTile item={highlight} className={`${styles.tile} ${styles.tileHighlight}`} />
+        </Reveal>}
+
+        <Reveal as="section" className={styles.featured} delay={20} aria-label="Destaques">
           {featured.map((item) => <LinkTile key={item.id} item={item} className={`${styles.tile} ${styles.tileFeatured}`} />)}
         </Reveal>
 
