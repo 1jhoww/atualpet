@@ -9,6 +9,7 @@ const navItems = [
   ['Sobre', '/sobre'],
   ['Lançamentos', '/lancamentos'],
   ['Produtos', '/produtos'],
+  ['Calculadora do Banho', '/calculadora-do-banho'],
   ['Onde encontrar', '/onde-encontrar'],
   ['Contato', '/contato'],
 ]

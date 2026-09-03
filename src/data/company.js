@@ -9,6 +9,7 @@ export const company = {
   phone: '(11) 96232-0441',
   whatsapp: '5511962320441',
   email: 'marketing@orionpet.com.br',
+  administrativeEmail: 'administrativo@orionpet.com.br',
   address: 'Rua Hawai, 77 — Jardim Margarida, Vargem Grande Paulista — SP',
   addressReviewNote: 'O site antigo também apresenta Avenida Sapopemba, 5964, São Paulo — SP. Validar endereço oficial.',
   instagram: 'https://www.instagram.com/atualpetoficial/',

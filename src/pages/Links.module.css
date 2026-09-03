@@ -1,0 +1,77 @@
+/* Página da bio (/links). Mobile-first: as media queries crescem a partir do
+   celular. A coluna esquerda do desktop fica propositalmente com respiro
+   abaixo da apresentação para receber elementos gráficos no futuro. */
+.page { min-height: 100dvh; display: flex; flex-direction: column; background: linear-gradient(168deg, var(--brand-cyan-light), var(--neutral-white) 46%); position: relative; overflow: hidden; }
+.page::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--brand-cyan), transparent); opacity: .6; }
+
+.layout { width: min(100% - 32px, 560px); margin-inline: auto; padding: 46px 0 40px; flex: 1; }
+
+.intro { text-align: center; }
+.intro img { width: 128px; height: 84px; object-fit: contain; margin: 0 auto 18px; }
+.intro h1 { font-size: clamp(1.95rem, 7.4vw, 2.6rem); margin: .28em 0 .4em; }
+.intro p { color: var(--neutral-700); font-size: .98rem; margin: 0 auto; max-width: 42ch; }
+
+.content { display: grid; gap: 30px; margin-top: 34px; }
+.group { display: grid; gap: 10px; }
+.groupTitle { font-family: var(--sans); font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .16em; color: var(--neutral-700); margin: 0 0 2px; }
+
+.tile { position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; min-height: 62px; padding: 15px 17px; background: var(--neutral-white); border: 1px solid var(--line); transition: transform .35s var(--ease-premium), border-color .3s ease, box-shadow .35s var(--ease-premium), background .3s ease, color .3s ease; }
+.tile:hover { border-color: var(--brand-cyan-dark); transform: translateY(-2px); box-shadow: 0 12px 26px rgba(23,33,31,.08); }
+.tile:active { transform: translateY(0); box-shadow: none; }
+.tileIcon { display: grid; place-items: center; width: 34px; height: 34px; color: var(--brand-cyan-dark); background: var(--brand-cyan-light); transition: background .3s ease, color .3s ease; }
+.tileText { display: grid; gap: 3px; min-width: 0; }
+.tileText strong { font-family: var(--display); font-size: 1rem; letter-spacing: -.02em; }
+.tileText small { font-size: .78rem; color: var(--neutral-700); line-height: 1.35; }
+.tileArrow { color: var(--neutral-700); transition: transform .4s var(--ease-premium), color .3s ease; }
+.tile:hover .tileArrow { transform: translate(3px, -3px); color: var(--brand-cyan-dark); }
+
+.featured { display: grid; gap: 12px; }
+.tileFeatured { min-height: 84px; padding: 20px 19px; border-left: 3px solid var(--brand-orange); }
+.tileFeatured .tileIcon { width: 40px; height: 40px; color: var(--brand-orange-dark); background: var(--brand-orange-light); }
+.tileFeatured .tileText strong { font-size: 1.18rem; }
+.tileFeatured:hover { border-color: var(--brand-orange); border-left-color: var(--brand-orange-dark); }
+.tileFeatured:hover .tileArrow { color: var(--brand-orange-dark); }
+
+.tileCampaign { border-left: 3px solid var(--brand-cyan-dark); }
+
+.contact { display: grid; gap: 10px; padding: 22px 20px; background: var(--neutral-white); border: 1px solid var(--line); }
+.contact h2 { font-size: 1.35rem; margin: 0; }
+.contact p { color: var(--neutral-700); font-size: .84rem; margin: -4px 0 6px; }
+.tileContact { background: var(--brand-orange); border-color: var(--brand-orange); }
+.tileContact .tileIcon { background: rgba(255,255,255,.42); color: var(--brand-orange-dark); }
+.tileContact:hover { background: var(--brand-orange-dark); border-color: var(--brand-orange-dark); color: var(--neutral-white); }
+.tileContact:hover .tileText small, .tileContact:hover .tileArrow { color: var(--neutral-white); }
+.contactRow { display: grid; gap: 10px; }
+.tileCompact { min-height: 56px; padding: 12px 15px; }
+.tileCompact .tileText strong { font-size: .9rem; }
+
+.socialBlock { display: grid; gap: 12px; justify-items: center; text-align: center; }
+.socialLabel { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .16em; color: var(--neutral-700); }
+.socialRow { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; }
+.socialRow a { display: inline-flex; align-items: center; justify-content: center; gap: 9px; flex: 1 1 140px; min-height: 52px; padding: 0 18px; background: var(--neutral-white); border: 1px solid var(--line); font-size: .82rem; font-weight: 700; transition: transform .35s var(--ease-premium), border-color .3s ease, color .3s ease, background .3s ease; }
+.socialRow a:hover { border-color: var(--brand-cyan-dark); color: var(--brand-cyan-dark); transform: translateY(-2px); }
+.socialRow a:active { transform: translateY(0); }
+.socialRow svg { width: 17px; height: 17px; }
+
+.footer { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 18px; padding: 24px 16px 30px; font-size: .74rem; color: var(--neutral-700); border-top: 1px solid rgba(215,222,220,.7); }
+.footer a { padding: 6px 2px; transition: color .3s ease; }
+.footer a:hover { color: var(--brand-cyan-dark); }
+
+@media (min-width: 600px) {
+  .layout { width: min(100% - 48px, 620px); padding: 60px 0 46px; }
+  .intro img { width: 148px; height: 96px; }
+  .contactRow { grid-template-columns: 1fr 1fr; }
+  .contact { padding: 26px 24px; }
+}
+
+@media (min-width: 961px) {
+  .layout { width: min(100% - 64px, 1060px); display: grid; grid-template-columns: .85fr 1.15fr; gap: 64px; align-items: start; padding: 72px 0 56px; }
+  .intro { position: sticky; top: 64px; text-align: left; padding-bottom: 40px; }
+  .intro img { margin-inline: 0; }
+  .intro h1 { font-size: clamp(2.4rem, 3.2vw, 3.2rem); }
+  .intro p { margin-inline: 0; }
+  .content { margin-top: 0; gap: 34px; }
+  .socialBlock { justify-items: start; text-align: left; }
+  .socialRow { justify-content: flex-start; }
+  .socialRow a { flex: 0 1 170px; }
+}
