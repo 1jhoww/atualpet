@@ -14,6 +14,7 @@ export const homeEditorial = {
       logoWidth: 1600,
       logoHeight: 424,
       logoAlt: 'Orion Indústria e Comércio de Cosméticos Ltda.',
+      logoUrl: 'https://orioninternacional.com.br/',
     },
     evidence: [
       {

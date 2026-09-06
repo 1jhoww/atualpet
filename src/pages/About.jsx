@@ -31,14 +31,22 @@ export default function About() {
           {history.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           <div className={styles.historyBrand}>
             <span>{history.brandLabel}</span>
-            <img
-              src={history.brandLogo}
-              width={history.brandLogoWidth}
-              height={history.brandLogoHeight}
-              loading="lazy"
-              decoding="async"
-              alt={history.brandLogoAlt}
-            />
+            <a
+              className={styles.historyBrandLink}
+              href={history.brandLogoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Site oficial da Orion"
+            >
+              <img
+                src={history.brandLogo}
+                width={history.brandLogoWidth}
+                height={history.brandLogoHeight}
+                loading="lazy"
+                decoding="async"
+                alt={history.brandLogoAlt}
+              />
+            </a>
           </div>
         </div>
       </Reveal>

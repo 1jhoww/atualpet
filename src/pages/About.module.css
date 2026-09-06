@@ -18,7 +18,8 @@
 .historyCopy p { max-width: 650px; color: var(--neutral-700); }
 .historyBrand { display: grid; gap: 15px; max-width: 330px; margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--neutral-300); }
 .historyBrand span { color: var(--brand-orange-dark); font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
-.historyBrand img { width: min(260px, 100%); height: auto; object-fit: contain; object-position: left center; }
+.historyBrandLink { display: block; width: min(260px, 100%); line-height: 0; }
+.historyBrand img { display: block; width: 100%; height: auto; object-fit: contain; object-position: left center; }
 
 .careJourney { display: grid; gap: 22px; padding-bottom: clamp(70px, 7.5vw, 124px); }
 .story { min-height: 530px; display: grid; grid-template-columns: 1.12fr .88fr; align-items: stretch; }

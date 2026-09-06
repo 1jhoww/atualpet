@@ -38,6 +38,7 @@ export const aboutContent = {
     brandLogoWidth: 1600,
     brandLogoHeight: 424,
     brandLogoAlt: 'Orion Indústria e Comércio de Cosméticos Ltda.',
+    brandLogoUrl: 'https://orioninternacional.com.br/',
   },
   careJourney: {
     label: 'Antes, durante e depois do banho',

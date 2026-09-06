@@ -11,15 +11,23 @@ export default function TechnicalCredibility({ content }) {
           <p>{content.institutionalLead.description}</p>
         </div>
         <div className={styles.brandMark}>
-          <img
-            className={styles.brandLogo}
-            src={content.institutionalLead.logo}
-            width={content.institutionalLead.logoWidth}
-            height={content.institutionalLead.logoHeight}
-            loading="lazy"
-            decoding="async"
-            alt={content.institutionalLead.logoAlt}
-          />
+          <a
+            className={styles.brandLink}
+            href={content.institutionalLead.logoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Site oficial da Orion"
+          >
+            <img
+              className={styles.brandLogo}
+              src={content.institutionalLead.logo}
+              width={content.institutionalLead.logoWidth}
+              height={content.institutionalLead.logoHeight}
+              loading="lazy"
+              decoding="async"
+              alt={content.institutionalLead.logoAlt}
+            />
+          </a>
         </div>
       </Reveal>
 
